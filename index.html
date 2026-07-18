@@ -202,14 +202,20 @@
 
   .opt .say {
     margin-left: auto;
-    font-size: 0.85rem;
-    opacity: 0;
-    transition: opacity 0.15s;
+    font-size: 0.95rem;
+    opacity: 0.45;
+    flex-shrink: 0;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: opacity 0.15s, background 0.15s;
   }
 
   .opt:hover .say,
-  .opt:focus-visible .say {
-    opacity: 0.6;
+  .opt:focus-visible .say,
+  .opt .say:hover,
+  .opt .say:focus-visible {
+    opacity: 1;
+    background: color-mix(in srgb, var(--gold) 16%, transparent);
   }
 
   .opt:disabled { cursor: default; }
@@ -512,6 +518,337 @@
     { en: "What time does it close?", ro: "La ce oră se închide?" },
     { en: "How long does it take?", ro: "Cât durează?" },
     { en: "Is it included?", ro: "Este inclus?" },
+
+    // Verbs & basic actions
+    { en: "I want", ro: "Vreau" },
+    { en: "I need", ro: "Am nevoie de" },
+    { en: "I have", ro: "Am" },
+    { en: "I like it", ro: "Îmi place" },
+    { en: "I don't like it", ro: "Nu-mi place" },
+    { en: "I know", ro: "Știu" },
+    { en: "I don't know", ro: "Nu știu" },
+    { en: "I can", ro: "Pot" },
+    { en: "I can't", ro: "Nu pot" },
+    { en: "Let's go!", ro: "Hai să mergem!" },
+    { en: "Come here", ro: "Vino aici" },
+    { en: "Wait", ro: "Așteaptă" },
+    { en: "Stop", ro: "Oprește" },
+    { en: "Go", ro: "Mergi" },
+    { en: "Look", ro: "Uite" },
+    { en: "Listen", ro: "Ascultă" },
+    { en: "Come in", ro: "Intră" },
+    { en: "Sit down", ro: "Ia loc" },
+    { en: "Speak", ro: "Vorbește" },
+    { en: "Write", ro: "Scrie" },
+    { en: "Read", ro: "Citește" },
+    { en: "Buy", ro: "Cumpără" },
+    { en: "Sell", ro: "Vinde" },
+    { en: "Pay", ro: "Plătește" },
+    { en: "Eat", ro: "Mănâncă" },
+    { en: "Drink", ro: "Bea" },
+    { en: "Sleep", ro: "Dormi" },
+    { en: "Wake up", ro: "Trezește-te" },
+
+    // Question words
+    { en: "Who?", ro: "Cine?" },
+    { en: "What?", ro: "Ce?" },
+    { en: "Where?", ro: "Unde?" },
+    { en: "When?", ro: "Când?" },
+    { en: "Why?", ro: "De ce?" },
+    { en: "How?", ro: "Cum?" },
+    { en: "How much? (quantity)", ro: "Cât?" },
+    { en: "How many?", ro: "Câți?" },
+    { en: "Which one?", ro: "Care?" },
+
+    // Pronouns & basics
+    { en: "I", ro: "Eu" },
+    { en: "You", ro: "Tu" },
+    { en: "He", ro: "El" },
+    { en: "She", ro: "Ea" },
+    { en: "We", ro: "Noi" },
+    { en: "They", ro: "Ei" },
+    { en: "This", ro: "Acesta" },
+    { en: "That", ro: "Acela" },
+    { en: "Here", ro: "Aici" },
+    { en: "There", ro: "Acolo" },
+
+    // More numbers
+    { en: "Zero", ro: "Zero" },
+    { en: "Eleven", ro: "Unsprezece" },
+    { en: "Twelve", ro: "Doisprezece" },
+    { en: "Thirteen", ro: "Treisprezece" },
+    { en: "Fourteen", ro: "Paisprezece" },
+    { en: "Fifteen", ro: "Cincisprezece" },
+    { en: "Sixteen", ro: "Șaisprezece" },
+    { en: "Seventeen", ro: "Șaptesprezece" },
+    { en: "Eighteen", ro: "Optsprezece" },
+    { en: "Nineteen", ro: "Nouăsprezece" },
+    { en: "Thirty", ro: "Treizeci" },
+    { en: "Forty", ro: "Patruzeci" },
+    { en: "Sixty", ro: "Șaizeci" },
+    { en: "Seventy", ro: "Șaptezeci" },
+    { en: "Eighty", ro: "Optzeci" },
+    { en: "Ninety", ro: "Nouăzeci" },
+    { en: "One thousand", ro: "O mie" },
+
+    // Months
+    { en: "January", ro: "Ianuarie" },
+    { en: "February", ro: "Februarie" },
+    { en: "March", ro: "Martie" },
+    { en: "April", ro: "Aprilie" },
+    { en: "May", ro: "Mai" },
+    { en: "June", ro: "Iunie" },
+    { en: "July", ro: "Iulie" },
+    { en: "August", ro: "August" },
+    { en: "September", ro: "Septembrie" },
+    { en: "October", ro: "Octombrie" },
+    { en: "November", ro: "Noiembrie" },
+    { en: "December", ro: "Decembrie" },
+
+    // Seasons
+    { en: "Spring", ro: "Primăvară" },
+    { en: "Summer", ro: "Vară" },
+    { en: "Autumn", ro: "Toamnă" },
+    { en: "Winter", ro: "Iarnă" },
+
+    // Weather, more
+    { en: "Wind", ro: "Vânt" },
+    { en: "It's windy", ro: "Este vânt" },
+    { en: "Cloud", ro: "Nor" },
+    { en: "Cloudy", ro: "Înnorat" },
+    { en: "Storm", ro: "Furtună" },
+    { en: "Temperature", ro: "Temperatură" },
+    { en: "Humidity", ro: "Umiditate" },
+
+    // Money & currency
+    { en: "Money", ro: "Bani" },
+    { en: "Euro", ro: "Euro" },
+    { en: "Romanian leu", ro: "Leu românesc" },
+    { en: "Change (money)", ro: "Rest" },
+    { en: "Wallet", ro: "Portofel" },
+    { en: "ATM", ro: "Bancomat" },
+    { en: "Bank", ro: "Bancă" },
+    { en: "Currency exchange office", ro: "Casă de schimb valutar" },
+    { en: "Credit card", ro: "Card de credit" },
+
+    // Communication & technology
+    { en: "Phone", ro: "Telefon" },
+    { en: "Phone number", ro: "Număr de telefon" },
+    { en: "Internet", ro: "Internet" },
+    { en: "Charger", ro: "Încărcător" },
+    { en: "Battery", ro: "Baterie" },
+    { en: "Camera", ro: "Aparat foto" },
+    { en: "Photo", ro: "Fotografie" },
+    { en: "Can I take a photo?", ro: "Pot face o fotografie?" },
+    { en: "Email", ro: "E-mail" },
+    { en: "Post office", ro: "Poștă" },
+    { en: "Stamp", ro: "Timbru" },
+    { en: "Postcard", ro: "Carte poștală" },
+    { en: "Letter (mail)", ro: "Scrisoare" },
+
+    // Clothing
+    { en: "Clothes", ro: "Haine" },
+    { en: "Shirt", ro: "Cămașă" },
+    { en: "Trousers", ro: "Pantaloni" },
+    { en: "Dress", ro: "Rochie" },
+    { en: "Shoes", ro: "Pantofi" },
+    { en: "Jacket", ro: "Jachetă" },
+    { en: "Hat", ro: "Pălărie" },
+    { en: "Socks", ro: "Șosete" },
+    { en: "Coat", ro: "Palton" },
+    { en: "Scarf", ro: "Fular" },
+
+    // Body & health
+    { en: "Head", ro: "Cap" },
+    { en: "Hand", ro: "Mână" },
+    { en: "Foot", ro: "Picior" },
+    { en: "Stomach", ro: "Stomac" },
+    { en: "Back (body)", ro: "Spate" },
+    { en: "Eye", ro: "Ochi" },
+    { en: "Ear", ro: "Ureche" },
+    { en: "Tooth", ro: "Dinte" },
+    { en: "Heart", ro: "Inimă" },
+    { en: "Throat", ro: "Gât" },
+    { en: "Fever", ro: "Febră" },
+    { en: "Headache", ro: "Durere de cap" },
+    { en: "I have a fever", ro: "Am febră" },
+    { en: "Medicine", ro: "Medicament" },
+    { en: "Painkiller", ro: "Calmant" },
+    { en: "Nurse", ro: "Asistentă medicală" },
+    { en: "Dentist", ro: "Dentist" },
+    { en: "Insurance", ro: "Asigurare" },
+    { en: "I'm allergic to...", ro: "Sunt alergic la..." },
+
+    // Animals
+    { en: "Dog", ro: "Câine" },
+    { en: "Cat", ro: "Pisică" },
+    { en: "Horse", ro: "Cal" },
+    { en: "Bear", ro: "Urs" },
+    { en: "Wolf", ro: "Lup" },
+    { en: "Bird", ro: "Pasăre" },
+    { en: "Cow", ro: "Vacă" },
+    { en: "Sheep", ro: "Oaie" },
+
+    // Nature
+    { en: "Forest", ro: "Pădure" },
+    { en: "River", ro: "Râu" },
+    { en: "Sea", ro: "Mare" },
+    { en: "Sky", ro: "Cer" },
+    { en: "Sun", ro: "Soare" },
+    { en: "Moon", ro: "Lună" },
+    { en: "Star", ro: "Stea" },
+    { en: "Tree", ro: "Copac" },
+    { en: "Flower", ro: "Floare" },
+    { en: "Snow", ro: "Zăpadă" },
+    { en: "Field", ro: "Câmp" },
+    { en: "Cave", ro: "Peșteră" },
+    { en: "Valley", ro: "Vale" },
+    { en: "Hill", ro: "Deal" },
+    { en: "Village", ro: "Sat" },
+    { en: "Countryside", ro: "La țară" },
+
+    // Transportation, more
+    { en: "Car", ro: "Mașină" },
+    { en: "Bicycle", ro: "Bicicletă" },
+    { en: "Boat", ro: "Barcă" },
+    { en: "Ferry", ro: "Feribot" },
+    { en: "Subway", ro: "Metrou" },
+    { en: "Rent a car", ro: "Închiriere de mașini" },
+    { en: "Parking", ro: "Parcare" },
+    { en: "Gas station", ro: "Benzinărie" },
+    { en: "Driver's license", ro: "Permis de conducere" },
+    { en: "Traffic", ro: "Trafic" },
+    { en: "Highway", ro: "Autostradă" },
+    { en: "No entry", ro: "Interzis" },
+    { en: "Speed limit", ro: "Limită de viteză" },
+
+    // Romanian specialties & restaurant items
+    { en: "Sarmale (cabbage rolls)", ro: "Sarmale" },
+    { en: "Mămăligă (polenta)", ro: "Mămăligă" },
+    { en: "Țuică (plum brandy)", ro: "Țuică" },
+    { en: "Papanași (fried dessert)", ro: "Papanași" },
+    { en: "Ciorbă (sour soup)", ro: "Ciorbă" },
+    { en: "Mici (grilled meat rolls)", ro: "Mici" },
+    { en: "Cozonac (sweet bread)", ro: "Cozonac" },
+    { en: "Dessert", ro: "Desert" },
+    { en: "Ice cream", ro: "Înghețată" },
+    { en: "Cake", ro: "Prăjitură" },
+    { en: "Juice", ro: "Suc" },
+    { en: "Milk", ro: "Lapte" },
+    { en: "Butter", ro: "Unt" },
+    { en: "Cheese", ro: "Brânză" },
+    { en: "Eggs", ro: "Ouă" },
+    { en: "Rice", ro: "Orez" },
+    { en: "Pasta", ro: "Paste" },
+    { en: "Sauce", ro: "Sos" },
+    { en: "Spicy (flavor)", ro: "Picant" },
+    { en: "Sweet", ro: "Dulce" },
+    { en: "Sour", ro: "Acru" },
+    { en: "Fresh", ro: "Proaspăt" },
+    { en: "Napkin", ro: "Șervețel" },
+    { en: "Fork", ro: "Furculiță" },
+    { en: "Knife", ro: "Cuțit" },
+    { en: "Spoon", ro: "Lingură" },
+    { en: "Plate", ro: "Farfurie" },
+    { en: "Glass (for drinking)", ro: "Pahar" },
+    { en: "Cup", ro: "Ceașcă" },
+    { en: "Waiter", ro: "Ospătar" },
+    { en: "Chef", ro: "Bucătar" },
+    { en: "I'd like to book a table", ro: "Aș dori să rezerv o masă" },
+
+    // Shopping, more
+    { en: "Gift", ro: "Cadou" },
+    { en: "Souvenir", ro: "Suvenir" },
+    { en: "Handmade", ro: "Făcut manual" },
+    { en: "Local product", ro: "Produs local" },
+    { en: "Bag", ro: "Geantă" },
+    { en: "Jewelry", ro: "Bijuterii" },
+    { en: "Bookstore", ro: "Librărie" },
+    { en: "Supermarket", ro: "Supermarket" },
+    { en: "Bakery", ro: "Brutărie" },
+    { en: "Butcher shop", ro: "Măcelărie" },
+
+    // Emotions
+    { en: "Happy", ro: "Fericit" },
+    { en: "Sad", ro: "Trist" },
+    { en: "Tired", ro: "Obosit" },
+    { en: "Hungry", ro: "Flămând" },
+    { en: "Thirsty", ro: "Însetat" },
+    { en: "Scared", ro: "Speriat" },
+    { en: "Angry", ro: "Supărat" },
+    { en: "Excited", ro: "Entuziasmat" },
+    { en: "Bored", ro: "Plictisit" },
+    { en: "Surprised", ro: "Surprins" },
+
+    // Common exclamations & small talk
+    { en: "Watch out!", ro: "Ai grijă!" },
+    { en: "Wonderful!", ro: "Minunat!" },
+    { en: "Amazing!", ro: "Uimitor!" },
+    { en: "Incredible!", ro: "Incredibil!" },
+    { en: "I love it", ro: "Îmi place foarte mult" },
+    { en: "Wait a moment", ro: "O clipă" },
+    { en: "No problem", ro: "Nicio problemă" },
+    { en: "It's okay", ro: "E în regulă" },
+    { en: "I'm sure", ro: "Sunt sigur" },
+    { en: "I'm not sure", ro: "Nu sunt sigur" },
+    { en: "Really?", ro: "Serios?" },
+    { en: "That's right", ro: "Așa este" },
+    { en: "That's wrong", ro: "Nu este corect" },
+
+    // Professions
+    { en: "Teacher", ro: "Profesor" },
+    { en: "Engineer", ro: "Inginer" },
+    { en: "Student", ro: "Student" },
+    { en: "Tourist", ro: "Turist" },
+    { en: "Tour guide", ro: "Ghid" },
+
+    // Activities & sightseeing
+    { en: "Hiking", ro: "Drumeție" },
+    { en: "Swimming", ro: "Înot" },
+    { en: "Skiing", ro: "Schi" },
+    { en: "Sightseeing", ro: "Vizitarea obiectivelor turistice" },
+    { en: "Tour", ro: "Tur" },
+    { en: "Ticket office", ro: "Casa de bilete" },
+    { en: "Guided tour", ro: "Tur ghidat" },
+    { en: "Opening hours", ro: "Program de funcționare" },
+    { en: "Entrance fee", ro: "Taxă de intrare" },
+    { en: "Free entrance", ro: "Intrare liberă" },
+    { en: "Souvenir shop", ro: "Magazin de suveniruri" },
+
+    // More adjectives & orientation
+    { en: "New", ro: "Nou" },
+    { en: "Old", ro: "Vechi" },
+    { en: "Young", ro: "Tânăr" },
+    { en: "Long", ro: "Lung" },
+    { en: "Short", ro: "Scurt" },
+    { en: "High", ro: "Înalt" },
+    { en: "Low", ro: "Jos" },
+    { en: "Wide", ro: "Larg" },
+    { en: "Narrow", ro: "Îngust" },
+    { en: "Heavy", ro: "Greu" },
+    { en: "Light (weight)", ro: "Ușor" },
+    { en: "Clean", ro: "Curat" },
+    { en: "Dirty", ro: "Murdar" },
+    { en: "Full", ro: "Plin" },
+    { en: "Empty", ro: "Gol" },
+    { en: "Difficult", ro: "Dificil" },
+    { en: "Quiet", ro: "Liniștit" },
+    { en: "Noisy", ro: "Zgomotos" },
+    { en: "Safe", ro: "Sigur" },
+    { en: "Dangerous", ro: "Periculos" },
+    { en: "Free (no cost)", ro: "Gratuit" },
+    { en: "Busy", ro: "Ocupat" },
+    { en: "Available", ro: "Disponibil" },
+    { en: "Local (adj.)", ro: "Local" },
+    { en: "Foreign", ro: "Străin" },
+    { en: "Public", ro: "Public" },
+    { en: "Private", ro: "Privat" },
+    { en: "North", ro: "Nord" },
+    { en: "South", ro: "Sud" },
+    { en: "East", ro: "Est" },
+    { en: "West", ro: "Vest" },
+    { en: "Center", ro: "Centru" },
+    { en: "Corner", ro: "Colț" },
   ];
 
   const ROUND_SIZE = 10;
@@ -581,7 +918,8 @@
       <div class="options" id="options">
         ${q.options.map((opt, i) => `
           <button class="opt" data-opt="${escapeAttr(opt)}" data-idx="${i}">
-            <span class="tag">${LETTERS[i]}</span><span>${opt}</span><span class="say">🔊</span>
+            <span class="tag">${LETTERS[i]}</span><span>${opt}</span>
+            <span class="say" data-say="${escapeAttr(opt)}" role="button" aria-label="Listen to pronunciation" tabindex="0">🔊</span>
           </button>
         `).join("")}
       </div>
@@ -594,8 +932,19 @@
     answered = false;
     document.querySelectorAll(".opt").forEach(btn => {
       btn.addEventListener("click", onAnswer);
-      btn.addEventListener("mouseenter", () => speakRomanian(btn.dataset.opt));
-      btn.addEventListener("focus", () => speakRomanian(btn.dataset.opt));
+    });
+    document.querySelectorAll(".say").forEach(say => {
+      say.addEventListener("click", e => {
+        e.stopPropagation();
+        speakRomanian(say.dataset.say);
+      });
+      say.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+          speakRomanian(say.dataset.say);
+        }
+      });
     });
     document.getElementById("nextBtn").addEventListener("click", () => {
       index += 1;
