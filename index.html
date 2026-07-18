@@ -1021,6 +1021,10 @@
     showToast._t = setTimeout(() => toast.classList.remove("show"), 4500);
   }
 
+  // Keep a reference so Chrome doesn't garbage-collect the utterance mid-speech
+  // (a known cause of premature "interrupted"/"canceled" errors).
+  let currentUtterance = null;
+
   function speakRomanian(text) {
     if (!text) return;
     if (!window.speechSynthesis) {
@@ -1028,42 +1032,59 @@
       return;
     }
     const voices = loadVoice();
-    // Some browsers (notably iOS Safari) get stuck in a paused state after
-    // an interrupted utterance and silently ignore speak() until resumed.
-    if (speechSynthesis.paused) speechSynthesis.resume();
-    speechSynthesis.cancel();
 
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = "ro-RO";
-    if (romanianVoice) utter.voice = romanianVoice;
-    utter.rate = 0.9;
+    const doSpeak = () => {
+      // Some browsers (notably iOS Safari) get stuck paused after an
+      // interrupted utterance and silently ignore speak() until resumed.
+      if (speechSynthesis.paused) speechSynthesis.resume();
 
-    let started = false;
-    utter.onstart = () => { started = true; };
-    utter.onerror = (ev) => {
-      console.error("Speech synthesis error:", ev.error);
-      showToast("Couldn't play audio (" + ev.error + ").");
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "ro-RO";
+      if (romanianVoice) utter.voice = romanianVoice;
+      utter.rate = 0.9;
+      currentUtterance = utter;
+
+      let started = false;
+      utter.onstart = () => { started = true; };
+      utter.onend = () => { if (currentUtterance === utter) currentUtterance = null; };
+      utter.onerror = (ev) => {
+        // "canceled"/"interrupted" fire normally when the user triggers a new
+        // phrase before the previous one finishes — not real failures.
+        if (ev.error === "canceled" || ev.error === "interrupted") return;
+        console.error("Speech synthesis error:", ev.error);
+        showToast("Couldn't play audio (" + ev.error + ").");
+      };
+
+      try {
+        speechSynthesis.speak(utter);
+      } catch (err) {
+        console.error("speechSynthesis.speak threw:", err);
+        showToast("Speech failed to start.");
+        return;
+      }
+
+      // If nothing fired after a short delay, the browser silently dropped the
+      // request — usually because no voice is installed for this language.
+      setTimeout(() => {
+        if (!started && !speechSynthesis.speaking && !speechSynthesis.pending) {
+          if (voices.length === 0) {
+            showToast("No text-to-speech voices installed on this device.");
+          } else {
+            showToast("Speech didn't play — no Romanian voice found; try a different browser.");
+          }
+        }
+      }, 900);
     };
 
-    try {
-      speechSynthesis.speak(utter);
-    } catch (err) {
-      console.error("speechSynthesis.speak threw:", err);
-      showToast("Speech failed to start.");
-      return;
+    // Only cancel when something is actually playing, and let the cancel settle
+    // before the next speak(). Cancelling in the same tick as speak() makes
+    // Chrome apply the cancel to the just-queued utterance ("canceled" error).
+    if (speechSynthesis.speaking || speechSynthesis.pending) {
+      speechSynthesis.cancel();
+      setTimeout(doSpeak, 130);
+    } else {
+      doSpeak();
     }
-
-    // If nothing fired after a short delay, the browser silently dropped
-    // the request — usually because no voice is installed for this language.
-    setTimeout(() => {
-      if (!started && !speechSynthesis.speaking && !speechSynthesis.pending) {
-        if (voices.length === 0) {
-          showToast("No text-to-speech voices installed on this device.");
-        } else {
-          showToast("Speech didn't play — no Romanian voice found; try a different browser.");
-        }
-      }
-    }, 700);
   }
 
   function onAnswer(e) {
