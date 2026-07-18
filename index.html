@@ -285,10 +285,50 @@
     .options { grid-template-columns: 1fr; }
     .passport { padding: 22px 18px 26px; }
   }
+
+  .tts-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translate(-50%, 8px);
+    max-width: 90vw;
+    background: var(--ground-card);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    box-shadow: 0 12px 30px -12px rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 100;
+  }
+  .tts-toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .voice-test {
+    display: block;
+    margin: 14px auto 0;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .voice-test:hover { color: var(--ink); border-color: var(--gold-dim); }
+  .voice-test:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 </style>
 
 <div class="stage">
   <div class="passport" id="app"></div>
+  <button class="voice-test" id="voiceTest" type="button">🔊 Test Romanian voice</button>
 </div>
 
 <script>
@@ -960,20 +1000,70 @@
   function loadVoice() {
     const voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
     romanianVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("ro")) || null;
+    return voices;
   }
   if (window.speechSynthesis) {
     loadVoice();
     speechSynthesis.onvoiceschanged = loadVoice;
   }
 
+  function showToast(msg) {
+    let toast = document.getElementById("ttsToast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "ttsToast";
+      toast.className = "tts-toast";
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toast.classList.remove("show"), 4500);
+  }
+
   function speakRomanian(text) {
-    if (!window.speechSynthesis || !text) return;
+    if (!text) return;
+    if (!window.speechSynthesis) {
+      showToast("This browser doesn't support text-to-speech.");
+      return;
+    }
+    const voices = loadVoice();
+    // Some browsers (notably iOS Safari) get stuck in a paused state after
+    // an interrupted utterance and silently ignore speak() until resumed.
+    if (speechSynthesis.paused) speechSynthesis.resume();
     speechSynthesis.cancel();
+
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = "ro-RO";
     if (romanianVoice) utter.voice = romanianVoice;
     utter.rate = 0.9;
-    speechSynthesis.speak(utter);
+
+    let started = false;
+    utter.onstart = () => { started = true; };
+    utter.onerror = (ev) => {
+      console.error("Speech synthesis error:", ev.error);
+      showToast("Couldn't play audio (" + ev.error + ").");
+    };
+
+    try {
+      speechSynthesis.speak(utter);
+    } catch (err) {
+      console.error("speechSynthesis.speak threw:", err);
+      showToast("Speech failed to start.");
+      return;
+    }
+
+    // If nothing fired after a short delay, the browser silently dropped
+    // the request — usually because no voice is installed for this language.
+    setTimeout(() => {
+      if (!started && !speechSynthesis.speaking && !speechSynthesis.pending) {
+        if (voices.length === 0) {
+          showToast("No text-to-speech voices installed on this device.");
+        } else {
+          showToast("Speech didn't play — no Romanian voice found; try a different browser.");
+        }
+      }
+    }, 700);
   }
 
   function onAnswer(e) {
@@ -1030,6 +1120,10 @@
       render();
     });
   }
+
+  document.getElementById("voiceTest").addEventListener("click", () => {
+    speakRomanian("Bună ziua, bine ați venit în România!");
+  });
 
   buildRound();
   render();
