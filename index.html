@@ -1,17 +1,16 @@
-<title>Bun Venit — Romanian for Travelers</title>
+<title>¡Vamos! — Spanish for Travelers</title>
 <style>
   :root {
     --ink: #eef2f1;
     --ink-dim: #9fb2ba;
-    --ground: #101d26;
-    --ground-raised: #16262f;
-    --ground-card: #1c313b;
-    --line: #2b4149;
-    --gold: #e6b73d;
-    --gold-dim: #7d6631;
-    --flag-blue: #002b7f;
-    --flag-yellow: #fcd116;
-    --flag-red: #ce1126;
+    --ground: #1a1210;
+    --ground-raised: #221816;
+    --ground-card: #2c1e1a;
+    --line: #3d2820;
+    --gold: #e8a020;
+    --gold-dim: #7a5518;
+    --flag-red: #c60b1e;
+    --flag-yellow: #f1bf00;
     --good: #5fbf8f;
     --bad: #d9705a;
     --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
@@ -20,26 +19,26 @@
   }
 
   :root[data-theme="light"] {
-    --ink: #1b2a30;
-    --ink-dim: #5c7079;
-    --ground: #f3efe4;
+    --ink: #1b1008;
+    --ink-dim: #7a5a40;
+    --ground: #fdf6ee;
     --ground-raised: #ffffff;
     --ground-card: #ffffff;
-    --line: #d9d0bb;
-    --gold: #a97a1f;
-    --gold-dim: #d8c393;
+    --line: #e8d8c0;
+    --gold: #a0600a;
+    --gold-dim: #d8b87a;
   }
 
   @media (prefers-color-scheme: light) {
     :root:not([data-theme="dark"]) {
-      --ink: #1b2a30;
-      --ink-dim: #5c7079;
-      --ground: #f3efe4;
+      --ink: #1b1008;
+      --ink-dim: #7a5a40;
+      --ground: #fdf6ee;
       --ground-raised: #ffffff;
       --ground-card: #ffffff;
-      --line: #d9d0bb;
-      --gold: #a97a1f;
-      --gold-dim: #d8c393;
+      --line: #e8d8c0;
+      --gold: #a0600a;
+      --gold-dim: #d8b87a;
     }
   }
 
@@ -49,7 +48,7 @@
     margin: 0;
     min-height: 100vh;
     background:
-      radial-gradient(ellipse 900px 500px at 50% -10%, color-mix(in srgb, var(--gold) 10%, transparent), transparent),
+      radial-gradient(ellipse 900px 500px at 50% -10%, color-mix(in srgb, var(--flag-red) 8%, transparent), transparent),
       var(--ground);
     color: var(--ink);
     font-family: var(--font-body);
@@ -59,10 +58,7 @@
     padding: 32px 16px;
   }
 
-  .stage {
-    width: 100%;
-    max-width: 560px;
-  }
+  .stage { width: 100%; max-width: 560px; }
 
   .passport {
     background: var(--ground-raised);
@@ -122,8 +118,10 @@
     margin: 4px 0 24px;
   }
 
+  /* Spanish flag: red (1) / yellow (2) / red (1) */
   .flag {
     display: flex;
+    flex-direction: column;
     height: 22px;
     width: 33px;
     border-radius: 2px;
@@ -132,10 +130,9 @@
     transition: width 0.6s cubic-bezier(.2,.8,.2,1), height 0.6s cubic-bezier(.2,.8,.2,1), box-shadow 0.6s;
   }
 
-  .flag div { flex: 1; }
-  .flag .b { background: var(--flag-blue); }
-  .flag .y { background: var(--flag-yellow); }
-  .flag .r { background: var(--flag-red); }
+  .flag .rt { background: var(--flag-red); flex: 1; }
+  .flag .y  { background: var(--flag-yellow); flex: 2; }
+  .flag .rb { background: var(--flag-red); flex: 1; }
 
   .prompt-eyebrow {
     font-size: 0.68rem;
@@ -176,15 +173,8 @@
     transition: border-color 0.15s, transform 0.1s, background 0.15s;
   }
 
-  .opt:hover:not(:disabled) {
-    border-color: var(--gold-dim);
-    transform: translateY(-1px);
-  }
-
-  .opt:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 2px;
-  }
+  .opt:hover:not(:disabled) { border-color: var(--gold-dim); transform: translateY(-1px); }
+  .opt:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
   .opt .tag {
     font-family: var(--font-mono);
@@ -210,10 +200,8 @@
     transition: opacity 0.15s, background 0.15s;
   }
 
-  .opt:hover .say,
-  .opt:focus-visible .say,
-  .opt .say:hover,
-  .opt .say:focus-visible {
+  .opt:hover .say, .opt:focus-visible .say,
+  .opt .say:hover, .opt .say:focus-visible {
     opacity: 1;
     background: color-mix(in srgb, var(--gold) 16%, transparent);
   }
@@ -225,20 +213,11 @@
   .opt.wrong .tag { border-color: var(--bad); color: var(--bad); }
   .opt.dim { opacity: 0.45; }
 
-  .feedback {
-    min-height: 24px;
-    margin-top: 16px;
-    font-size: 0.85rem;
-    color: var(--ink-dim);
-  }
+  .feedback { min-height: 24px; margin-top: 16px; font-size: 0.85rem; color: var(--ink-dim); }
   .feedback.good { color: var(--good); }
   .feedback.bad { color: var(--bad); }
 
-  .footer-row {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 8px;
-  }
+  .footer-row { display: flex; justify-content: flex-end; margin-top: 8px; }
 
   button.next {
     font-family: var(--font-body);
@@ -260,31 +239,12 @@
 
   .win-screen { text-align: center; }
   .win-screen .flag-wrap { height: 180px; }
-  .win-screen h1 {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    margin: 6px 0 6px;
-  }
-  .win-screen p.result {
-    color: var(--ink-dim);
-    margin: 0 0 22px;
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-  }
-  .win-screen button.next {
-    opacity: 1;
-    pointer-events: auto;
-    margin: 0 auto;
-  }
+  .win-screen h1 { font-family: var(--font-display); font-size: 2rem; margin: 6px 0 6px; }
+  .win-screen p.result { color: var(--ink-dim); margin: 0 0 22px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .win-screen button.next { opacity: 1; pointer-events: auto; margin: 0 auto; }
 
-  @media (prefers-reduced-motion: reduce) {
-    .flag, .opt { transition: none; }
-  }
-
-  @media (max-width: 400px) {
-    .options { grid-template-columns: 1fr; }
-    .passport { padding: 22px 18px 26px; }
-  }
+  @media (prefers-reduced-motion: reduce) { .flag, .opt { transition: none; } }
+  @media (max-width: 400px) { .options { grid-template-columns: 1fr; } .passport { padding: 22px 18px 26px; } }
 
   .tts-toast {
     position: fixed;
@@ -304,10 +264,7 @@
     transition: opacity 0.2s, transform 0.2s;
     z-index: 100;
   }
-  .tts-toast.show {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
+  .tts-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
   .voice-test {
     display: block;
@@ -328,567 +285,533 @@
 
 <div class="stage">
   <div class="passport" id="app"></div>
-  <button class="voice-test" id="voiceTest" type="button">🔊 Test Romanian voice</button>
+  <button class="voice-test" id="voiceTest" type="button">🔊 Test Spanish voice</button>
 </div>
 
 <script>
-  // Pool of entry-level tourist phrases. Each round samples ROUND_SIZE of these
-  // and builds distractors dynamically from the rest of the pool.
   const POOL = [
     // Greetings & politeness
-    { en: "Hello", ro: "Bună ziua" },
-    { en: "Hi", ro: "Salut" },
-    { en: "Good morning", ro: "Bună dimineața" },
-    { en: "Good evening", ro: "Bună seara" },
-    { en: "Good night", ro: "Noapte bună" },
-    { en: "Goodbye", ro: "La revedere" },
-    { en: "See you later", ro: "Pe curând" },
-    { en: "Please", ro: "Vă rog" },
-    { en: "Thank you", ro: "Mulțumesc" },
-    { en: "Thank you very much", ro: "Mulțumesc mult" },
-    { en: "You're welcome", ro: "Cu plăcere" },
-    { en: "Yes", ro: "Da" },
-    { en: "No", ro: "Nu" },
-    { en: "Excuse me", ro: "Scuzați-mă" },
-    { en: "Sorry", ro: "Îmi pare rău" },
-    { en: "How are you?", ro: "Ce mai faceți?" },
-    { en: "I'm fine, thank you", ro: "Sunt bine, mulțumesc" },
-    { en: "What is your name?", ro: "Cum vă numiți?" },
-    { en: "My name is...", ro: "Mă numesc..." },
-    { en: "Nice to meet you", ro: "Îmi pare bine" },
-    { en: "Do you speak English?", ro: "Vorbiți engleză?" },
-    { en: "I don't speak Romanian", ro: "Nu vorbesc română" },
-    { en: "I don't understand", ro: "Nu înțeleg" },
-    { en: "Can you repeat that?", ro: "Puteți repeta?" },
-    { en: "Slower, please", ro: "Mai încet, vă rog" },
-    { en: "What does this mean?", ro: "Ce înseamnă asta?" },
-    { en: "Welcome", ro: "Bine ați venit" },
-    { en: "Of course", ro: "Desigur" },
-    { en: "Maybe", ro: "Poate" },
-    { en: "I agree", ro: "Sunt de acord" },
-    { en: "Congratulations", ro: "Felicitări" },
-    { en: "Happy birthday", ro: "La mulți ani" },
-    { en: "Good luck", ro: "Baftă" },
-    { en: "Take care", ro: "Ai grijă" },
-    { en: "No, thank you", ro: "Nu, mulțumesc" },
-    { en: "Cheers!", ro: "Noroc!" },
+    { en: "Hello", es: "Hola" },
+    { en: "Good morning", es: "Buenos días" },
+    { en: "Good afternoon", es: "Buenas tardes" },
+    { en: "Good evening / Good night", es: "Buenas noches" },
+    { en: "Goodbye", es: "Adiós" },
+    { en: "See you later", es: "Hasta luego" },
+    { en: "See you tomorrow", es: "Hasta mañana" },
+    { en: "Please", es: "Por favor" },
+    { en: "Thank you", es: "Gracias" },
+    { en: "Thank you very much", es: "Muchas gracias" },
+    { en: "You're welcome", es: "De nada" },
+    { en: "Yes", es: "Sí" },
+    { en: "No", es: "No" },
+    { en: "Excuse me", es: "Perdona" },
+    { en: "Sorry", es: "Lo siento" },
+    { en: "How are you?", es: "¿Cómo estás?" },
+    { en: "I'm fine, thank you", es: "Estoy bien, gracias" },
+    { en: "What is your name?", es: "¿Cómo te llamas?" },
+    { en: "My name is...", es: "Me llamo..." },
+    { en: "Nice to meet you", es: "Mucho gusto" },
+    { en: "Do you speak English?", es: "¿Hablas inglés?" },
+    { en: "I don't speak Spanish", es: "No hablo español" },
+    { en: "I don't understand", es: "No entiendo" },
+    { en: "Can you repeat that?", es: "¿Puedes repetir?" },
+    { en: "Slower, please", es: "Más despacio, por favor" },
+    { en: "What does this mean?", es: "¿Qué significa esto?" },
+    { en: "Welcome", es: "Bienvenido" },
+    { en: "Of course", es: "Por supuesto" },
+    { en: "Maybe", es: "Quizás" },
+    { en: "I agree", es: "Estoy de acuerdo" },
+    { en: "Congratulations", es: "Felicitaciones" },
+    { en: "Happy birthday", es: "Feliz cumpleaños" },
+    { en: "Good luck", es: "Buena suerte" },
+    { en: "Take care", es: "Cuídate" },
+    { en: "No, thank you", es: "No, gracias" },
+    { en: "Cheers!", es: "¡Salud!" },
 
     // Numbers
-    { en: "One", ro: "Unu" },
-    { en: "Two", ro: "Doi" },
-    { en: "Three", ro: "Trei" },
-    { en: "Four", ro: "Patru" },
-    { en: "Five", ro: "Cinci" },
-    { en: "Six", ro: "Șase" },
-    { en: "Seven", ro: "Șapte" },
-    { en: "Eight", ro: "Opt" },
-    { en: "Nine", ro: "Nouă" },
-    { en: "Ten", ro: "Zece" },
-    { en: "Twenty", ro: "Douăzeci" },
-    { en: "Fifty", ro: "Cincizeci" },
-    { en: "One hundred", ro: "O sută" },
+    { en: "Zero", es: "Cero" },
+    { en: "One", es: "Uno" },
+    { en: "Two", es: "Dos" },
+    { en: "Three", es: "Tres" },
+    { en: "Four", es: "Cuatro" },
+    { en: "Five", es: "Cinco" },
+    { en: "Six", es: "Seis" },
+    { en: "Seven", es: "Siete" },
+    { en: "Eight", es: "Ocho" },
+    { en: "Nine", es: "Nueve" },
+    { en: "Ten", es: "Diez" },
+    { en: "Eleven", es: "Once" },
+    { en: "Twelve", es: "Doce" },
+    { en: "Thirteen", es: "Trece" },
+    { en: "Fourteen", es: "Catorce" },
+    { en: "Fifteen", es: "Quince" },
+    { en: "Sixteen", es: "Dieciséis" },
+    { en: "Seventeen", es: "Diecisiete" },
+    { en: "Eighteen", es: "Dieciocho" },
+    { en: "Nineteen", es: "Diecinueve" },
+    { en: "Twenty", es: "Veinte" },
+    { en: "Thirty", es: "Treinta" },
+    { en: "Forty", es: "Cuarenta" },
+    { en: "Fifty", es: "Cincuenta" },
+    { en: "Sixty", es: "Sesenta" },
+    { en: "Seventy", es: "Setenta" },
+    { en: "Eighty", es: "Ochenta" },
+    { en: "Ninety", es: "Noventa" },
+    { en: "One hundred", es: "Cien" },
+    { en: "One thousand", es: "Mil" },
 
     // Days & time
-    { en: "Monday", ro: "Luni" },
-    { en: "Tuesday", ro: "Marți" },
-    { en: "Wednesday", ro: "Miercuri" },
-    { en: "Thursday", ro: "Joi" },
-    { en: "Friday", ro: "Vineri" },
-    { en: "Saturday", ro: "Sâmbătă" },
-    { en: "Sunday", ro: "Duminică" },
-    { en: "Today", ro: "Astăzi" },
-    { en: "Tomorrow", ro: "Mâine" },
-    { en: "Yesterday", ro: "Ieri" },
-    { en: "What time is it?", ro: "Cât e ceasul?" },
-    { en: "It's noon", ro: "Este amiază" },
-    { en: "In the morning", ro: "Dimineața" },
-    { en: "In the evening", ro: "Seara" },
-    { en: "At night", ro: "Noaptea" },
-
-    // Directions & transport
-    { en: "Where is...?", ro: "Unde este...?" },
-    { en: "Where is the bathroom?", ro: "Unde este toaleta?" },
-    { en: "Where is the train station?", ro: "Unde este gara?" },
-    { en: "Where is the bus station?", ro: "Unde este autogara?" },
-    { en: "Where is the airport?", ro: "Unde este aeroportul?" },
-    { en: "Where is the hotel?", ro: "Unde este hotelul?" },
-    { en: "Where is the exit?", ro: "Unde este ieșirea?" },
-    { en: "Where is the entrance?", ro: "Unde este intrarea?" },
-    { en: "Left", ro: "Stânga" },
-    { en: "Right", ro: "Dreapta" },
-    { en: "Straight ahead", ro: "Drept înainte" },
-    { en: "Near", ro: "Aproape" },
-    { en: "Far", ro: "Departe" },
-    { en: "Train station", ro: "Gara" },
-    { en: "Bus station", ro: "Autogara" },
-    { en: "Airport", ro: "Aeroport" },
-    { en: "Taxi", ro: "Taxi" },
-    { en: "Ticket", ro: "Bilet" },
-    { en: "One ticket, please", ro: "Un bilet, vă rog" },
-    { en: "Round trip", ro: "Dus-întors" },
-    { en: "One way", ro: "Dus" },
-    { en: "How do I get to...?", ro: "Cum ajung la...?" },
-    { en: "Is it far?", ro: "Este departe?" },
-    { en: "Bus stop", ro: "Stație de autobuz" },
-    { en: "Platform", ro: "Peron" },
-    { en: "Map", ro: "Hartă" },
-    { en: "I am lost", ro: "M-am rătăcit" },
-
-    // Accommodation
-    { en: "Hotel", ro: "Hotel" },
-    { en: "Room", ro: "Cameră" },
-    { en: "I have a reservation", ro: "Am o rezervare" },
-    { en: "Do you have a free room?", ro: "Aveți o cameră liberă?" },
-    { en: "How much per night?", ro: "Cât costă pe noapte?" },
-    { en: "Key", ro: "Cheie" },
-    { en: "Passport", ro: "Pașaport" },
-    { en: "Luggage", ro: "Bagaje" },
-    { en: "Elevator", ro: "Lift" },
-    { en: "Wi-Fi password", ro: "Parola Wi-Fi" },
-    { en: "Is there Wi-Fi here?", ro: "Este Wi-Fi aici?" },
-
-    // Food & dining
-    { en: "Water", ro: "Apă" },
-    { en: "Water, please", ro: "Apă, vă rog" },
-    { en: "Wine", ro: "Vin" },
-    { en: "Beer", ro: "Bere" },
-    { en: "Coffee", ro: "Cafea" },
-    { en: "Tea", ro: "Ceai" },
-    { en: "Bread", ro: "Pâine" },
-    { en: "Meat", ro: "Carne" },
-    { en: "Chicken", ro: "Pui" },
-    { en: "Fish", ro: "Pește" },
-    { en: "Vegetables", ro: "Legume" },
-    { en: "Fruit", ro: "Fructe" },
-    { en: "Salt", ro: "Sare" },
-    { en: "Sugar", ro: "Zahăr" },
-    { en: "Soup", ro: "Supă" },
-    { en: "Breakfast", ro: "Mic dejun" },
-    { en: "Lunch", ro: "Prânz" },
-    { en: "Dinner", ro: "Cină" },
-    { en: "The menu, please", ro: "Meniul, vă rog" },
-    { en: "The bill, please", ro: "Nota de plată, vă rog" },
-    { en: "Delicious!", ro: "Delicios!" },
-    { en: "I am vegetarian", ro: "Sunt vegetarian" },
-    { en: "Table for two", ro: "O masă pentru doi" },
-    { en: "Is this spicy?", ro: "Este picant?" },
-    { en: "Without sugar", ro: "Fără zahăr" },
-    { en: "Can I have the menu?", ro: "Pot avea meniul?" },
-    { en: "Enjoy your meal", ro: "Poftă bună" },
-
-    // Shopping
-    { en: "How much does it cost?", ro: "Cât costă?" },
-    { en: "Expensive", ro: "Scump" },
-    { en: "Cheap", ro: "Ieftin" },
-    { en: "Can I pay by card?", ro: "Pot plăti cu cardul?" },
-    { en: "Cash", ro: "Numerar" },
-    { en: "Discount", ro: "Reducere" },
-    { en: "Open", ro: "Deschis" },
-    { en: "Closed", ro: "Închis" },
-    { en: "Market", ro: "Piață" },
-    { en: "Store", ro: "Magazin" },
-    { en: "Pharmacy", ro: "Farmacie" },
-    { en: "Receipt", ro: "Bon fiscal" },
-    { en: "Size", ro: "Mărime" },
-    { en: "Can I try it on?", ro: "Pot să-l probez?" },
-    { en: "I'm just looking", ro: "Doar mă uit" },
-    { en: "Where can I buy a SIM card?", ro: "Unde pot cumpăra o cartelă SIM?" },
-
-    // Emergency & health
-    { en: "Help!", ro: "Ajutor!" },
-    { en: "Call the police!", ro: "Chemați poliția!" },
-    { en: "I need a doctor", ro: "Am nevoie de un doctor" },
-    { en: "Hospital", ro: "Spital" },
-    { en: "I'm sick", ro: "Sunt bolnav" },
-    { en: "It hurts here", ro: "Mă doare aici" },
-    { en: "Ambulance", ro: "Ambulanță" },
-    { en: "Emergency", ro: "Urgență" },
-    { en: "I lost my passport", ro: "Mi-am pierdut pașaportul" },
-    { en: "Fire!", ro: "Foc!" },
-    { en: "I need help", ro: "Am nevoie de ajutor" },
-    { en: "Allergic", ro: "Alergic" },
-
-    // Weather
-    { en: "It's hot", ro: "Este cald" },
-    { en: "It's cold", ro: "Este frig" },
-    { en: "It's raining", ro: "Plouă" },
-    { en: "It's snowing", ro: "Ninge" },
-    { en: "Sunny", ro: "Însorit" },
-
-    // Common adjectives
-    { en: "Good", ro: "Bun" },
-    { en: "Bad", ro: "Rău" },
-    { en: "Big", ro: "Mare" },
-    { en: "Small", ro: "Mic" },
-    { en: "Beautiful", ro: "Frumos" },
-    { en: "Fast", ro: "Rapid" },
-    { en: "Slow", ro: "Lent" },
-
-    // Family & people
-    { en: "Family", ro: "Familie" },
-    { en: "Friend", ro: "Prieten" },
-    { en: "Man", ro: "Bărbat" },
-    { en: "Woman", ro: "Femeie" },
-    { en: "Child", ro: "Copil" },
-
-    // Colors
-    { en: "Red", ro: "Roșu" },
-    { en: "Blue", ro: "Albastru" },
-    { en: "Yellow", ro: "Galben" },
-    { en: "Green", ro: "Verde" },
-    { en: "White", ro: "Alb" },
-    { en: "Black", ro: "Negru" },
-
-    // Places & sightseeing
-    { en: "Castle", ro: "Castel" },
-    { en: "Church", ro: "Biserică" },
-    { en: "Museum", ro: "Muzeu" },
-    { en: "Park", ro: "Parc" },
-    { en: "Mountain", ro: "Munte" },
-    { en: "Lake", ro: "Lac" },
-    { en: "City center", ro: "Centrul orașului" },
-    { en: "Beach", ro: "Plajă" },
-    { en: "Bridge", ro: "Pod" },
-    { en: "Central square", ro: "Piața centrală" },
-
-    // More useful travel phrases
-    { en: "I would like...", ro: "Aș dori..." },
-    { en: "Can you help me?", ro: "Mă puteți ajuta?" },
-    { en: "What time does it open?", ro: "La ce oră se deschide?" },
-    { en: "What time does it close?", ro: "La ce oră se închide?" },
-    { en: "How long does it take?", ro: "Cât durează?" },
-    { en: "Is it included?", ro: "Este inclus?" },
-
-    // Verbs & basic actions
-    { en: "I want", ro: "Vreau" },
-    { en: "I need", ro: "Am nevoie de" },
-    { en: "I have", ro: "Am" },
-    { en: "I like it", ro: "Îmi place" },
-    { en: "I don't like it", ro: "Nu-mi place" },
-    { en: "I know", ro: "Știu" },
-    { en: "I don't know", ro: "Nu știu" },
-    { en: "I can", ro: "Pot" },
-    { en: "I can't", ro: "Nu pot" },
-    { en: "Let's go!", ro: "Hai să mergem!" },
-    { en: "Come here", ro: "Vino aici" },
-    { en: "Wait", ro: "Așteaptă" },
-    { en: "Stop", ro: "Oprește" },
-    { en: "Go", ro: "Mergi" },
-    { en: "Look", ro: "Uite" },
-    { en: "Listen", ro: "Ascultă" },
-    { en: "Come in", ro: "Intră" },
-    { en: "Sit down", ro: "Ia loc" },
-    { en: "Speak", ro: "Vorbește" },
-    { en: "Write", ro: "Scrie" },
-    { en: "Read", ro: "Citește" },
-    { en: "Buy", ro: "Cumpără" },
-    { en: "Sell", ro: "Vinde" },
-    { en: "Pay", ro: "Plătește" },
-    { en: "Eat", ro: "Mănâncă" },
-    { en: "Drink", ro: "Bea" },
-    { en: "Sleep", ro: "Dormi" },
-    { en: "Wake up", ro: "Trezește-te" },
-
-    // Question words
-    { en: "Who?", ro: "Cine?" },
-    { en: "What?", ro: "Ce?" },
-    { en: "Where?", ro: "Unde?" },
-    { en: "When?", ro: "Când?" },
-    { en: "Why?", ro: "De ce?" },
-    { en: "How?", ro: "Cum?" },
-    { en: "How much? (quantity)", ro: "Cât?" },
-    { en: "How many?", ro: "Câți?" },
-    { en: "Which one?", ro: "Care?" },
-
-    // Pronouns & basics
-    { en: "I", ro: "Eu" },
-    { en: "You", ro: "Tu" },
-    { en: "He", ro: "El" },
-    { en: "She", ro: "Ea" },
-    { en: "We", ro: "Noi" },
-    { en: "They", ro: "Ei" },
-    { en: "This", ro: "Acesta" },
-    { en: "That", ro: "Acela" },
-    { en: "Here", ro: "Aici" },
-    { en: "There", ro: "Acolo" },
-
-    // More numbers
-    { en: "Zero", ro: "Zero" },
-    { en: "Eleven", ro: "Unsprezece" },
-    { en: "Twelve", ro: "Doisprezece" },
-    { en: "Thirteen", ro: "Treisprezece" },
-    { en: "Fourteen", ro: "Paisprezece" },
-    { en: "Fifteen", ro: "Cincisprezece" },
-    { en: "Sixteen", ro: "Șaisprezece" },
-    { en: "Seventeen", ro: "Șaptesprezece" },
-    { en: "Eighteen", ro: "Optsprezece" },
-    { en: "Nineteen", ro: "Nouăsprezece" },
-    { en: "Thirty", ro: "Treizeci" },
-    { en: "Forty", ro: "Patruzeci" },
-    { en: "Sixty", ro: "Șaizeci" },
-    { en: "Seventy", ro: "Șaptezeci" },
-    { en: "Eighty", ro: "Optzeci" },
-    { en: "Ninety", ro: "Nouăzeci" },
-    { en: "One thousand", ro: "O mie" },
+    { en: "Monday", es: "Lunes" },
+    { en: "Tuesday", es: "Martes" },
+    { en: "Wednesday", es: "Miércoles" },
+    { en: "Thursday", es: "Jueves" },
+    { en: "Friday", es: "Viernes" },
+    { en: "Saturday", es: "Sábado" },
+    { en: "Sunday", es: "Domingo" },
+    { en: "Today", es: "Hoy" },
+    { en: "Tomorrow", es: "Mañana" },
+    { en: "Yesterday", es: "Ayer" },
+    { en: "What time is it?", es: "¿Qué hora es?" },
+    { en: "It's noon", es: "Es mediodía" },
+    { en: "In the morning", es: "Por la mañana" },
+    { en: "In the afternoon", es: "Por la tarde" },
+    { en: "At night", es: "Por la noche" },
+    { en: "Now", es: "Ahora" },
+    { en: "Later", es: "Más tarde" },
+    { en: "Early", es: "Temprano" },
+    { en: "Late", es: "Tarde" },
 
     // Months
-    { en: "January", ro: "Ianuarie" },
-    { en: "February", ro: "Februarie" },
-    { en: "March", ro: "Martie" },
-    { en: "April", ro: "Aprilie" },
-    { en: "May", ro: "Mai" },
-    { en: "June", ro: "Iunie" },
-    { en: "July", ro: "Iulie" },
-    { en: "August", ro: "August" },
-    { en: "September", ro: "Septembrie" },
-    { en: "October", ro: "Octombrie" },
-    { en: "November", ro: "Noiembrie" },
-    { en: "December", ro: "Decembrie" },
+    { en: "January", es: "Enero" },
+    { en: "February", es: "Febrero" },
+    { en: "March", es: "Marzo" },
+    { en: "April", es: "Abril" },
+    { en: "May", es: "Mayo" },
+    { en: "June", es: "Junio" },
+    { en: "July", es: "Julio" },
+    { en: "August", es: "Agosto" },
+    { en: "September", es: "Septiembre" },
+    { en: "October", es: "Octubre" },
+    { en: "November", es: "Noviembre" },
+    { en: "December", es: "Diciembre" },
 
     // Seasons
-    { en: "Spring", ro: "Primăvară" },
-    { en: "Summer", ro: "Vară" },
-    { en: "Autumn", ro: "Toamnă" },
-    { en: "Winter", ro: "Iarnă" },
+    { en: "Spring", es: "Primavera" },
+    { en: "Summer", es: "Verano" },
+    { en: "Autumn", es: "Otoño" },
+    { en: "Winter", es: "Invierno" },
 
-    // Weather, more
-    { en: "Wind", ro: "Vânt" },
-    { en: "It's windy", ro: "Este vânt" },
-    { en: "Cloud", ro: "Nor" },
-    { en: "Cloudy", ro: "Înnorat" },
-    { en: "Storm", ro: "Furtună" },
-    { en: "Temperature", ro: "Temperatură" },
-    { en: "Humidity", ro: "Umiditate" },
+    // Directions & transport
+    { en: "Where is...?", es: "¿Dónde está...?" },
+    { en: "Where is the bathroom?", es: "¿Dónde está el baño?" },
+    { en: "Where is the train station?", es: "¿Dónde está la estación de tren?" },
+    { en: "Where is the airport?", es: "¿Dónde está el aeropuerto?" },
+    { en: "Where is the hotel?", es: "¿Dónde está el hotel?" },
+    { en: "Where is the exit?", es: "¿Dónde está la salida?" },
+    { en: "Where is the entrance?", es: "¿Dónde está la entrada?" },
+    { en: "Left", es: "Izquierda" },
+    { en: "Right", es: "Derecha" },
+    { en: "Straight ahead", es: "Todo recto" },
+    { en: "Near", es: "Cerca" },
+    { en: "Far", es: "Lejos" },
+    { en: "Train station", es: "Estación de tren" },
+    { en: "Bus station", es: "Estación de autobús" },
+    { en: "Airport", es: "Aeropuerto" },
+    { en: "Taxi", es: "Taxi" },
+    { en: "Ticket", es: "Billete" },
+    { en: "One ticket, please", es: "Un billete, por favor" },
+    { en: "Round trip", es: "Ida y vuelta" },
+    { en: "One way", es: "Solo ida" },
+    { en: "How do I get to...?", es: "¿Cómo llego a...?" },
+    { en: "Is it far?", es: "¿Está lejos?" },
+    { en: "Bus stop", es: "Parada de autobús" },
+    { en: "Platform", es: "Andén" },
+    { en: "Map", es: "Mapa" },
+    { en: "I am lost", es: "Estoy perdido" },
+    { en: "Car", es: "Coche" },
+    { en: "Bicycle", es: "Bicicleta" },
+    { en: "Boat", es: "Barco" },
+    { en: "Subway / Metro", es: "Metro" },
+    { en: "Parking", es: "Aparcamiento" },
+    { en: "Gas station", es: "Gasolinera" },
+    { en: "Highway", es: "Autopista" },
+    { en: "Speed limit", es: "Límite de velocidad" },
+    { en: "No entry", es: "Prohibido el paso" },
 
-    // Money & currency
-    { en: "Money", ro: "Bani" },
-    { en: "Euro", ro: "Euro" },
-    { en: "Romanian leu", ro: "Leu românesc" },
-    { en: "Change (money)", ro: "Rest" },
-    { en: "Wallet", ro: "Portofel" },
-    { en: "ATM", ro: "Bancomat" },
-    { en: "Bank", ro: "Bancă" },
-    { en: "Currency exchange office", ro: "Casă de schimb valutar" },
-    { en: "Credit card", ro: "Card de credit" },
+    // Accommodation
+    { en: "Hotel", es: "Hotel" },
+    { en: "Room", es: "Habitación" },
+    { en: "I have a reservation", es: "Tengo una reserva" },
+    { en: "Do you have a free room?", es: "¿Tiene habitaciones libres?" },
+    { en: "How much per night?", es: "¿Cuánto cuesta por noche?" },
+    { en: "Key", es: "Llave" },
+    { en: "Passport", es: "Pasaporte" },
+    { en: "Luggage", es: "Equipaje" },
+    { en: "Elevator", es: "Ascensor" },
+    { en: "Wi-Fi password", es: "Contraseña de Wi-Fi" },
+    { en: "Is there Wi-Fi here?", es: "¿Hay Wi-Fi aquí?" },
+    { en: "Hostel", es: "Albergue" },
 
-    // Communication & technology
-    { en: "Phone", ro: "Telefon" },
-    { en: "Phone number", ro: "Număr de telefon" },
-    { en: "Internet", ro: "Internet" },
-    { en: "Charger", ro: "Încărcător" },
-    { en: "Battery", ro: "Baterie" },
-    { en: "Camera", ro: "Aparat foto" },
-    { en: "Photo", ro: "Fotografie" },
-    { en: "Can I take a photo?", ro: "Pot face o fotografie?" },
-    { en: "Email", ro: "E-mail" },
-    { en: "Post office", ro: "Poștă" },
-    { en: "Stamp", ro: "Timbru" },
-    { en: "Postcard", ro: "Carte poștală" },
-    { en: "Letter (mail)", ro: "Scrisoare" },
+    // Food & dining
+    { en: "Water", es: "Agua" },
+    { en: "Water, please", es: "Agua, por favor" },
+    { en: "Wine", es: "Vino" },
+    { en: "Beer", es: "Cerveza" },
+    { en: "Coffee", es: "Café" },
+    { en: "Tea", es: "Té" },
+    { en: "Bread", es: "Pan" },
+    { en: "Meat", es: "Carne" },
+    { en: "Chicken", es: "Pollo" },
+    { en: "Fish", es: "Pescado" },
+    { en: "Vegetables", es: "Verduras" },
+    { en: "Fruit", es: "Fruta" },
+    { en: "Salt", es: "Sal" },
+    { en: "Sugar", es: "Azúcar" },
+    { en: "Soup", es: "Sopa" },
+    { en: "Breakfast", es: "Desayuno" },
+    { en: "Lunch", es: "Almuerzo" },
+    { en: "Dinner", es: "Cena" },
+    { en: "The menu, please", es: "La carta, por favor" },
+    { en: "The bill, please", es: "La cuenta, por favor" },
+    { en: "Delicious!", es: "¡Delicioso!" },
+    { en: "I am vegetarian", es: "Soy vegetariano" },
+    { en: "Table for two", es: "Mesa para dos" },
+    { en: "Is this spicy?", es: "¿Es picante?" },
+    { en: "Enjoy your meal", es: "¡Buen provecho!" },
+    { en: "Dessert", es: "Postre" },
+    { en: "Ice cream", es: "Helado" },
+    { en: "Cake", es: "Pastel" },
+    { en: "Juice", es: "Zumo" },
+    { en: "Milk", es: "Leche" },
+    { en: "Butter", es: "Mantequilla" },
+    { en: "Cheese", es: "Queso" },
+    { en: "Eggs", es: "Huevos" },
+    { en: "Rice", es: "Arroz" },
+    { en: "Pasta", es: "Pasta" },
+    { en: "Sauce", es: "Salsa" },
+    { en: "Spicy", es: "Picante" },
+    { en: "Sweet", es: "Dulce" },
+    { en: "Sour", es: "Ácido" },
+    { en: "Fresh", es: "Fresco" },
+    { en: "Napkin", es: "Servilleta" },
+    { en: "Fork", es: "Tenedor" },
+    { en: "Knife", es: "Cuchillo" },
+    { en: "Spoon", es: "Cuchara" },
+    { en: "Plate", es: "Plato" },
+    { en: "Glass", es: "Vaso" },
+    { en: "Cup", es: "Taza" },
+    { en: "Waiter", es: "Camarero" },
+    { en: "I'd like to book a table", es: "Quisiera reservar una mesa" },
+
+    // Spanish specialties
+    { en: "Paella", es: "Paella" },
+    { en: "Tapas", es: "Tapas" },
+    { en: "Sangria", es: "Sangría" },
+    { en: "Spanish omelette", es: "Tortilla española" },
+    { en: "Cured ham", es: "Jamón ibérico" },
+    { en: "Churros", es: "Churros" },
+    { en: "Cold tomato soup", es: "Gazpacho" },
+    { en: "Olive oil", es: "Aceite de oliva" },
+    { en: "Flamenco", es: "Flamenco" },
+
+    // Shopping
+    { en: "How much does it cost?", es: "¿Cuánto cuesta?" },
+    { en: "Expensive", es: "Caro" },
+    { en: "Cheap", es: "Barato" },
+    { en: "Can I pay by card?", es: "¿Puedo pagar con tarjeta?" },
+    { en: "Cash", es: "Efectivo" },
+    { en: "Discount", es: "Descuento" },
+    { en: "Open", es: "Abierto" },
+    { en: "Closed", es: "Cerrado" },
+    { en: "Market", es: "Mercado" },
+    { en: "Store", es: "Tienda" },
+    { en: "Pharmacy", es: "Farmacia" },
+    { en: "Receipt", es: "Recibo" },
+    { en: "Size", es: "Talla" },
+    { en: "Can I try it on?", es: "¿Puedo probármelo?" },
+    { en: "I'm just looking", es: "Solo estoy mirando" },
+    { en: "Gift", es: "Regalo" },
+    { en: "Souvenir", es: "Recuerdo" },
+    { en: "Bag", es: "Bolsa" },
+    { en: "Supermarket", es: "Supermercado" },
+    { en: "Bakery", es: "Panadería" },
+
+    // Emergency & health
+    { en: "Help!", es: "¡Ayuda!" },
+    { en: "Call the police!", es: "¡Llame a la policía!" },
+    { en: "I need a doctor", es: "Necesito un médico" },
+    { en: "Hospital", es: "Hospital" },
+    { en: "I'm sick", es: "Estoy enfermo" },
+    { en: "It hurts here", es: "Me duele aquí" },
+    { en: "Ambulance", es: "Ambulancia" },
+    { en: "Emergency", es: "Emergencia" },
+    { en: "I lost my passport", es: "He perdido mi pasaporte" },
+    { en: "Fire!", es: "¡Fuego!" },
+    { en: "I need help", es: "Necesito ayuda" },
+    { en: "Headache", es: "Dolor de cabeza" },
+    { en: "Fever", es: "Fiebre" },
+    { en: "I have a fever", es: "Tengo fiebre" },
+    { en: "Medicine", es: "Medicamento" },
+    { en: "Dentist", es: "Dentista" },
+    { en: "Insurance", es: "Seguro" },
+    { en: "I'm allergic to...", es: "Soy alérgico a..." },
+
+    // Weather
+    { en: "It's hot", es: "Hace calor" },
+    { en: "It's cold", es: "Hace frío" },
+    { en: "It's raining", es: "Está lloviendo" },
+    { en: "It's snowing", es: "Está nevando" },
+    { en: "Sunny", es: "Soleado" },
+    { en: "Wind", es: "Viento" },
+    { en: "It's windy", es: "Hace viento" },
+    { en: "Cloudy", es: "Nublado" },
+    { en: "Storm", es: "Tormenta" },
+    { en: "Temperature", es: "Temperatura" },
+
+    // Common adjectives
+    { en: "Good", es: "Bueno" },
+    { en: "Bad", es: "Malo" },
+    { en: "Big", es: "Grande" },
+    { en: "Small", es: "Pequeño" },
+    { en: "Beautiful", es: "Hermoso" },
+    { en: "Fast", es: "Rápido" },
+    { en: "Slow", es: "Lento" },
+    { en: "New", es: "Nuevo" },
+    { en: "Old", es: "Viejo" },
+    { en: "Young", es: "Joven" },
+    { en: "Long", es: "Largo" },
+    { en: "Short", es: "Corto" },
+    { en: "High", es: "Alto" },
+    { en: "Low", es: "Bajo" },
+    { en: "Clean", es: "Limpio" },
+    { en: "Dirty", es: "Sucio" },
+    { en: "Full", es: "Lleno" },
+    { en: "Empty", es: "Vacío" },
+    { en: "Quiet", es: "Tranquilo" },
+    { en: "Noisy", es: "Ruidoso" },
+    { en: "Safe", es: "Seguro" },
+    { en: "Dangerous", es: "Peligroso" },
+    { en: "Free (no cost)", es: "Gratis" },
+    { en: "Busy", es: "Ocupado" },
+    { en: "Fresh", es: "Fresco" },
+    { en: "Heavy", es: "Pesado" },
+    { en: "Light (weight)", es: "Ligero" },
+
+    // Family & people
+    { en: "Family", es: "Familia" },
+    { en: "Friend", es: "Amigo" },
+    { en: "Man", es: "Hombre" },
+    { en: "Woman", es: "Mujer" },
+    { en: "Child", es: "Niño" },
+    { en: "Mother", es: "Madre" },
+    { en: "Father", es: "Padre" },
+    { en: "Brother", es: "Hermano" },
+    { en: "Sister", es: "Hermana" },
+
+    // Colors
+    { en: "Red", es: "Rojo" },
+    { en: "Blue", es: "Azul" },
+    { en: "Yellow", es: "Amarillo" },
+    { en: "Green", es: "Verde" },
+    { en: "White", es: "Blanco" },
+    { en: "Black", es: "Negro" },
+    { en: "Orange", es: "Naranja" },
+    { en: "Purple", es: "Morado" },
+    { en: "Pink", es: "Rosa" },
+    { en: "Brown", es: "Marrón" },
+    { en: "Grey", es: "Gris" },
+
+    // Places & sightseeing
+    { en: "Castle", es: "Castillo" },
+    { en: "Church", es: "Iglesia" },
+    { en: "Museum", es: "Museo" },
+    { en: "Park", es: "Parque" },
+    { en: "Mountain", es: "Montaña" },
+    { en: "Lake", es: "Lago" },
+    { en: "City center", es: "Centro de la ciudad" },
+    { en: "Beach", es: "Playa" },
+    { en: "Bridge", es: "Puente" },
+    { en: "Central square", es: "Plaza mayor" },
+    { en: "Cathedral", es: "Catedral" },
+    { en: "Palace", es: "Palacio" },
+    { en: "Village", es: "Pueblo" },
+
+    // More travel phrases
+    { en: "I would like...", es: "Quisiera..." },
+    { en: "Can you help me?", es: "¿Puede ayudarme?" },
+    { en: "What time does it open?", es: "¿A qué hora abre?" },
+    { en: "What time does it close?", es: "¿A qué hora cierra?" },
+    { en: "How long does it take?", es: "¿Cuánto tiempo tarda?" },
+    { en: "Is it included?", es: "¿Está incluido?" },
+    { en: "Guided tour", es: "Visita guiada" },
+    { en: "Entrance fee", es: "Precio de entrada" },
+    { en: "Free entrance", es: "Entrada gratuita" },
+    { en: "Opening hours", es: "Horario de apertura" },
+
+    // Verbs
+    { en: "I want", es: "Quiero" },
+    { en: "I need", es: "Necesito" },
+    { en: "I have", es: "Tengo" },
+    { en: "I like it", es: "Me gusta" },
+    { en: "I don't like it", es: "No me gusta" },
+    { en: "I know", es: "Sé" },
+    { en: "I don't know", es: "No sé" },
+    { en: "I can", es: "Puedo" },
+    { en: "I can't", es: "No puedo" },
+    { en: "Let's go!", es: "¡Vamos!" },
+    { en: "Come here", es: "Ven aquí" },
+    { en: "Wait", es: "Espera" },
+    { en: "Stop", es: "Para" },
+    { en: "Look", es: "Mira" },
+    { en: "Listen", es: "Escucha" },
+    { en: "Eat", es: "Come" },
+    { en: "Drink", es: "Bebe" },
+    { en: "Sleep", es: "Duerme" },
+    { en: "Buy", es: "Compra" },
+    { en: "Pay", es: "Paga" },
+    { en: "Speak", es: "Habla" },
+    { en: "Write", es: "Escribe" },
+    { en: "Read", es: "Lee" },
+
+    // Question words
+    { en: "Who?", es: "¿Quién?" },
+    { en: "What?", es: "¿Qué?" },
+    { en: "Where?", es: "¿Dónde?" },
+    { en: "When?", es: "¿Cuándo?" },
+    { en: "Why?", es: "¿Por qué?" },
+    { en: "How?", es: "¿Cómo?" },
+    { en: "How much?", es: "¿Cuánto?" },
+    { en: "How many?", es: "¿Cuántos?" },
+    { en: "Which one?", es: "¿Cuál?" },
+
+    // Pronouns & basics
+    { en: "I", es: "Yo" },
+    { en: "You", es: "Tú" },
+    { en: "He", es: "Él" },
+    { en: "She", es: "Ella" },
+    { en: "We", es: "Nosotros" },
+    { en: "They", es: "Ellos" },
+    { en: "This", es: "Esto" },
+    { en: "That", es: "Eso" },
+    { en: "Here", es: "Aquí" },
+    { en: "There", es: "Allí" },
+
+    // Money & banking
+    { en: "Money", es: "Dinero" },
+    { en: "Euro", es: "Euro" },
+    { en: "Change (money)", es: "Cambio" },
+    { en: "Wallet", es: "Cartera" },
+    { en: "ATM", es: "Cajero automático" },
+    { en: "Bank", es: "Banco" },
+    { en: "Credit card", es: "Tarjeta de crédito" },
+    { en: "Currency exchange", es: "Cambio de divisas" },
+
+    // Communication & tech
+    { en: "Phone", es: "Teléfono" },
+    { en: "Phone number", es: "Número de teléfono" },
+    { en: "Internet", es: "Internet" },
+    { en: "Charger", es: "Cargador" },
+    { en: "Camera", es: "Cámara" },
+    { en: "Photo", es: "Foto" },
+    { en: "Can I take a photo?", es: "¿Puedo tomar una foto?" },
+    { en: "Post office", es: "Correos" },
+    { en: "Postcard", es: "Postal" },
+    { en: "Stamp", es: "Sello" },
 
     // Clothing
-    { en: "Clothes", ro: "Haine" },
-    { en: "Shirt", ro: "Cămașă" },
-    { en: "Trousers", ro: "Pantaloni" },
-    { en: "Dress", ro: "Rochie" },
-    { en: "Shoes", ro: "Pantofi" },
-    { en: "Jacket", ro: "Jachetă" },
-    { en: "Hat", ro: "Pălărie" },
-    { en: "Socks", ro: "Șosete" },
-    { en: "Coat", ro: "Palton" },
-    { en: "Scarf", ro: "Fular" },
+    { en: "Clothes", es: "Ropa" },
+    { en: "Shirt", es: "Camisa" },
+    { en: "Trousers", es: "Pantalones" },
+    { en: "Dress", es: "Vestido" },
+    { en: "Shoes", es: "Zapatos" },
+    { en: "Jacket", es: "Chaqueta" },
+    { en: "Hat", es: "Sombrero" },
+    { en: "Coat", es: "Abrigo" },
+    { en: "Socks", es: "Calcetines" },
+    { en: "Scarf", es: "Bufanda" },
 
-    // Body & health
-    { en: "Head", ro: "Cap" },
-    { en: "Hand", ro: "Mână" },
-    { en: "Foot", ro: "Picior" },
-    { en: "Stomach", ro: "Stomac" },
-    { en: "Back (body)", ro: "Spate" },
-    { en: "Eye", ro: "Ochi" },
-    { en: "Ear", ro: "Ureche" },
-    { en: "Tooth", ro: "Dinte" },
-    { en: "Heart", ro: "Inimă" },
-    { en: "Throat", ro: "Gât" },
-    { en: "Fever", ro: "Febră" },
-    { en: "Headache", ro: "Durere de cap" },
-    { en: "I have a fever", ro: "Am febră" },
-    { en: "Medicine", ro: "Medicament" },
-    { en: "Painkiller", ro: "Calmant" },
-    { en: "Nurse", ro: "Asistentă medicală" },
-    { en: "Dentist", ro: "Dentist" },
-    { en: "Insurance", ro: "Asigurare" },
-    { en: "I'm allergic to...", ro: "Sunt alergic la..." },
+    // Body
+    { en: "Head", es: "Cabeza" },
+    { en: "Hand", es: "Mano" },
+    { en: "Foot", es: "Pie" },
+    { en: "Stomach", es: "Estómago" },
+    { en: "Back (body)", es: "Espalda" },
+    { en: "Eye", es: "Ojo" },
+    { en: "Ear", es: "Oído" },
+    { en: "Tooth", es: "Diente" },
+    { en: "Heart", es: "Corazón" },
+    { en: "Throat", es: "Garganta" },
 
     // Animals
-    { en: "Dog", ro: "Câine" },
-    { en: "Cat", ro: "Pisică" },
-    { en: "Horse", ro: "Cal" },
-    { en: "Bear", ro: "Urs" },
-    { en: "Wolf", ro: "Lup" },
-    { en: "Bird", ro: "Pasăre" },
-    { en: "Cow", ro: "Vacă" },
-    { en: "Sheep", ro: "Oaie" },
+    { en: "Dog", es: "Perro" },
+    { en: "Cat", es: "Gato" },
+    { en: "Horse", es: "Caballo" },
+    { en: "Bird", es: "Pájaro" },
+    { en: "Bull", es: "Toro" },
+    { en: "Cow", es: "Vaca" },
+    { en: "Sheep", es: "Oveja" },
 
     // Nature
-    { en: "Forest", ro: "Pădure" },
-    { en: "River", ro: "Râu" },
-    { en: "Sea", ro: "Mare" },
-    { en: "Sky", ro: "Cer" },
-    { en: "Sun", ro: "Soare" },
-    { en: "Moon", ro: "Lună" },
-    { en: "Star", ro: "Stea" },
-    { en: "Tree", ro: "Copac" },
-    { en: "Flower", ro: "Floare" },
-    { en: "Snow", ro: "Zăpadă" },
-    { en: "Field", ro: "Câmp" },
-    { en: "Cave", ro: "Peșteră" },
-    { en: "Valley", ro: "Vale" },
-    { en: "Hill", ro: "Deal" },
-    { en: "Village", ro: "Sat" },
-    { en: "Countryside", ro: "La țară" },
-
-    // Transportation, more
-    { en: "Car", ro: "Mașină" },
-    { en: "Bicycle", ro: "Bicicletă" },
-    { en: "Boat", ro: "Barcă" },
-    { en: "Ferry", ro: "Feribot" },
-    { en: "Subway", ro: "Metrou" },
-    { en: "Rent a car", ro: "Închiriere de mașini" },
-    { en: "Parking", ro: "Parcare" },
-    { en: "Gas station", ro: "Benzinărie" },
-    { en: "Driver's license", ro: "Permis de conducere" },
-    { en: "Traffic", ro: "Trafic" },
-    { en: "Highway", ro: "Autostradă" },
-    { en: "No entry", ro: "Interzis" },
-    { en: "Speed limit", ro: "Limită de viteză" },
-
-    // Romanian specialties & restaurant items
-    { en: "Sarmale (cabbage rolls)", ro: "Sarmale" },
-    { en: "Mămăligă (polenta)", ro: "Mămăligă" },
-    { en: "Țuică (plum brandy)", ro: "Țuică" },
-    { en: "Papanași (fried dessert)", ro: "Papanași" },
-    { en: "Ciorbă (sour soup)", ro: "Ciorbă" },
-    { en: "Mici (grilled meat rolls)", ro: "Mici" },
-    { en: "Cozonac (sweet bread)", ro: "Cozonac" },
-    { en: "Dessert", ro: "Desert" },
-    { en: "Ice cream", ro: "Înghețată" },
-    { en: "Cake", ro: "Prăjitură" },
-    { en: "Juice", ro: "Suc" },
-    { en: "Milk", ro: "Lapte" },
-    { en: "Butter", ro: "Unt" },
-    { en: "Cheese", ro: "Brânză" },
-    { en: "Eggs", ro: "Ouă" },
-    { en: "Rice", ro: "Orez" },
-    { en: "Pasta", ro: "Paste" },
-    { en: "Sauce", ro: "Sos" },
-    { en: "Spicy (flavor)", ro: "Picant" },
-    { en: "Sweet", ro: "Dulce" },
-    { en: "Sour", ro: "Acru" },
-    { en: "Fresh", ro: "Proaspăt" },
-    { en: "Napkin", ro: "Șervețel" },
-    { en: "Fork", ro: "Furculiță" },
-    { en: "Knife", ro: "Cuțit" },
-    { en: "Spoon", ro: "Lingură" },
-    { en: "Plate", ro: "Farfurie" },
-    { en: "Glass (for drinking)", ro: "Pahar" },
-    { en: "Cup", ro: "Ceașcă" },
-    { en: "Waiter", ro: "Ospătar" },
-    { en: "Chef", ro: "Bucătar" },
-    { en: "I'd like to book a table", ro: "Aș dori să rezerv o masă" },
-
-    // Shopping, more
-    { en: "Gift", ro: "Cadou" },
-    { en: "Souvenir", ro: "Suvenir" },
-    { en: "Handmade", ro: "Făcut manual" },
-    { en: "Local product", ro: "Produs local" },
-    { en: "Bag", ro: "Geantă" },
-    { en: "Jewelry", ro: "Bijuterii" },
-    { en: "Bookstore", ro: "Librărie" },
-    { en: "Supermarket", ro: "Supermarket" },
-    { en: "Bakery", ro: "Brutărie" },
-    { en: "Butcher shop", ro: "Măcelărie" },
+    { en: "Forest", es: "Bosque" },
+    { en: "River", es: "Río" },
+    { en: "Sea", es: "Mar" },
+    { en: "Sky", es: "Cielo" },
+    { en: "Sun", es: "Sol" },
+    { en: "Moon", es: "Luna" },
+    { en: "Star", es: "Estrella" },
+    { en: "Tree", es: "Árbol" },
+    { en: "Flower", es: "Flor" },
+    { en: "Snow", es: "Nieve" },
+    { en: "Valley", es: "Valle" },
+    { en: "Field", es: "Campo" },
+    { en: "Cave", es: "Cueva" },
 
     // Emotions
-    { en: "Happy", ro: "Fericit" },
-    { en: "Sad", ro: "Trist" },
-    { en: "Tired", ro: "Obosit" },
-    { en: "Hungry", ro: "Flămând" },
-    { en: "Thirsty", ro: "Însetat" },
-    { en: "Scared", ro: "Speriat" },
-    { en: "Angry", ro: "Supărat" },
-    { en: "Excited", ro: "Entuziasmat" },
-    { en: "Bored", ro: "Plictisit" },
-    { en: "Surprised", ro: "Surprins" },
+    { en: "Happy", es: "Feliz" },
+    { en: "Sad", es: "Triste" },
+    { en: "Tired", es: "Cansado" },
+    { en: "Hungry", es: "Hambriento" },
+    { en: "Thirsty", es: "Sediento" },
+    { en: "Scared", es: "Asustado" },
+    { en: "Angry", es: "Enfadado" },
+    { en: "Excited", es: "Emocionado" },
+    { en: "Surprised", es: "Sorprendido" },
+    { en: "Bored", es: "Aburrido" },
 
-    // Common exclamations & small talk
-    { en: "Watch out!", ro: "Ai grijă!" },
-    { en: "Wonderful!", ro: "Minunat!" },
-    { en: "Amazing!", ro: "Uimitor!" },
-    { en: "Incredible!", ro: "Incredibil!" },
-    { en: "I love it", ro: "Îmi place foarte mult" },
-    { en: "Wait a moment", ro: "O clipă" },
-    { en: "No problem", ro: "Nicio problemă" },
-    { en: "It's okay", ro: "E în regulă" },
-    { en: "I'm sure", ro: "Sunt sigur" },
-    { en: "I'm not sure", ro: "Nu sunt sigur" },
-    { en: "Really?", ro: "Serios?" },
-    { en: "That's right", ro: "Așa este" },
-    { en: "That's wrong", ro: "Nu este corect" },
+    // Exclamations & small talk
+    { en: "Watch out!", es: "¡Cuidado!" },
+    { en: "Wonderful!", es: "¡Maravilloso!" },
+    { en: "Amazing!", es: "¡Increíble!" },
+    { en: "I love it", es: "Me encanta" },
+    { en: "Wait a moment", es: "Un momento" },
+    { en: "No problem", es: "No hay problema" },
+    { en: "It's okay", es: "Está bien" },
+    { en: "Really?", es: "¿En serio?" },
+    { en: "That's right", es: "Exacto" },
+    { en: "That's wrong", es: "Eso es incorrecto" },
 
     // Professions
-    { en: "Teacher", ro: "Profesor" },
-    { en: "Engineer", ro: "Inginer" },
-    { en: "Student", ro: "Student" },
-    { en: "Tourist", ro: "Turist" },
-    { en: "Tour guide", ro: "Ghid" },
+    { en: "Teacher", es: "Profesor" },
+    { en: "Doctor", es: "Médico" },
+    { en: "Tourist", es: "Turista" },
+    { en: "Tour guide", es: "Guía turístico" },
+    { en: "Police officer", es: "Policía" },
+    { en: "Engineer", es: "Ingeniero" },
 
     // Activities & sightseeing
-    { en: "Hiking", ro: "Drumeție" },
-    { en: "Swimming", ro: "Înot" },
-    { en: "Skiing", ro: "Schi" },
-    { en: "Sightseeing", ro: "Vizitarea obiectivelor turistice" },
-    { en: "Tour", ro: "Tur" },
-    { en: "Ticket office", ro: "Casa de bilete" },
-    { en: "Guided tour", ro: "Tur ghidat" },
-    { en: "Opening hours", ro: "Program de funcționare" },
-    { en: "Entrance fee", ro: "Taxă de intrare" },
-    { en: "Free entrance", ro: "Intrare liberă" },
-    { en: "Souvenir shop", ro: "Magazin de suveniruri" },
+    { en: "Hiking", es: "Senderismo" },
+    { en: "Swimming", es: "Natación" },
+    { en: "Skiing", es: "Esquí" },
+    { en: "Sightseeing", es: "Turismo" },
+    { en: "Ticket office", es: "Taquilla" },
 
-    // More adjectives & orientation
-    { en: "New", ro: "Nou" },
-    { en: "Old", ro: "Vechi" },
-    { en: "Young", ro: "Tânăr" },
-    { en: "Long", ro: "Lung" },
-    { en: "Short", ro: "Scurt" },
-    { en: "High", ro: "Înalt" },
-    { en: "Low", ro: "Jos" },
-    { en: "Wide", ro: "Larg" },
-    { en: "Narrow", ro: "Îngust" },
-    { en: "Heavy", ro: "Greu" },
-    { en: "Light (weight)", ro: "Ușor" },
-    { en: "Clean", ro: "Curat" },
-    { en: "Dirty", ro: "Murdar" },
-    { en: "Full", ro: "Plin" },
-    { en: "Empty", ro: "Gol" },
-    { en: "Difficult", ro: "Dificil" },
-    { en: "Quiet", ro: "Liniștit" },
-    { en: "Noisy", ro: "Zgomotos" },
-    { en: "Safe", ro: "Sigur" },
-    { en: "Dangerous", ro: "Periculos" },
-    { en: "Free (no cost)", ro: "Gratuit" },
-    { en: "Busy", ro: "Ocupat" },
-    { en: "Available", ro: "Disponibil" },
-    { en: "Local (adj.)", ro: "Local" },
-    { en: "Foreign", ro: "Străin" },
-    { en: "Public", ro: "Public" },
-    { en: "Private", ro: "Privat" },
-    { en: "North", ro: "Nord" },
-    { en: "South", ro: "Sud" },
-    { en: "East", ro: "Est" },
-    { en: "West", ro: "Vest" },
-    { en: "Center", ro: "Centru" },
-    { en: "Corner", ro: "Colț" },
+    // Orientation
+    { en: "North", es: "Norte" },
+    { en: "South", es: "Sur" },
+    { en: "East", es: "Este" },
+    { en: "West", es: "Oeste" },
+    { en: "Center", es: "Centro" },
+    { en: "Corner", es: "Esquina" },
   ];
 
   const ROUND_SIZE = 10;
@@ -904,18 +827,15 @@
     return a;
   }
 
-  let round = [];
-  let index = 0;
-  let score = 0;
-  let answered = false;
+  let round = [], index = 0, score = 0, answered = false;
 
   function buildRound() {
     const picked = shuffle(POOL).slice(0, ROUND_SIZE);
     round = picked.map(q => {
-      const others = [...new Set(POOL.map(p => p.ro))].filter(ro => ro !== q.ro);
+      const others = [...new Set(POOL.map(p => p.es))].filter(es => es !== q.es);
       const distractors = shuffle(others).slice(0, 3);
-      const options = shuffle([q.ro, ...distractors]);
-      return { en: q.en, correct: q.ro, options };
+      const options = shuffle([q.es, ...distractors]);
+      return { en: q.en, correct: q.es, options };
     });
   }
 
@@ -929,23 +849,20 @@
 
   function renderFlag(size) {
     return `<div class="flag" style="width:${size.w}px;height:${size.h}px">
-      <div class="b"></div><div class="y"></div><div class="r"></div>
+      <div class="rt"></div><div class="y"></div><div class="rb"></div>
     </div>`;
   }
 
   function render() {
     const app = document.getElementById("app");
-    if (index >= TOTAL) {
-      renderWin(app);
-      return;
-    }
+    if (index >= TOTAL) { renderWin(app); return; }
     const q = round[index];
     const size = flagSize();
     app.innerHTML = `
       <header class="masthead">
         <div>
-          <h1>Drum Bun</h1>
-          <div class="sub">Romanian for the road</div>
+          <h1>¡Vamos!</h1>
+          <div class="sub">Spanish for the road</div>
         </div>
         <div class="board">
           <span class="label">Question</span>${index + 1} / ${TOTAL}
@@ -953,13 +870,13 @@
         </div>
       </header>
       <div class="flag-wrap">${renderFlag(size)}</div>
-      <p class="prompt-eyebrow">Translate to Romanian</p>
+      <p class="prompt-eyebrow">Translate to Spanish</p>
       <p class="prompt">${q.en}</p>
       <div class="options" id="options">
         ${q.options.map((opt, i) => `
           <button class="opt" data-opt="${escapeAttr(opt)}" data-idx="${i}">
             <span class="tag">${LETTERS[i]}</span><span>${opt}</span>
-            <span class="say" data-say="${escapeAttr(opt)}" role="button" aria-label="Listen to pronunciation" tabindex="0">🔊</span>
+            <span class="say" data-say="${escapeAttr(opt)}" role="button" aria-label="Listen" tabindex="0">🔊</span>
           </button>
         `).join("")}
       </div>
@@ -970,36 +887,22 @@
     `;
 
     answered = false;
-    document.querySelectorAll(".opt").forEach(btn => {
-      btn.addEventListener("click", onAnswer);
-    });
+    document.querySelectorAll(".opt").forEach(btn => btn.addEventListener("click", onAnswer));
     document.querySelectorAll(".say").forEach(say => {
-      say.addEventListener("click", e => {
-        e.stopPropagation();
-        speakRomanian(say.dataset.say);
-      });
+      say.addEventListener("click", e => { e.stopPropagation(); speakSpanish(say.dataset.say); });
       say.addEventListener("keydown", e => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          e.stopPropagation();
-          speakRomanian(say.dataset.say);
-        }
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); speakSpanish(say.dataset.say); }
       });
     });
-    document.getElementById("nextBtn").addEventListener("click", () => {
-      index += 1;
-      render();
-    });
+    document.getElementById("nextBtn").addEventListener("click", () => { index += 1; render(); });
   }
 
-  function escapeAttr(s) {
-    return s.replace(/"/g, "&quot;");
-  }
+  function escapeAttr(s) { return s.replace(/"/g, "&quot;"); }
 
-  let romanianVoice = null;
+  let spanishVoice = null;
   function loadVoice() {
     const voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
-    romanianVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("ro")) || null;
+    spanishVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("es")) || null;
     return voices;
   }
   if (window.speechSynthesis) {
@@ -1021,64 +924,37 @@
     showToast._t = setTimeout(() => toast.classList.remove("show"), 4500);
   }
 
-  // Keep a reference so Chrome doesn't garbage-collect the utterance mid-speech
-  // (a known cause of premature "interrupted"/"canceled" errors).
   let currentUtterance = null;
 
-  function speakRomanian(text) {
+  function speakSpanish(text) {
     if (!text) return;
-    if (!window.speechSynthesis) {
-      showToast("This browser doesn't support text-to-speech.");
-      return;
-    }
+    if (!window.speechSynthesis) { showToast("This browser doesn't support text-to-speech."); return; }
     const voices = loadVoice();
 
     const doSpeak = () => {
-      // Some browsers (notably iOS Safari) get stuck paused after an
-      // interrupted utterance and silently ignore speak() until resumed.
       if (speechSynthesis.paused) speechSynthesis.resume();
-
       const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = "ro-RO";
-      if (romanianVoice) utter.voice = romanianVoice;
+      utter.lang = "es-ES";
+      if (spanishVoice) utter.voice = spanishVoice;
       utter.rate = 0.9;
       currentUtterance = utter;
-
       let started = false;
       utter.onstart = () => { started = true; };
       utter.onend = () => { if (currentUtterance === utter) currentUtterance = null; };
       utter.onerror = (ev) => {
-        // "canceled"/"interrupted" fire normally when the user triggers a new
-        // phrase before the previous one finishes — not real failures.
         if (ev.error === "canceled" || ev.error === "interrupted") return;
-        console.error("Speech synthesis error:", ev.error);
         showToast("Couldn't play audio (" + ev.error + ").");
       };
-
-      try {
-        speechSynthesis.speak(utter);
-      } catch (err) {
-        console.error("speechSynthesis.speak threw:", err);
-        showToast("Speech failed to start.");
-        return;
-      }
-
-      // If nothing fired after a short delay, the browser silently dropped the
-      // request — usually because no voice is installed for this language.
+      try { speechSynthesis.speak(utter); } catch (err) { showToast("Speech failed to start."); return; }
       setTimeout(() => {
         if (!started && !speechSynthesis.speaking && !speechSynthesis.pending) {
-          if (voices.length === 0) {
-            showToast("No text-to-speech voices installed on this device.");
-          } else {
-            showToast("Speech didn't play — no Romanian voice found; try a different browser.");
-          }
+          showToast(voices.length === 0
+            ? "No text-to-speech voices installed on this device."
+            : "Speech didn't play — no Spanish voice found; try a different browser.");
         }
       }, 900);
     };
 
-    // Only cancel when something is actually playing, and let the cancel settle
-    // before the next speak(). Cancelling in the same tick as speak() makes
-    // Chrome apply the cancel to the just-queued utterance ("canceled" error).
     if (speechSynthesis.speaking || speechSynthesis.pending) {
       speechSynthesis.cancel();
       setTimeout(doSpeak, 130);
@@ -1098,19 +974,13 @@
 
     document.querySelectorAll(".opt").forEach(o => {
       o.disabled = true;
-      if (o.dataset.opt === q.correct) {
-        o.classList.add("correct");
-      } else if (o === btn) {
-        o.classList.add("wrong");
-      } else {
-        o.classList.add("dim");
-      }
+      if (o.dataset.opt === q.correct) o.classList.add("correct");
+      else if (o === btn) o.classList.add("wrong");
+      else o.classList.add("dim");
     });
 
     const feedback = document.getElementById("feedback");
-    feedback.textContent = isCorrect
-      ? "Correct — well travelled."
-      : `Not quite. Correct answer: ${q.correct}`;
+    feedback.textContent = isCorrect ? "¡Correcto! — well travelled." : `Not quite. Correct answer: ${q.correct}`;
     feedback.className = "feedback " + (isCorrect ? "good" : "bad");
 
     document.querySelector(".flag-wrap").innerHTML = renderFlag(flagSize());
@@ -1118,7 +988,6 @@
       <span class="label">Question</span>${index + 1} / ${TOTAL}
       <span class="label" style="margin-top:6px">Score</span>${score}
     `;
-
     document.getElementById("nextBtn").classList.add("show");
   }
 
@@ -1127,25 +996,17 @@
     const perfect = score === TOTAL;
     app.innerHTML = `
       <div class="win-screen">
-        <p class="prompt-eyebrow">Journey complete</p>
+        <p class="prompt-eyebrow">¡Viaje completo!</p>
         <div class="flag-wrap">${renderFlag(size)}</div>
-        <h1>${perfect ? "Bravo! Perfect score." : "La revedere!"}</h1>
+        <h1>${perfect ? "¡Perfecto! Perfect score." : "¡Hasta luego!"}</h1>
         <p class="result">${score} / ${TOTAL} correct</p>
         <button class="next" id="again">Play again</button>
       </div>
     `;
-    document.getElementById("again").addEventListener("click", () => {
-      score = 0;
-      index = 0;
-      buildRound();
-      render();
-    });
+    document.getElementById("again").addEventListener("click", () => { score = 0; index = 0; buildRound(); render(); });
   }
 
-  document.getElementById("voiceTest").addEventListener("click", () => {
-    speakRomanian("Bună ziua, bine ați venit în România!");
-  });
-
+  document.getElementById("voiceTest").addEventListener("click", () => speakSpanish("¡Hola! Bienvenido a España."));
   buildRound();
   render();
 </script>
