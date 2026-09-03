@@ -1,8 +1,8 @@
-<title>¡Vamos! — Spanish for Travelers</title>
+<title>¡Vamos! — 14 días para Madrid</title>
 <style>
   :root {
     --ink: #eef2f1;
-    --ink-dim: #9fb2ba;
+    --ink-dim: #a89a90;
     --ground: #1a1210;
     --ground-raised: #221816;
     --ground-card: #2c1e1a;
@@ -17,195 +17,92 @@
     --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'SF Mono', 'Consolas', 'Menlo', monospace;
   }
-
   :root[data-theme="light"] {
-    --ink: #1b1008;
-    --ink-dim: #7a5a40;
-    --ground: #fdf6ee;
-    --ground-raised: #ffffff;
-    --ground-card: #ffffff;
-    --line: #e8d8c0;
-    --gold: #a0600a;
-    --gold-dim: #d8b87a;
+    --ink: #1b1008; --ink-dim: #7a5a40; --ground: #fdf6ee; --ground-raised: #ffffff;
+    --ground-card: #ffffff; --line: #e8d8c0; --gold: #a0600a; --gold-dim: #d8b87a;
   }
-
   @media (prefers-color-scheme: light) {
     :root:not([data-theme="dark"]) {
-      --ink: #1b1008;
-      --ink-dim: #7a5a40;
-      --ground: #fdf6ee;
-      --ground-raised: #ffffff;
-      --ground-card: #ffffff;
-      --line: #e8d8c0;
-      --gold: #a0600a;
-      --gold-dim: #d8b87a;
+      --ink: #1b1008; --ink-dim: #7a5a40; --ground: #fdf6ee; --ground-raised: #ffffff;
+      --ground-card: #ffffff; --line: #e8d8c0; --gold: #a0600a; --gold-dim: #d8b87a;
     }
   }
 
   * { box-sizing: border-box; }
-
   body {
-    margin: 0;
-    min-height: 100vh;
-    background:
-      radial-gradient(ellipse 900px 500px at 50% -10%, color-mix(in srgb, var(--flag-red) 8%, transparent), transparent),
-      var(--ground);
-    color: var(--ink);
-    font-family: var(--font-body);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 16px;
+    margin: 0; min-height: 100vh;
+    background: radial-gradient(ellipse 900px 500px at 50% -10%, color-mix(in srgb, var(--flag-red) 8%, transparent), transparent), var(--ground);
+    color: var(--ink); font-family: var(--font-body);
+    display: flex; align-items: flex-start; justify-content: center; padding: 28px 16px 48px;
   }
-
-  .stage { width: 100%; max-width: 560px; }
-
+  .stage { width: 100%; max-width: 600px; }
   .passport {
-    background: var(--ground-raised);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 28px 28px 32px;
-    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.5);
+    background: var(--ground-raised); border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px 28px 30px; box-shadow: 0 30px 60px -30px rgba(0,0,0,0.5);
   }
 
   header.masthead {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 14px;
-    margin-bottom: 22px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 20px;
   }
+  .masthead h1 { font-family: var(--font-display); font-size: 1.45rem; letter-spacing: 0.02em; margin: 0; text-wrap: balance; }
+  .masthead .sub { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); margin-top: 4px; }
+  .board { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 0.82rem; color: var(--gold); text-align: right; line-height: 1.5; white-space: nowrap; }
+  .board .label { color: var(--ink-dim); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; }
 
-  .masthead h1 {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    letter-spacing: 0.02em;
-    margin: 0;
-    text-wrap: balance;
-  }
+  .eyebrow { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); margin: 0 0 8px; }
+  .prompt { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.35; margin: 0 0 20px; text-wrap: balance; }
+  .prompt .es { color: var(--gold); }
+  .muted { color: var(--ink-dim); font-size: 0.85rem; }
 
-  .masthead .sub {
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    margin-top: 4px;
-  }
-
-  .board {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 0.85rem;
-    color: var(--gold);
-    text-align: right;
-    line-height: 1.5;
-  }
-
-  .board .label {
-    color: var(--ink-dim);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    display: block;
-  }
-
-  .flag-wrap {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    height: 132px;
-    margin: 4px 0 24px;
-  }
-
-  /* Spanish flag: red (1) / yellow (2) / red (1) */
+  /* Flag meter */
+  .flag-wrap { display: flex; align-items: flex-end; justify-content: center; height: 96px; margin: 0 0 18px; }
   .flag {
-    display: flex;
-    flex-direction: column;
-    height: 22px;
-    width: 33px;
-    border-radius: 2px;
-    overflow: hidden;
+    display: flex; flex-direction: column; border-radius: 2px; overflow: hidden;
     box-shadow: 0 4px 14px -4px rgba(0,0,0,0.45), 0 0 0 1px color-mix(in srgb, var(--line) 70%, transparent);
-    transition: width 0.6s cubic-bezier(.2,.8,.2,1), height 0.6s cubic-bezier(.2,.8,.2,1), box-shadow 0.6s;
+    transition: width 0.6s cubic-bezier(.2,.8,.2,1), height 0.6s cubic-bezier(.2,.8,.2,1);
   }
-
   .flag .rt { background: var(--flag-red); flex: 1; }
   .flag .y  { background: var(--flag-yellow); flex: 2; }
   .flag .rb { background: var(--flag-red); flex: 1; }
 
-  .prompt-eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    margin: 0 0 8px;
-  }
+  /* Progress bar */
+  .progress { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; margin: 0 0 22px; }
+  .progress > div { height: 100%; background: var(--gold); width: 0; transition: width 0.3s; }
 
-  .prompt {
-    font-family: var(--font-display);
-    font-size: 1.55rem;
-    line-height: 1.35;
-    margin: 0 0 24px;
-    text-wrap: balance;
-    min-height: 2.7em;
+  /* Buttons */
+  button { font-family: var(--font-body); }
+  .btn {
+    font-size: 0.85rem; font-weight: 600; color: var(--ground); background: var(--gold);
+    border: none; border-radius: 7px; padding: 10px 18px; cursor: pointer;
   }
+  .btn:hover { filter: brightness(1.06); }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .btn.ghost { background: transparent; color: var(--ink-dim); border: 1px solid var(--line); font-weight: 500; }
+  .btn.ghost:hover { color: var(--ink); border-color: var(--gold-dim); filter: none; }
+  .btn:disabled { opacity: 0.45; cursor: default; filter: none; }
+  .footer-row { display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px; }
+  .footer-row .spacer { flex: 1; }
+  button.next { opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  button.next.show { opacity: 1; pointer-events: auto; }
 
-  .options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
+  /* Options */
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .options.single { grid-template-columns: 1fr; }
   .opt {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-align: left;
-    background: var(--ground-card);
-    border: 1px solid var(--line);
-    border-radius: 9px;
-    padding: 14px 14px;
-    color: var(--ink);
-    font-family: var(--font-body);
-    font-size: 0.98rem;
-    cursor: pointer;
+    display: flex; align-items: center; gap: 10px; text-align: left;
+    background: var(--ground-card); border: 1px solid var(--line); border-radius: 9px;
+    padding: 13px 14px; color: var(--ink); font-size: 0.96rem; cursor: pointer;
     transition: border-color 0.15s, transform 0.1s, background 0.15s;
   }
-
   .opt:hover:not(:disabled) { border-color: var(--gold-dim); transform: translateY(-1px); }
   .opt:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-
   .opt .tag {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--ink-dim);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-dim); border: 1px solid var(--line);
+    border-radius: 4px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
-
-  .opt .say {
-    margin-left: auto;
-    font-size: 0.95rem;
-    opacity: 0.45;
-    flex-shrink: 0;
-    padding: 4px 6px;
-    border-radius: 6px;
-    transition: opacity 0.15s, background 0.15s;
-  }
-
-  .opt:hover .say, .opt:focus-visible .say,
-  .opt .say:hover, .opt .say:focus-visible {
-    opacity: 1;
-    background: color-mix(in srgb, var(--gold) 16%, transparent);
-  }
-
+  .say { margin-left: auto; font-size: 0.95rem; opacity: 0.45; flex-shrink: 0; padding: 4px 6px; border-radius: 6px; cursor: pointer; transition: opacity 0.15s, background 0.15s; }
+  .opt:hover .say, .say:hover, .say:focus-visible { opacity: 1; background: color-mix(in srgb, var(--gold) 16%, transparent); }
   .opt:disabled { cursor: default; }
   .opt.correct { border-color: var(--good); background: color-mix(in srgb, var(--good) 14%, var(--ground-card)); }
   .opt.correct .tag { border-color: var(--good); color: var(--good); }
@@ -213,800 +110,880 @@
   .opt.wrong .tag { border-color: var(--bad); color: var(--bad); }
   .opt.dim { opacity: 0.45; }
 
-  .feedback { min-height: 24px; margin-top: 16px; font-size: 0.85rem; color: var(--ink-dim); }
+  .feedback { min-height: 24px; margin-top: 14px; font-size: 0.85rem; color: var(--ink-dim); line-height: 1.45; }
   .feedback.good { color: var(--good); }
   .feedback.bad { color: var(--bad); }
+  .feedback .ans { color: var(--ink); font-weight: 600; }
 
-  .footer-row { display: flex; justify-content: flex-end; margin-top: 8px; }
-
-  button.next {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--ground);
-    background: var(--gold);
-    border: none;
-    border-radius: 7px;
-    padding: 9px 18px;
-    cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
+  /* Text input */
+  .field { display: flex; gap: 10px; align-items: stretch; }
+  input.text {
+    flex: 1; min-width: 0; font-family: var(--font-body); font-size: 1.05rem; color: var(--ink);
+    background: var(--ground-card); border: 1px solid var(--line); border-radius: 9px; padding: 12px 14px;
   }
-  button.next.show { opacity: 1; pointer-events: auto; }
-  button.next:hover { filter: brightness(1.06); }
-  button.next:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  input.text:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold-dim); }
+  input.text.ok { border-color: var(--good); }
+  input.text.ko { border-color: var(--bad); }
+  input.text:disabled { opacity: 0.8; }
+  .gap-sentence { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.6; margin: 0 0 16px; }
+  .gap-sentence input.text { display: inline-block; width: 8ch; padding: 4px 10px; font-size: 1.15rem; margin: 0 4px; text-align: center; }
+  .hint { font-size: 0.8rem; color: var(--ink-dim); margin: 8px 0 0; }
 
-  .win-screen { text-align: center; }
-  .win-screen .flag-wrap { height: 180px; }
-  .win-screen h1 { font-family: var(--font-display); font-size: 2rem; margin: 6px 0 6px; }
-  .win-screen p.result { color: var(--ink-dim); margin: 0 0 22px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
-  .win-screen button.next { opacity: 1; pointer-events: auto; margin: 0 auto; }
+  /* Chips (sentence builder & matching) */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; min-height: 48px; padding: 10px; border-radius: 9px; border: 1px dashed var(--line); margin-bottom: 12px; }
+  .chips.answer { border-style: solid; background: color-mix(in srgb, var(--gold) 6%, transparent); }
+  .chip {
+    background: var(--ground-card); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px;
+    font-size: 0.95rem; color: var(--ink); cursor: pointer; transition: border-color 0.15s, transform 0.1s;
+  }
+  .chip:hover:not(:disabled) { border-color: var(--gold-dim); transform: translateY(-1px); }
+  .chip:disabled { cursor: default; }
+  .chip.used { opacity: 0.25; pointer-events: none; }
+  .chip.sel { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 16%, var(--ground-card)); }
+  .chip.locked { border-color: var(--good); color: var(--good); pointer-events: none; }
+  .chip.flash { border-color: var(--bad); }
+  .match { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .match .col { display: flex; flex-direction: column; gap: 8px; }
+  .match .chip { text-align: left; border-radius: 9px; }
 
-  @media (prefers-reduced-motion: reduce) { .flag, .opt { transition: none; } }
-  @media (max-width: 400px) { .options { grid-template-columns: 1fr; } .passport { padding: 22px 18px 26px; } }
+  /* Dialogue bubble */
+  .bubble { position: relative; background: var(--ground-card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 0 0 16px; }
+  .bubble .who { font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 4px; }
+  .bubble .line { font-family: var(--font-display); font-size: 1.25rem; color: var(--gold); display: flex; align-items: center; gap: 8px; }
+  .bubble .ctx { font-size: 0.8rem; color: var(--ink-dim); margin-top: 6px; }
+
+  /* Listening */
+  .play { display: flex; align-items: center; gap: 12px; margin: 0 0 18px; }
+  .play .big { font-size: 1.4rem; background: var(--ground-card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 20px; cursor: pointer; }
+  .play .big:hover { border-color: var(--gold-dim); }
+
+  /* Home: plan grid */
+  .stats { display: flex; gap: 10px; margin: 0 0 18px; flex-wrap: wrap; }
+  .stat { flex: 1; min-width: 120px; background: var(--ground-card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .stat .v { font-family: var(--font-mono); font-size: 1.3rem; color: var(--gold); font-variant-numeric: tabular-nums; }
+  .stat .k { font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); margin-top: 2px; }
+  .plan { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 18px; }
+  .day {
+    display: flex; align-items: center; gap: 10px; text-align: left; background: var(--ground-card);
+    border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; color: var(--ink); cursor: pointer;
+    transition: border-color 0.15s, transform 0.1s;
+  }
+  .day:hover { border-color: var(--gold-dim); transform: translateY(-1px); }
+  .day .n { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-dim); width: 22px; flex-shrink: 0; }
+  .day .t { font-size: 0.86rem; line-height: 1.25; }
+  .day .t small { display: block; color: var(--ink-dim); font-size: 0.72rem; margin-top: 2px; }
+  .day .done { margin-left: auto; color: var(--good); font-size: 0.9rem; }
+  .day.today { border-color: var(--gold); }
+  .day.review { border-style: dashed; }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* Day intro */
+  .tip { background: color-mix(in srgb, var(--gold) 8%, var(--ground-card)); border: 1px solid var(--gold-dim); border-radius: 10px; padding: 12px 14px; font-size: 0.86rem; line-height: 1.5; margin: 0 0 18px; }
+  .tip b { color: var(--gold); }
+  .preview { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; }
+  .preview span { font-size: 0.8rem; color: var(--ink-dim); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+
+  /* Summary */
+  .summary h1 { font-family: var(--font-display); font-size: 1.9rem; margin: 6px 0; text-align: center; }
+  .summary .result { text-align: center; color: var(--ink-dim); font-family: var(--font-mono); margin: 0 0 18px; }
+  .review-list { list-style: none; padding: 0; margin: 0 0 18px; display: flex; flex-direction: column; gap: 6px; }
+  .review-list li { display: flex; justify-content: space-between; gap: 10px; font-size: 0.86rem; padding: 8px 12px; background: var(--ground-card); border: 1px solid var(--line); border-radius: 8px; }
+  .review-list li .es { color: var(--gold); }
 
   .tts-toast {
-    position: fixed;
-    left: 50%;
-    bottom: 28px;
-    transform: translate(-50%, 8px);
-    max-width: 90vw;
-    background: var(--ground-card);
-    color: var(--ink);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 10px 16px;
-    font-size: 0.82rem;
-    box-shadow: 0 12px 30px -12px rgba(0,0,0,0.5);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s;
-    z-index: 100;
+    position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 8px); max-width: 90vw;
+    background: var(--ground-card); color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
+    padding: 10px 16px; font-size: 0.82rem; box-shadow: 0 12px 30px -12px rgba(0,0,0,0.5);
+    opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 100;
   }
   .tts-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-  .voice-test {
-    display: block;
-    margin: 14px auto 0;
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    color: var(--ink-dim);
-    background: transparent;
-    border: 1px solid var(--line);
-    border-radius: 7px;
-    padding: 7px 14px;
-    cursor: pointer;
-    transition: color 0.15s, border-color 0.15s;
+  @media (prefers-reduced-motion: reduce) { .flag, .opt, .chip, .day { transition: none; } }
+  @media (max-width: 440px) {
+    .options, .plan, .match { grid-template-columns: 1fr; }
+    .passport { padding: 20px 16px 24px; }
+    .prompt { font-size: 1.3rem; }
   }
-  .voice-test:hover { color: var(--ink); border-color: var(--gold-dim); }
-  .voice-test:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 </style>
 
 <div class="stage">
   <div class="passport" id="app"></div>
-  <button class="voice-test" id="voiceTest" type="button">🔊 Test Spanish voice</button>
 </div>
 
 <script>
-  const POOL = [
-    // Greetings & politeness
-    { en: "Hello", es: "Hola" },
-    { en: "Good morning", es: "Buenos días" },
-    { en: "Good afternoon", es: "Buenas tardes" },
-    { en: "Good evening / Good night", es: "Buenas noches" },
-    { en: "Goodbye", es: "Adiós" },
-    { en: "See you later", es: "Hasta luego" },
-    { en: "See you tomorrow", es: "Hasta mañana" },
-    { en: "Please", es: "Por favor" },
-    { en: "Thank you", es: "Gracias" },
-    { en: "Thank you very much", es: "Muchas gracias" },
-    { en: "You're welcome", es: "De nada" },
-    { en: "Yes", es: "Sí" },
-    { en: "No", es: "No" },
-    { en: "Excuse me", es: "Perdona" },
-    { en: "Sorry", es: "Lo siento" },
-    { en: "How are you?", es: "¿Cómo estás?" },
-    { en: "I'm fine, thank you", es: "Estoy bien, gracias" },
-    { en: "What is your name?", es: "¿Cómo te llamas?" },
-    { en: "My name is...", es: "Me llamo..." },
-    { en: "Nice to meet you", es: "Mucho gusto" },
-    { en: "Do you speak English?", es: "¿Hablas inglés?" },
-    { en: "I don't speak Spanish", es: "No hablo español" },
-    { en: "I don't understand", es: "No entiendo" },
-    { en: "Can you repeat that?", es: "¿Puedes repetir?" },
-    { en: "Slower, please", es: "Más despacio, por favor" },
-    { en: "What does this mean?", es: "¿Qué significa esto?" },
-    { en: "Welcome", es: "Bienvenido" },
-    { en: "Of course", es: "Por supuesto" },
-    { en: "Maybe", es: "Quizás" },
-    { en: "I agree", es: "Estoy de acuerdo" },
-    { en: "Congratulations", es: "Felicitaciones" },
-    { en: "Happy birthday", es: "Feliz cumpleaños" },
-    { en: "Good luck", es: "Buena suerte" },
-    { en: "Take care", es: "Cuídate" },
-    { en: "No, thank you", es: "No, gracias" },
-    { en: "Cheers!", es: "¡Salud!" },
+/* =========================================================
+   CURRICULUM — 14 days, Madrid-focused, A1 refresh
+   ========================================================= */
+const DAYS = [
+  { id: 1, title: "Saludos y cortesía", en: "Greetings & courtesy",
+    tip: "In Spain <b>buenos días</b> runs until lunch (~14:00), <b>buenas tardes</b> until dark, then <b>buenas noches</b>. <b>Perdone</b> (formal) gets a stranger's attention; <b>vale</b> is the all-purpose 'OK'.",
+    vocab: [
+      ["Hello","Hola"],["Good morning","Buenos días"],["Good afternoon","Buenas tardes"],["Good night / evening","Buenas noches"],
+      ["Goodbye","Adiós"],["See you later","Hasta luego"],["Please","Por favor"],["Thank you","Gracias"],["You're welcome","De nada"],
+      ["Excuse me (formal)","Perdone"],["Sorry","Lo siento"],["OK","Vale"],["Nice to meet you","Encantado"],["How's it going?","¿Qué tal?"],
+      ["Very well","Muy bien"],["Yes","Sí"],["No","No"],["A little","Un poco"]
+    ],
+    sentences: [
+      ["Hi, how's it going?","Hola, ¿qué tal?"],["I'm from Poland.","Soy de Polonia."],["Nice to meet you.","Mucho gusto.",["Encantado."]],
+      ["Do you speak English?","¿Habla inglés?",["¿Hablas inglés?"]],["I don't understand.","No entiendo."],
+      ["Can you repeat, please?","¿Puede repetir, por favor?"],["I speak a little Spanish.","Hablo un poco de español."],
+      ["See you tomorrow.","Hasta mañana."],["Thank you very much.","Muchas gracias."]
+    ],
+    dialogues: [
+      { who:"Shop assistant", says:"Hola, buenos días.", ask:"reply", opts:[["Buenos días.",1],["Buenas noches.",0],["Adiós.",0],["De nada.",0]] },
+      { who:"A stranger", says:"Gracias.", ask:"reply", opts:[["De nada.",1],["Por favor.",0],["Lo siento.",0],["Hasta luego.",0]] },
+      { who:"Waiter", says:"¿Qué tal?", ask:"reply", opts:[["Muy bien, gracias. ¿Y usted?",1],["Sí, por favor.",0],["No entiendo nada.",0],["Buenas noches.",0]] },
+      { who:"Someone you bumped into", says:"...", ctx:"You bumped into someone in the metro.", ask:"say", opts:[["Perdón.",1],["Vale.",0],["Gracias.",0],["Hasta luego.",0]] },
+      { who:"Hotel receptionist", says:"¿Habla español?", ask:"reply", opts:[["Un poco. ¿Habla inglés?",1],["Buenos días.",0],["Muchas gracias.",0],["Sí, adiós.",0]] }
+    ],
+    gaps: [
+      ["Buenos ___.","días","good morning"],["Muchas ___.","gracias","thank you very much"],["Me ___ Ana.","llamo","my name is"],
+      ["¿___ inglés?","Habla","do you speak (formal)",["Hablas"]],["No ___.","entiendo","I don't understand"],["Hasta ___.","luego","see you later"]
+    ]
+  },
+  { id: 2, title: "Números, precios y hora", en: "Numbers, prices & time",
+    tip: "Prices are said with <b>con</b>: <i>tres con cincuenta</i> = €3.50. Time uses <b>y</b> / <b>menos</b>: <i>las dos y media</i> (2:30), <i>las nueve menos cuarto</i> (8:45). Shops often close 14:00–17:00.",
+    vocab: [
+      ["One","Uno"],["Two","Dos"],["Three","Tres"],["Four","Cuatro"],["Five","Cinco"],["Six","Seis"],["Seven","Siete"],["Eight","Ocho"],
+      ["Nine","Nueve"],["Ten","Diez"],["Twelve","Doce"],["Fifteen","Quince"],["Twenty","Veinte"],["Thirty","Treinta"],["Fifty","Cincuenta"],
+      ["One hundred","Cien"],["Half (past)","Y media"],["Quarter","Cuarto"],["Morning","La mañana"],["Afternoon","La tarde"],["Now","Ahora"],["Today","Hoy"],["Tomorrow","Mañana"]
+    ],
+    sentences: [
+      ["How much is it?","¿Cuánto cuesta?",["¿Cuánto es?"]],["What time is it?","¿Qué hora es?"],["It's three o'clock.","Son las tres."],
+      ["It's ten euros.","Son diez euros."],["It opens at ten.","Abre a las diez."],["It closes at eight.","Cierra a las ocho."],
+      ["What time does it open?","¿A qué hora abre?"],["Here you are.","Aquí tiene."],["Do you have change?","¿Tiene cambio?"]
+    ],
+    numbers: [
+      ["tres con cincuenta",["3.50","3,50","3.5"]],["doce euros",["12"]],["veinticinco con noventa",["25.90","25,90","25.9"]],
+      ["cuarenta y dos",["42"]],["ciento veinte",["120"]],["quince",["15"]],["ocho con veinte",["8.20","8,20","8.2"]],
+      ["setenta y cinco",["75"]],["las dos y media",["2:30","14:30","2.30","14.30"]],["las nueve menos cuarto",["8:45","20:45","8.45","20.45"]],
+      ["las diez de la mañana",["10:00","10","10.00"]],["las siete y cuarto",["7:15","19:15","7.15","19.15"]]
+    ],
+    dialogues: [
+      { who:"Cashier", says:"Son cuatro con veinte.", ask:"mean", opts:[["It's €4.20.",1],["It's €4.02.",0],["It's 24 euros.",0],["It's €20.40.",0]] },
+      { who:"Cashier", says:"¿Tiene cambio?", ask:"reply", opts:[["No, lo siento. Solo tengo un billete de cincuenta.",1],["Son las cuatro.",0],["Sí, a las diez.",0],["Cuesta mucho.",0]] },
+      { who:"Museum guard", says:"Cerramos a las ocho.", ask:"mean", opts:[["We close at eight.",1],["We open at eight.",0],["We close at eighteen.",0],["It costs eight.",0]] },
+      { who:"Friend", says:"¿Quedamos a las siete y media?", ask:"mean", opts:[["Shall we meet at 7:30?",1],["Shall we meet at 7:15?",0],["Are there seven of us?",0],["Is it half price?",0]] }
+    ],
+    gaps: [
+      ["Son las ___ (3).","tres","three"],["¿___ cuesta?","Cuánto","how much"],["Dos ___ cincuenta.","con","€2.50 — 'with'"],
+      ["Abre a ___ diez.","las","at ten (article)"],["Son las dos y ___.","media","half past two"],["¿Qué ___ es?","hora","what time"]
+    ]
+  },
+  { id: 3, title: "Metro, taxi y direcciones", en: "Getting around Madrid",
+    tip: "Buy a <b>Tarjeta Multi</b> (€2.50) at any metro machine and load <b>10 viajes</b>. From the airport, metro line 8 charges a €3 supplement; Cercanías train to Atocha is included with some tickets. Taxis to the centre from Barajas: flat €33.",
+    vocab: [
+      ["Airport","El aeropuerto"],["Metro","El metro"],["Station","La estación"],["Ticket","El billete"],["Stop","La parada"],["Exit","La salida"],
+      ["Entrance","La entrada"],["Platform","El andén"],["Line","La línea"],["Taxi","El taxi"],["To the right","A la derecha"],["To the left","A la izquierda"],
+      ["Straight ahead","Todo recto"],["Near","Cerca"],["Far","Lejos"],["Map","El plano"],["Bus","El autobús"],["Train","El tren"],["Ten trips","Diez viajes"]
+    ],
+    sentences: [
+      ["Where is the metro?","¿Dónde está el metro?"],["A single ticket, please.","Un billete sencillo, por favor."],
+      ["Which line goes to Sol?","¿Qué línea va a Sol?"],["To Puerta del Sol, please.","A la Puerta del Sol, por favor."],
+      ["Is it far?","¿Está lejos?"],["Turn right.","Gire a la derecha."],["Go straight ahead.","Siga todo recto."],
+      ["Where is the exit?","¿Dónde está la salida?"],["How much is a taxi to the centre?","¿Cuánto cuesta un taxi al centro?"],
+      ["Where do I get off?","¿Dónde me bajo?"]
+    ],
+    dialogues: [
+      { who:"Taxi driver", says:"¿Adónde va?", ask:"reply", opts:[["Al hotel Regina, por favor.",1],["Sí, está lejos.",0],["A la derecha, gracias.",0],["Son diez euros.",0]] },
+      { who:"Metro clerk", says:"¿Sencillo o de diez viajes?", ask:"reply", opts:[["De diez viajes, por favor.",1],["A la izquierda.",0],["Sí, gracias.",0],["Es muy lejos.",0]] },
+      { who:"A local you asked", says:"Siga todo recto y gire a la izquierda.", ask:"mean", opts:[["Go straight and turn left.",1],["Go straight and turn right.",0],["Turn left, then right.",0],["Go back and turn left.",0]] },
+      { who:"You, to a stranger", says:"...", ctx:"You want to ask where Atocha station is.", ask:"say", opts:[["Perdone, ¿dónde está la estación de Atocha?",1],["Perdone, ¿cuánto cuesta Atocha?",0],["Hola, ¿qué tal Atocha?",0],["Atocha, por favor, gracias.",0]] },
+      { who:"Metro announcement", says:"Próxima estación: Sol. Correspondencia con líneas dos y tres.", ask:"mean", opts:[["Next stop Sol, change for lines 2 and 3.",1],["Last stop Sol, lines 2 and 3 closed.",0],["Sol is closed, use lines 2 and 3.",0],["Next stop line 2, then line 3.",0]] }
+    ],
+    gaps: [
+      ["Gire a la ___.","derecha","right"],["¿Dónde ___ el metro?","está","is (location)"],["Siga todo ___.","recto","straight"],
+      ["Un billete ___, por favor.","sencillo","single"],["¿Está ___?","lejos","far"],["¿Qué línea ___ a Sol?","va","goes"]
+    ]
+  },
+  { id: 4, title: "En el hotel", en: "At the hotel",
+    tip: "<b>Planta</b> = floor; <b>planta baja</b> = ground floor. Spanish check-out is usually 12:00. If something's broken: <i>no funciona</i>. Ask for the wifi <b>contraseña</b>, not 'password'.",
+    vocab: [
+      ["Room","La habitación"],["Reservation","La reserva"],["Key","La llave"],["Key card","La tarjeta"],["Lift","El ascensor"],["Floor (storey)","La planta"],
+      ["Breakfast","El desayuno"],["Reception","La recepción"],["Password","La contraseña"],["Towel","La toalla"],["Air conditioning","El aire acondicionado"],
+      ["Suitcase","La maleta"],["Included","Incluido"],["It doesn't work","No funciona"],["Check-out","La salida"],["Passport","El pasaporte"],["Bed","La cama"],["Shower","La ducha"]
+    ],
+    sentences: [
+      ["I have a reservation.","Tengo una reserva."],["What time is breakfast?","¿A qué hora es el desayuno?"],
+      ["What's the wifi password?","¿Cuál es la contraseña del wifi?"],["Is breakfast included?","¿Está incluido el desayuno?"],
+      ["The room has no towels.","La habitación no tiene toallas."],["Can I leave my suitcase here?","¿Puedo dejar la maleta aquí?"],
+      ["What time is check-out?","¿A qué hora es la salida?"],["The air conditioning doesn't work.","El aire acondicionado no funciona."],
+      ["Which floor?","¿Qué planta?"]
+    ],
+    dialogues: [
+      { who:"Receptionist", says:"¿Tiene reserva?", ask:"reply", opts:[["Sí, a nombre de Nowak.",1],["No, gracias.",0],["Sí, a las diez.",0],["Es la habitación.",0]] },
+      { who:"Receptionist", says:"¿Me deja su pasaporte, por favor?", ask:"reply", opts:[["Sí, aquí tiene.",1],["No funciona.",0],["A la derecha.",0],["¿Cuánto cuesta?",0]] },
+      { who:"Receptionist", says:"El desayuno es de siete a diez, en la planta baja.", ask:"mean", opts:[["Breakfast 7–10, ground floor.",1],["Breakfast 7–10, first floor.",0],["Breakfast at 7, tenth floor.",0],["Breakfast costs 7 to 10 euros.",0]] },
+      { who:"Receptionist", says:"Su habitación es la 305, tercera planta. El ascensor está al fondo.", ask:"mean", opts:[["Room 305, 3rd floor, lift at the back.",1],["Room 305, 5th floor, no lift.",0],["Room 503, 3rd floor, stairs at the back.",0],["Room 305 is at the back, no floor.",0]] }
+    ],
+    gaps: [
+      ["Tengo una ___.","reserva","reservation"],["¿Cuál es la ___ del wifi?","contraseña","password"],["El ascensor no ___.","funciona","works"],
+      ["¿Está ___ el desayuno?","incluido","included"],["¿A qué ___ es la salida?","hora","time"],["¿Puedo dejar la ___ aquí?","maleta","suitcase"]
+    ]
+  },
+  { id: 5, title: "Bar y café", en: "Bar, café & tapas",
+    tip: "Order at <b>la barra</b> (bar) — it's cheaper than the <b>terraza</b>. <b>Una caña</b> = small draught beer; <b>un tinto de verano</b> = red wine with lemon soda (locals' summer drink). To pay: <i>¿Me cobras?</i> Tapas often come free with a drink.",
+    vocab: [
+      ["Small draught beer","Una caña"],["Coffee with milk","Un café con leche"],["Espresso with a dash of milk","Un cortado"],["Black coffee","Un café solo"],
+      ["Red wine with lemon soda","Un tinto de verano"],["Small plate","Una tapa"],["Larger plate (to share)","Una ración"],["Sandwich (baguette)","Un bocadillo"],
+      ["Olives","Aceitunas"],["Spicy potatoes","Patatas bravas"],["Spanish omelette","Tortilla"],["Cured ham","Jamón"],["Cheese","Queso"],
+      ["Sparkling water","Agua con gas"],["Still water","Agua sin gas"],["The bar counter","La barra"],["Terrace","La terraza"],["Another one","Otra"],["Can I pay?","¿Me cobras?"]
+    ],
+    sentences: [
+      ["A small beer, please.","Una caña, por favor."],["A coffee with milk, please.","Un café con leche, por favor."],
+      ["What tapas do you have?","¿Qué tapas tienen?"],["A plate of bravas.","Una ración de bravas."],["Still water, please.","Agua sin gas, por favor."],
+      ["Can I pay, please?","¿Me cobra, por favor?",["¿Me cobras, por favor?"]],["Do you have a terrace?","¿Tienen terraza?"],
+      ["Another one, please.","Otra, por favor."],["A ham sandwich.","Un bocadillo de jamón."],["Nothing else, thanks.","Nada más, gracias."]
+    ],
+    dialogues: [
+      { who:"Bartender", says:"¿Qué te pongo?", ask:"reply", opts:[["Una caña y una tapa de tortilla.",1],["Muy bien, gracias.",0],["Son tres euros.",0],["A la barra.",0]] },
+      { who:"Bartender", says:"¿Algo más?", ask:"reply", opts:[["No, nada más, gracias.",1],["Sí, ¿qué tal?",0],["Otra terraza.",0],["Vale, hasta luego.",0]] },
+      { who:"Bartender", says:"¿Para tomar aquí o para llevar?", ask:"reply", opts:[["Para llevar.",1],["Para dos.",0],["Para la barra.",0],["Sí, por favor.",0]] },
+      { who:"Bartender", says:"La tapa va incluida con la caña.", ask:"mean", opts:[["The tapa is free with the beer.",1],["The tapa costs the same as the beer.",0],["No tapas with beer.",0],["The beer is included with the tapa.",0]] },
+      { who:"You, to the bartender", says:"...", ctx:"You want to pay.", ask:"say", opts:[["¿Me cobras, por favor?",1],["¿Me pongo, por favor?",0],["¿Otra, por favor?",0],["¿Para llevar?",0]] }
+    ],
+    gaps: [
+      ["Una ___ de bravas.","ración","a plate (to share)"],["Agua ___ gas.","sin","still (without)"],["¿Qué te ___?","pongo","'what can I get you'"],
+      ["Un café ___ leche.","con","with"],["Un ___ de jamón.","bocadillo","sandwich"],["___ más, gracias.","Nada","nothing"]
+    ]
+  },
+  { id: 6, title: "En el restaurante", en: "At the restaurant",
+    tip: "The <b>menú del día</b> (≈€12–16, weekday lunch) = starter + main + dessert/coffee + drink. Lunch is 14:00–16:00, dinner from 21:00. Tipping: round up or leave a euro or two — not 15%.",
+    vocab: [
+      ["The menu","La carta"],["Set lunch menu","El menú del día"],["Starter","El primero"],["Main course","El segundo"],["Dessert","El postre"],
+      ["Drink","La bebida"],["The bill","La cuenta"],["Waiter","El camarero"],["Table","La mesa"],["Tip","La propina"],["Vegetarian","Vegetariano"],
+      ["Allergic","Alérgico"],["Gluten-free","Sin gluten"],["Fish","El pescado"],["Meat","La carne"],["Chicken","El pollo"],["Salad","La ensalada"],
+      ["Red wine","El vino tinto"],["White wine","El vino blanco"],["Tasty / delicious","Rico"],["Nuts","Los frutos secos"]
+    ],
+    sentences: [
+      ["A table for two, please.","Una mesa para dos, por favor."],["Do you have a set menu?","¿Tienen menú del día?"],
+      ["As a starter, the salad.","De primero, la ensalada."],["As a main, the chicken.","De segundo, el pollo."],
+      ["I'm allergic to nuts.","Soy alérgico a los frutos secos.",["Soy alérgica a los frutos secos."]],["Gluten-free, please.","Sin gluten, por favor."],
+      ["The bill, please.","La cuenta, por favor."],["Is the drink included?","¿Está incluida la bebida?"],["It was delicious.","Estaba muy rico."],
+      ["I'm vegetarian.","Soy vegetariano.",["Soy vegetariana."]]
+    ],
+    dialogues: [
+      { who:"Waiter", says:"¿Han decidido?", ask:"reply", opts:[["Sí. De primero, la sopa, y de segundo, el pescado.",1],["Sí, una mesa para dos.",0],["No, la cuenta, por favor.",0],["Sí, está muy rico.",0]] },
+      { who:"Waiter", says:"¿Y para beber?", ask:"reply", opts:[["Agua y una copa de vino tinto.",1],["De postre, flan.",0],["Sí, tengo hambre.",0],["La cuenta.",0]] },
+      { who:"Waiter", says:"¿Quieren postre o café?", ask:"reply", opts:[["Un café solo, por favor.",1],["Una mesa para dos.",0],["Sí, soy alérgico.",0],["A las dos y media.",0]] },
+      { who:"Waiter", says:"¿Todo bien?", ask:"reply", opts:[["Sí, todo muy rico, gracias.",1],["Sí, de primero.",0],["No, para llevar.",0],["Muy bien, ¿y usted?",0]] },
+      { who:"Waiter", says:"El menú incluye pan, bebida y postre o café.", ask:"mean", opts:[["Bread, a drink, and dessert or coffee are included.",1],["Bread and drink cost extra.",0],["Only dessert and coffee are included.",0],["The menu is bread with coffee.",0]] }
+    ],
+    gaps: [
+      ["De ___, la sopa.","primero","starter"],["La ___, por favor.","cuenta","bill"],["Soy ___ a los frutos secos.","alérgico","allergic",["alérgica"]],
+      ["Una ___ para dos.","mesa","table"],["¿Tienen ___ del día?","menú","set menu"],["Estaba muy ___.","rico","delicious"]
+    ]
+  },
+  { id: 7, title: "Repaso — semana 1", en: "Review — week 1", review: [1,2,3,4,5,6],
+    tip: "Mixed practice from days 1–6, weighted toward what you got wrong. Take your time — this is where it sticks." },
+  { id: 8, title: "Compras y mercados", en: "Shopping & markets",
+    tip: "<b>Mercado de San Miguel</b> is touristy but fun; <b>Mercado de Antón Martín</b> or <b>de la Paz</b> are more local. Clothes sizes: <b>talla</b>; shoes: <b>número</b>. <i>Me lo llevo</i> = 'I'll take it'.",
+    vocab: [
+      ["Shop","La tienda"],["Market","El mercado"],["Price","El precio"],["Size (clothes)","La talla"],["Bigger","Más grande"],["Smaller","Más pequeño"],
+      ["Cheap","Barato"],["Expensive","Caro"],["Sale / offer","La oferta"],["In cash","En efectivo"],["By card","Con tarjeta"],["Receipt","El ticket"],
+      ["Fitting room","El probador"],["Bag","La bolsa"],["Open","Abierto"],["Closed","Cerrado"],["Gift","El regalo"],["Souvenir","El recuerdo"],["This one","Este"],["That one","Ese"]
+    ],
+    sentences: [
+      ["How much is this?","¿Cuánto cuesta esto?"],["Do you have a bigger size?","¿Tiene una talla más grande?"],
+      ["Can I try it on?","¿Puedo probármelo?"],["Can I pay by card?","¿Puedo pagar con tarjeta?"],["I'm just looking, thanks.","Solo estoy mirando, gracias."],
+      ["I'll take it.","Me lo llevo."],["Do you have a bag?","¿Tiene bolsa?"],["Where is the fitting room?","¿Dónde está el probador?"],
+      ["It's too expensive.","Es demasiado caro."],["Half a kilo of cherries.","Medio kilo de cerezas."]
+    ],
+    dialogues: [
+      { who:"Shop assistant", says:"¿Le puedo ayudar?", ask:"reply", opts:[["Solo estoy mirando, gracias.",1],["Sí, me lo llevo.",0],["No, está cerrado.",0],["Con tarjeta.",0]] },
+      { who:"Cashier", says:"¿En efectivo o con tarjeta?", ask:"reply", opts:[["Con tarjeta, por favor.",1],["Con bolsa, por favor.",0],["Más grande, por favor.",0],["Sí, gracias.",0]] },
+      { who:"Cashier", says:"¿Quiere bolsa? Son diez céntimos.", ask:"mean", opts:[["Do you want a bag? It's 10 cents.",1],["Do you want a bag? It's free.",0],["Do you want ten bags?",0],["The bag is 10 euros.",0]] },
+      { who:"Market seller", says:"¿Qué le pongo?", ask:"reply", opts:[["Medio kilo de tomates, por favor.",1],["Me lo llevo.",0],["Está cerrado.",0],["Es muy caro.",0]] },
+      { who:"Shop assistant", says:"Lo siento, no queda su talla.", ask:"mean", opts:[["Sorry, your size is sold out.",1],["Sorry, that's the only size.",0],["Sorry, we don't do sizes.",0],["Sorry, the fitting room is closed.",0]] }
+    ],
+    gaps: [
+      ["Me lo ___.","llevo","I'll take it"],["¿Tiene una ___ más grande?","talla","size"],["¿Puedo pagar con ___?","tarjeta","card"],
+      ["Solo estoy ___.","mirando","looking"],["Es ___ caro.","demasiado","too (much)"],["¿Dónde está el ___?","probador","fitting room"]
+    ]
+  },
+  { id: 9, title: "Museos y entradas", en: "Museums & tickets",
+    tip: "<b>Prado</b> is free Mon–Sat 18:00–20:00 and Sun 17:00–19:00; <b>Reina Sofía</b> free Mon/Wed–Sat 19:00–21:00. Book online to skip <b>la cola</b>. <b>Palacio Real</b> free for EU citizens on weekday afternoons.",
+    vocab: [
+      ["Museum","El museo"],["Ticket (entry)","La entrada"],["Ticket office","La taquilla"],["Queue","La cola"],["Free","Gratis"],["Opening hours","El horario"],
+      ["Guided tour","La visita guiada"],["Exhibition","La exposición"],["Park","El parque"],["Square","La plaza"],["Palace","El palacio"],["Cathedral","La catedral"],
+      ["Discount","El descuento"],["Student","Estudiante"],["Photo","La foto"],["Closed","Cerrado"],["Floor / level","La planta"],["Cloakroom","El guardarropa"]
+    ],
+    sentences: [
+      ["Two tickets, please.","Dos entradas, por favor."],["What time does the museum close?","¿A qué hora cierra el museo?"],
+      ["Is there a student discount?","¿Hay descuento para estudiantes?"],["Is it free on Sundays?","¿Es gratis los domingos?"],
+      ["Where is the ticket office?","¿Dónde está la taquilla?"],["Can we take photos?","¿Se pueden hacer fotos?"],
+      ["Is there a guided tour in English?","¿Hay visita guiada en inglés?"],["Where is the Prado Museum?","¿Dónde está el Museo del Prado?"],
+      ["I have a ticket online.","Tengo la entrada por internet."]
+    ],
+    dialogues: [
+      { who:"Ticket clerk", says:"¿Cuántas entradas?", ask:"reply", opts:[["Dos, por favor.",1],["A las ocho.",0],["Sí, gratis.",0],["En la taquilla.",0]] },
+      { who:"Ticket clerk", says:"¿Tiene carné de estudiante?", ask:"reply", opts:[["No, no tengo.",1],["Sí, dos entradas.",0],["No, es gratis.",0],["Sí, a las diez.",0]] },
+      { who:"Guard", says:"Las mochilas grandes, en el guardarropa, por favor.", ask:"mean", opts:[["Large backpacks go in the cloakroom.",1],["Large backpacks are not allowed.",0],["Leave your bag at the ticket office.",0],["Please buy a locker.",0]] },
+      { who:"Guard", says:"No se pueden hacer fotos con flash.", ask:"mean", opts:[["No flash photography.",1],["No photos at all.",0],["Photos only with flash.",0],["Photos cost extra.",0]] },
+      { who:"Sign at entrance", says:"Entrada gratuita a partir de las 18:00.", ask:"mean", opts:[["Free entry from 18:00.",1],["Free entry until 18:00.",0],["Closed from 18:00.",0],["Entry costs 18 euros.",0]] }
+    ],
+    gaps: [
+      ["Dos ___, por favor.","entradas","tickets"],["¿A qué hora ___?","cierra","closes"],["¿Hay ___ para estudiantes?","descuento","discount"],
+      ["¿Es ___ los domingos?","gratis","free"],["¿Dónde está la ___?","taquilla","ticket office"],["¿Se ___ hacer fotos?","pueden","can (one)"]
+    ]
+  },
+  { id: 10, title: "Salud y emergencias", en: "Health, pharmacy & emergencies",
+    tip: "Emergency number: <b>112</b> (English spoken). Pharmacies show a green cross; <b>farmacia de guardia</b> = 24h. EU citizens: bring your EHIC card. <i>Me duele</i> + body part = 'my ___ hurts'.",
+    vocab: [
+      ["Pharmacy","La farmacia"],["Doctor","El médico"],["Hospital","El hospital"],["Ambulance","La ambulancia"],["Police","La policía"],["It hurts","Me duele"],
+      ["Head","La cabeza"],["Stomach","El estómago"],["Throat","La garganta"],["Fever","La fiebre"],["Cold (illness)","El resfriado"],["Pill","La pastilla"],
+      ["Prescription","La receta"],["Insurance","El seguro"],["A&E / ER","Urgencias"],["I've lost","He perdido"],["Stolen","Robado"],["Help","Ayuda"],["Wallet","La cartera"],["Mobile phone","El móvil"]
+    ],
+    sentences: [
+      ["My head hurts.","Me duele la cabeza."],["I need a doctor.","Necesito un médico."],["Where is there a pharmacy?","¿Dónde hay una farmacia?"],
+      ["I have a fever.","Tengo fiebre."],["I've lost my passport.","He perdido mi pasaporte."],["My wallet has been stolen.","Me han robado la cartera."],
+      ["Call an ambulance, please.","Llame a una ambulancia, por favor."],["Do you have something for a stomach ache?","¿Tiene algo para el dolor de estómago?"],
+      ["I'm allergic to penicillin.","Soy alérgico a la penicilina.",["Soy alérgica a la penicilina."]],["Where is the police station?","¿Dónde está la comisaría?"]
+    ],
+    dialogues: [
+      { who:"Pharmacist", says:"¿Qué le pasa?", ask:"reply", opts:[["Me duele la garganta.",1],["Sí, por favor.",0],["Una receta.",0],["Está lejos.",0]] },
+      { who:"Pharmacist", says:"¿Tiene receta?", ask:"reply", opts:[["No, no tengo receta.",1],["Sí, me duele.",0],["No, gracias, nada más.",0],["Sí, tengo fiebre.",0]] },
+      { who:"Pharmacist", says:"Tome una pastilla cada ocho horas, con comida.", ask:"mean", opts:[["One pill every 8 hours, with food.",1],["Eight pills a day, before food.",0],["One pill at 8 o'clock, without food.",0],["Take eight pills with food.",0]] },
+      { who:"Police officer", says:"¿Qué ha pasado?", ask:"reply", opts:[["Me han robado el móvil.",1],["Me duele la cabeza.",0],["Necesito una receta.",0],["Sí, a las ocho.",0]] },
+      { who:"112 operator", says:"¿Cuál es la emergencia y dónde está?", ask:"mean", opts:[["What's the emergency and where are you?",1],["Is it an emergency? Who are you?",0],["Which hospital are you in?",0],["What's your name and number?",0]] }
+    ],
+    gaps: [
+      ["Me ___ la cabeza.","duele","hurts"],["He ___ mi pasaporte.","perdido","lost"],["Necesito un ___.","médico","doctor"],
+      ["Me han ___ la cartera.","robado","stolen"],["¿Dónde ___ una farmacia?","hay","is there"],["Tengo ___.","fiebre","fever"]
+    ]
+  },
+  { id: 11, title: "Hablar de ti", en: "Small talk & about yourself",
+    tip: "Spaniards ask <i>¿de dónde eres?</i> early and often. Keep a few lines ready: where you're from, why you're here, what you like. <b>Me gusta</b> + noun (it pleases me). <b>Hace</b> + calor/frío for weather.",
+    vocab: [
+      ["I am from","Soy de"],["I live in","Vivo en"],["I work","Trabajo"],["I study","Estudio"],["I like","Me gusta"],["I don't like","No me gusta"],
+      ["Family","La familia"],["Work","El trabajo"],["Holidays","Las vacaciones"],["Weather","El tiempo"],["It's hot","Hace calor"],["It's cold","Hace frío"],
+      ["Pretty / nice","Bonito"],["Interesting","Interesante"],["First time","La primera vez"],["Also","También"],["But","Pero"],["Because","Porque"],["Poland","Polonia"],["Polish (person)","Polaco"]
+    ],
+    sentences: [
+      ["I'm from Poland.","Soy de Polonia."],["I live in Warsaw.","Vivo en Varsovia."],["It's my first time in Madrid.","Es mi primera vez en Madrid."],
+      ["I really like the city.","Me gusta mucho la ciudad."],["I'm here on holiday.","Estoy aquí de vacaciones."],["It's very hot today.","Hace mucho calor hoy."],
+      ["Where are you from?","¿De dónde eres?"],["I speak a little Spanish.","Hablo un poco de español."],["I'm here for a week.","Estoy aquí una semana."],
+      ["I like Spanish food.","Me gusta la comida española."]
+    ],
+    dialogues: [
+      { who:"Bartender", says:"¿De dónde eres?", ask:"reply", opts:[["Soy de Polonia.",1],["Vivo en Madrid.",0],["Estoy bien.",0],["Sí, de vacaciones.",0]] },
+      { who:"A local", says:"¿Te gusta Madrid?", ask:"reply", opts:[["Sí, me gusta mucho.",1],["Sí, soy de Madrid.",0],["No, hace calor.",0],["Sí, a las diez.",0]] },
+      { who:"A local", says:"¿Estás aquí de vacaciones o por trabajo?", ask:"reply", opts:[["De vacaciones, una semana.",1],["Sí, trabajo mucho.",0],["No, soy polaco.",0],["Sí, es bonito.",0]] },
+      { who:"A local", says:"¿Es tu primera vez en España?", ask:"reply", opts:[["Sí, es la primera vez.",1],["Sí, hace frío.",0],["No, soy de Polonia.",0],["Sí, me llamo Ana.",0]] },
+      { who:"A local", says:"¡Qué bien hablas español!", ask:"mean", opts:[["Your Spanish is really good!",1],["Do you speak Spanish?",0],["Speak Spanish, please!",0],["How well do you speak?",0]] }
+    ],
+    gaps: [
+      ["___ de Polonia.","Soy","I am (origin)"],["Me ___ Madrid.","gusta","I like"],["Estoy aquí de ___.","vacaciones","on holiday"],
+      ["___ mucho calor.","Hace","it's (weather)"],["¿De dónde ___?","eres","are you (from)"],["Es mi ___ vez en Madrid.","primera","first"]
+    ]
+  },
+  { id: 12, title: "Verbos en acción", en: "Verbs in action",
+    tip: "Six verbs cover 80% of tourist Spanish: <b>ser</b> (soy/es), <b>estar</b> (estoy/está), <b>tener</b> (tengo/tiene), <b>querer</b> (quiero), <b>poder</b> (puedo/puede), <b>ir</b> (voy/vamos) + <b>hay</b> (there is). <b>Usted</b> forms (3rd person) are polite for staff.",
+    vocab: [
+      ["To be (identity/origin)","Ser"],["To be (location/state)","Estar"],["To have","Tener"],["To want","Querer"],["To be able / can","Poder"],["To go","Ir"],
+      ["There is / are","Hay"],["To need","Necesitar"],["To speak","Hablar"],["To understand","Entender"],["I am (soy)","Soy"],["I am (estoy)","Estoy"],
+      ["I have","Tengo"],["I want","Quiero"],["I can","Puedo"],["I go","Voy"],["We go","Vamos"],["You can (formal)","Puede"],["Is there...?","¿Hay...?"],["I have to","Tengo que"]
+    ],
+    sentences: [
+      ["I want to go to the Retiro.","Quiero ir al Retiro."],["Can you help me?","¿Puede ayudarme?"],["I have to go to the airport.","Tengo que ir al aeropuerto."],
+      ["There's a bank nearby.","Hay un banco cerca."],["I'm tired.","Estoy cansado.",["Estoy cansada."]],["It's very expensive.","Es muy caro."],
+      ["Let's go for dinner.","Vamos a cenar."],["Do you have change?","¿Tienes cambio?",["¿Tiene cambio?"]],["I need a taxi.","Necesito un taxi."],
+      ["We are going to the museum.","Vamos al museo."]
+    ],
+    dialogues: [
+      { who:"Friend", says:"¿Vamos al Prado esta tarde?", ask:"reply", opts:[["Vale, ¿a qué hora?",1],["Sí, soy del Prado.",0],["No, hay un museo.",0],["Tengo un Prado.",0]] },
+      { who:"Waiter", says:"¿Qué quiere tomar?", ask:"reply", opts:[["Quiero un café con leche.",1],["Puedo un café.",0],["Hay un café.",0],["Voy un café.",0]] },
+      { who:"Stranger", says:"¿Puedo ayudarle?", ask:"reply", opts:[["Sí, ¿dónde está el metro?",1],["Sí, soy de Polonia.",0],["No, tengo hambre.",0],["Sí, es muy caro.",0]] },
+      { who:"Friend", says:"¿Tienes hambre?", ask:"reply", opts:[["Sí, ¡vamos a comer!",1],["Sí, soy hambre.",0],["No, estoy Polonia.",0],["Sí, hay hambre.",0]] }
+    ],
+    gaps: [
+      ["Yo ___ de Polonia. (ser)","soy","ser → yo"],["¿Dónde ___ el baño? (estar)","está","estar → él/ella/usted"],["___ una reserva. (tener, yo)","Tengo","tener → yo"],
+      ["¿___ ayudarme? (poder, usted)","Puede","poder → usted"],["___ un café. (querer, yo)","Quiero","querer → yo"],["¿___ wifi aquí? (haber)","Hay","there is"],
+      ["Nosotros ___ al museo. (ir)","vamos","ir → nosotros"],["¿Tú ___ inglés? (hablar)","hablas","hablar → tú"],["___ que ir al aeropuerto. (tener, yo)","Tengo","tener que → yo"],
+      ["Ellos ___ cansados. (estar)","están","estar → ellos"],["Necesito ___ un taxi. (tomar)","tomar","infinitive after necesitar"],["No ___ español muy bien. (entender, yo)","entiendo","entender → yo"]
+    ]
+  },
+  { id: 13, title: "Madrid de verdad", en: "Real Madrid life & slang",
+    tip: "<b>Venga</b> = 'come on / OK then / bye'; <b>vale</b> = OK; <b>guay</b> = cool; <b>tío/tía</b> = mate. Sunday = <b>El Rastro</b> flea market (La Latina). Try <b>chocolate con churros</b> at San Ginés and a <b>bocadillo de calamares</b> near Plaza Mayor.",
+    vocab: [
+      ["Neighbourhood","El barrio"],["Flea market (Sunday)","El Rastro"],["Cool (slang)","Guay"],["Come on / OK then","Venga"],["Mate (slang)","Tío"],
+      ["Churros with hot chocolate","Chocolate con churros"],["Fried squid sandwich","Bocadillo de calamares"],["To have dinner","Cenar"],["To have lunch","Comer"],
+      ["Nap","La siesta"],["Atmosphere / vibe","El ambiente"],["Place / spot","El sitio"],["To go for tapas","Ir de tapas"],["Crowded","Lleno"],["Party","La fiesta"],
+      ["Recommend","Recomendar"],["Cheers (toast)","¡Salud!"],["Let's go!","¡Vamos!"],["The Retiro park","El Retiro"],["Sun square","La Puerta del Sol"]
+    ],
+    sentences: [
+      ["Let's go to the Retiro this afternoon.","Vamos al Retiro esta tarde."],["I want to try the squid sandwich.","Quiero probar el bocadillo de calamares."],
+      ["What time do people have dinner in Spain?","¿A qué hora se cena en España?"],["The Rastro is on Sundays.","El Rastro es los domingos."],
+      ["Which neighbourhood do you recommend?","¿Qué barrio recomiendas?"],["It's a really cool place.","Es un sitio muy guay."],
+      ["OK then, see you later.","Venga, hasta luego."],["Shall we go for tapas?","¿Vamos de tapas?"],["This bar is packed.","Este bar está lleno."],
+      ["Where's a good place to eat around here?","¿Dónde se come bien por aquí?"]
+    ],
+    dialogues: [
+      { who:"New friend", says:"¿Vamos de tapas por La Latina?", ask:"reply", opts:[["¡Venga, vale!",1],["No, soy de Polonia.",0],["Sí, la cuenta.",0],["Gracias, de nada.",0]] },
+      { who:"New friend", says:"¿Conoces Malasaña?", ask:"reply", opts:[["No, ¿está lejos?",1],["Sí, me llamo Malasaña.",0],["No, no tengo.",0],["Sí, a las ocho.",0]] },
+      { who:"Local", says:"Aquí se cena a las diez, tío.", ask:"mean", opts:[["People eat dinner at 10 pm here, mate.",1],["Dinner costs 10 euros here.",0],["Ten people are coming to dinner.",0],["The restaurant closes at 10.",0]] },
+      { who:"Local", says:"Ese sitio está guay, pero los sábados está lleno.", ask:"mean", opts:[["That place is cool but packed on Saturdays.",1],["That place is closed on Saturdays.",0],["That place is expensive on Saturdays.",0],["That place is only open Saturdays.",0]] },
+      { who:"Friend leaving", says:"Venga, ¡hasta luego!", ask:"reply", opts:[["¡Hasta luego!",1],["¡Salud!",0],["De nada.",0],["Buenos días.",0]] }
+    ],
+    gaps: [
+      ["Chocolate con ___.","churros","churros"],["El Rastro es los ___.","domingos","Sundays"],["___, hasta luego.","Venga","OK then / come on"],
+      ["¿Vamos de ___?","tapas","for tapas"],["Es un sitio muy ___.","guay","cool"],["Este bar está ___.","lleno","packed"]
+    ]
+  },
+  { id: 14, title: "Repaso final — ¡listo para Madrid!", en: "Final review — everything", review: [1,2,3,4,5,6,8,9,10,11,12,13],
+    tip: "Everything, mixed, weighted toward your mistakes bank. Finish this and you're ready. ¡Buen viaje!" }
+];
 
-    // Numbers
-    { en: "Zero", es: "Cero" },
-    { en: "One", es: "Uno" },
-    { en: "Two", es: "Dos" },
-    { en: "Three", es: "Tres" },
-    { en: "Four", es: "Cuatro" },
-    { en: "Five", es: "Cinco" },
-    { en: "Six", es: "Seis" },
-    { en: "Seven", es: "Siete" },
-    { en: "Eight", es: "Ocho" },
-    { en: "Nine", es: "Nueve" },
-    { en: "Ten", es: "Diez" },
-    { en: "Eleven", es: "Once" },
-    { en: "Twelve", es: "Doce" },
-    { en: "Thirteen", es: "Trece" },
-    { en: "Fourteen", es: "Catorce" },
-    { en: "Fifteen", es: "Quince" },
-    { en: "Sixteen", es: "Dieciséis" },
-    { en: "Seventeen", es: "Diecisiete" },
-    { en: "Eighteen", es: "Dieciocho" },
-    { en: "Nineteen", es: "Diecinueve" },
-    { en: "Twenty", es: "Veinte" },
-    { en: "Thirty", es: "Treinta" },
-    { en: "Forty", es: "Cuarenta" },
-    { en: "Fifty", es: "Cincuenta" },
-    { en: "Sixty", es: "Sesenta" },
-    { en: "Seventy", es: "Setenta" },
-    { en: "Eighty", es: "Ochenta" },
-    { en: "Ninety", es: "Noventa" },
-    { en: "One hundred", es: "Cien" },
-    { en: "One thousand", es: "Mil" },
+/* =========================================================
+   STATE & PERSISTENCE
+   ========================================================= */
+const STORE_KEY = "vamos_madrid_v1";
+let state = load();
+function load() {
+  try { const s = JSON.parse(localStorage.getItem(STORE_KEY)); if (s && s.done) return s; } catch (e) {}
+  return { done: {}, mistakes: [], lastDate: null, streak: 0 };
+}
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
+function todayStr() { return new Date().toISOString().slice(0, 10); }
+function bumpStreak() {
+  const t = todayStr();
+  if (state.lastDate === t) return;
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  state.streak = (state.lastDate === y.toISOString().slice(0, 10)) ? state.streak + 1 : 1;
+  state.lastDate = t; save();
+}
+function addMistake(item) {
+  const key = item.key;
+  const ex = state.mistakes.find(m => m.key === key);
+  if (ex) ex.count++; else state.mistakes.push({ ...item, count: 1 });
+  save();
+}
+function clearMistake(key) { state.mistakes = state.mistakes.filter(m => m.key !== key); save(); }
 
-    // Days & time
-    { en: "Monday", es: "Lunes" },
-    { en: "Tuesday", es: "Martes" },
-    { en: "Wednesday", es: "Miércoles" },
-    { en: "Thursday", es: "Jueves" },
-    { en: "Friday", es: "Viernes" },
-    { en: "Saturday", es: "Sábado" },
-    { en: "Sunday", es: "Domingo" },
-    { en: "Today", es: "Hoy" },
-    { en: "Tomorrow", es: "Mañana" },
-    { en: "Yesterday", es: "Ayer" },
-    { en: "What time is it?", es: "¿Qué hora es?" },
-    { en: "It's noon", es: "Es mediodía" },
-    { en: "In the morning", es: "Por la mañana" },
-    { en: "In the afternoon", es: "Por la tarde" },
-    { en: "At night", es: "Por la noche" },
-    { en: "Now", es: "Ahora" },
-    { en: "Later", es: "Más tarde" },
-    { en: "Early", es: "Temprano" },
-    { en: "Late", es: "Tarde" },
+/* =========================================================
+   HELPERS
+   ========================================================= */
+const LETTERS = ["A", "B", "C", "D"];
+function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function pick(arr, n) { return shuffle(arr).slice(0, n); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function norm(s) { return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[¿¡?!.,;:"'()]/g, "").replace(/\s+/g, " ").trim(); }
+function normNum(s) { return String(s).trim().replace(",", ".").replace(/€|euros?|h$/gi, "").replace(/\s+/g, ""); }
+function sayBtn(text) { return `<span class="say" data-say="${esc(text)}" role="button" tabindex="0" aria-label="Listen">🔊</span>`; }
+function tokens(s) { return norm(s).split(" ").filter(Boolean); }
 
-    // Months
-    { en: "January", es: "Enero" },
-    { en: "February", es: "Febrero" },
-    { en: "March", es: "Marzo" },
-    { en: "April", es: "Abril" },
-    { en: "May", es: "Mayo" },
-    { en: "June", es: "Junio" },
-    { en: "July", es: "Julio" },
-    { en: "August", es: "Agosto" },
-    { en: "September", es: "Septiembre" },
-    { en: "October", es: "Octubre" },
-    { en: "November", es: "Noviembre" },
-    { en: "December", es: "Diciembre" },
+/* =========================================================
+   EXERCISE GENERATION
+   ========================================================= */
+// Normalise raw day data to fixed shapes (day id always in the last slot):
+//   vocab    [en, es, day]
+//   sentence [en, es, alts[], day]
+//   gap      [sentence, answer, hint, alts[], day]
+//   number   [es, answers[], day]
+function shapeDay(d) {
+  return {
+    vocab: d.vocab.map(v => [v[0], v[1], d.id]),
+    sentences: d.sentences.map(s => [s[0], s[1], s[2] || [], d.id]),
+    dialogues: d.dialogues.map(x => ({ ...x, day: d.id })),
+    gaps: d.gaps.map(g => [g[0], g[1], g[2], g[3] || [], d.id]),
+    numbers: (d.numbers || []).map(n => [n[0], n[1], d.id])
+  };
+}
+function dayContent(day) {
+  const src = (day.review ? day.review.map(id => DAYS.find(d => d.id === id)) : [day]).map(shapeDay);
+  return {
+    vocab: src.flatMap(c => c.vocab),
+    sentences: src.flatMap(c => c.sentences),
+    dialogues: src.flatMap(c => c.dialogues),
+    gaps: src.flatMap(c => c.gaps),
+    numbers: src.flatMap(c => c.numbers)
+  };
+}
+const ALL_VOCAB = DAYS.filter(d => !d.review).flatMap(d => shapeDay(d).vocab);
+const ALL_SENT = DAYS.filter(d => !d.review).flatMap(d => shapeDay(d).sentences);
 
-    // Seasons
-    { en: "Spring", es: "Primavera" },
-    { en: "Summer", es: "Verano" },
-    { en: "Autumn", es: "Otoño" },
-    { en: "Winter", es: "Invierno" },
+function distractorsFrom(pool, correct, n, field) {
+  const seen = new Set([norm(correct)]);
+  const out = [];
+  for (const item of shuffle(pool)) {
+    const v = field(item); const k = norm(v);
+    if (seen.has(k)) continue;
+    seen.add(k); out.push(v);
+    if (out.length === n) break;
+  }
+  return out;
+}
 
-    // Directions & transport
-    { en: "Where is...?", es: "¿Dónde está...?" },
-    { en: "Where is the bathroom?", es: "¿Dónde está el baño?" },
-    { en: "Where is the train station?", es: "¿Dónde está la estación de tren?" },
-    { en: "Where is the airport?", es: "¿Dónde está el aeropuerto?" },
-    { en: "Where is the hotel?", es: "¿Dónde está el hotel?" },
-    { en: "Where is the exit?", es: "¿Dónde está la salida?" },
-    { en: "Where is the entrance?", es: "¿Dónde está la entrada?" },
-    { en: "Left", es: "Izquierda" },
-    { en: "Right", es: "Derecha" },
-    { en: "Straight ahead", es: "Todo recto" },
-    { en: "Near", es: "Cerca" },
-    { en: "Far", es: "Lejos" },
-    { en: "Train station", es: "Estación de tren" },
-    { en: "Bus station", es: "Estación de autobús" },
-    { en: "Airport", es: "Aeropuerto" },
-    { en: "Taxi", es: "Taxi" },
-    { en: "Ticket", es: "Billete" },
-    { en: "One ticket, please", es: "Un billete, por favor" },
-    { en: "Round trip", es: "Ida y vuelta" },
-    { en: "One way", es: "Solo ida" },
-    { en: "How do I get to...?", es: "¿Cómo llego a...?" },
-    { en: "Is it far?", es: "¿Está lejos?" },
-    { en: "Bus stop", es: "Parada de autobús" },
-    { en: "Platform", es: "Andén" },
-    { en: "Map", es: "Mapa" },
-    { en: "I am lost", es: "Estoy perdido" },
-    { en: "Car", es: "Coche" },
-    { en: "Bicycle", es: "Bicicleta" },
-    { en: "Boat", es: "Barco" },
-    { en: "Subway / Metro", es: "Metro" },
-    { en: "Parking", es: "Aparcamiento" },
-    { en: "Gas station", es: "Gasolinera" },
-    { en: "Highway", es: "Autopista" },
-    { en: "Speed limit", es: "Límite de velocidad" },
-    { en: "No entry", es: "Prohibido el paso" },
+function exMcqEnEs(v, pool) { return { type: "mcq", key: "v:" + v[1], src: { kind: "vocab", v }, label: "Choose the Spanish", prompt: v[0], correct: v[1], options: shuffle([v[1], ...distractorsFrom(pool, v[1], 3, x => x[1])]), spanishOpts: true }; }
+function exMcqEsEn(v, pool) { return { type: "mcq", key: "v:" + v[1], src: { kind: "vocab", v }, label: "What does it mean?", prompt: v[1], promptEs: true, correct: v[0], options: shuffle([v[0], ...distractorsFrom(pool, v[0], 3, x => x[0])]), spanishOpts: false }; }
+function exMatch(vs) { return { type: "match", key: "m:" + vs.map(v => v[1]).join("|"), src: null, label: "Match the pairs", pairs: vs }; }
+function exListen(s, pool) { return { type: "listen", key: "s:" + s[1], src: { kind: "sentence", s }, label: "Listen — what did you hear?", audio: s[1], correct: s[1], options: shuffle([s[1], ...distractorsFrom(pool, s[1], 3, x => x[1])]) }; }
+function exBuilder(s, pool) {
+  const words = s[1].replace(/[¿¡?!.,;:]/g, "").split(/\s+/).filter(Boolean);
+  const others = pool.filter(x => x !== s).flatMap(x => x[1].replace(/[¿¡?!.,;:]/g, "").split(/\s+/)).filter(w => !words.map(norm).includes(norm(w)));
+  const extra = pick([...new Set(others)], 2);
+  return { type: "builder", key: "s:" + s[1], src: { kind: "sentence", s }, label: "Build the sentence", prompt: s[0], target: s[1], chips: shuffle([...words, ...extra]) };
+}
+function exType(s) { return { type: "type", key: "s:" + s[1], src: { kind: "sentence", s }, label: "Write it in Spanish", prompt: s[0], answer: s[1], alts: s[2] || [] }; }
+function exGap(g) { return { type: "gap", key: "g:" + g[0], src: { kind: "gap", g }, label: "Fill the gap", sentence: g[0], answer: g[1], hint: g[2], alts: g[3] || [] }; }
+function exDialogue(d) { return { type: "dialogue", key: "d:" + d.says + d.opts[0][0], src: { kind: "dialogue", d }, label: d.ask === "mean" ? "What does it mean?" : "What do you say?", d, options: shuffle(d.opts) }; }
+function exNumber(n) { return { type: "number", key: "n:" + n[0], src: { kind: "number", n }, label: "Price or time — type the number", prompt: n[0], answers: n[1] }; }
 
-    // Accommodation
-    { en: "Hotel", es: "Hotel" },
-    { en: "Room", es: "Habitación" },
-    { en: "I have a reservation", es: "Tengo una reserva" },
-    { en: "Do you have a free room?", es: "¿Tiene habitaciones libres?" },
-    { en: "How much per night?", es: "¿Cuánto cuesta por noche?" },
-    { en: "Key", es: "Llave" },
-    { en: "Passport", es: "Pasaporte" },
-    { en: "Luggage", es: "Equipaje" },
-    { en: "Elevator", es: "Ascensor" },
-    { en: "Wi-Fi password", es: "Contraseña de Wi-Fi" },
-    { en: "Is there Wi-Fi here?", es: "¿Hay Wi-Fi aquí?" },
-    { en: "Hostel", es: "Albergue" },
+function buildSession(day) {
+  const c = dayContent(day);
+  const ttsOK = !!window.speechSynthesis;
+  const isReview = !!day.review;
+  const nV = isReview ? 5 : 4, nS = isReview ? 4 : 3;
 
-    // Food & dining
-    { en: "Water", es: "Agua" },
-    { en: "Water, please", es: "Agua, por favor" },
-    { en: "Wine", es: "Vino" },
-    { en: "Beer", es: "Cerveza" },
-    { en: "Coffee", es: "Café" },
-    { en: "Tea", es: "Té" },
-    { en: "Bread", es: "Pan" },
-    { en: "Meat", es: "Carne" },
-    { en: "Chicken", es: "Pollo" },
-    { en: "Fish", es: "Pescado" },
-    { en: "Vegetables", es: "Verduras" },
-    { en: "Fruit", es: "Fruta" },
-    { en: "Salt", es: "Sal" },
-    { en: "Sugar", es: "Azúcar" },
-    { en: "Soup", es: "Sopa" },
-    { en: "Breakfast", es: "Desayuno" },
-    { en: "Lunch", es: "Almuerzo" },
-    { en: "Dinner", es: "Cena" },
-    { en: "The menu, please", es: "La carta, por favor" },
-    { en: "The bill, please", es: "La cuenta, por favor" },
-    { en: "Delicious!", es: "¡Delicioso!" },
-    { en: "I am vegetarian", es: "Soy vegetariano" },
-    { en: "Table for two", es: "Mesa para dos" },
-    { en: "Is this spicy?", es: "¿Es picante?" },
-    { en: "Enjoy your meal", es: "¡Buen provecho!" },
-    { en: "Dessert", es: "Postre" },
-    { en: "Ice cream", es: "Helado" },
-    { en: "Cake", es: "Pastel" },
-    { en: "Juice", es: "Zumo" },
-    { en: "Milk", es: "Leche" },
-    { en: "Butter", es: "Mantequilla" },
-    { en: "Cheese", es: "Queso" },
-    { en: "Eggs", es: "Huevos" },
-    { en: "Rice", es: "Arroz" },
-    { en: "Pasta", es: "Pasta" },
-    { en: "Sauce", es: "Salsa" },
-    { en: "Spicy", es: "Picante" },
-    { en: "Sweet", es: "Dulce" },
-    { en: "Sour", es: "Ácido" },
-    { en: "Fresh", es: "Fresco" },
-    { en: "Napkin", es: "Servilleta" },
-    { en: "Fork", es: "Tenedor" },
-    { en: "Knife", es: "Cuchillo" },
-    { en: "Spoon", es: "Cuchara" },
-    { en: "Plate", es: "Plato" },
-    { en: "Glass", es: "Vaso" },
-    { en: "Cup", es: "Taza" },
-    { en: "Waiter", es: "Camarero" },
-    { en: "I'd like to book a table", es: "Quisiera reservar una mesa" },
+  // Weight mistakes: pull items from the bank that belong to this day's sources
+  const dayIds = isReview ? day.review : [day.id];
+  const bank = state.mistakes.filter(m => dayIds.includes(m.day));
 
-    // Spanish specialties
-    { en: "Paella", es: "Paella" },
-    { en: "Tapas", es: "Tapas" },
-    { en: "Sangria", es: "Sangría" },
-    { en: "Spanish omelette", es: "Tortilla española" },
-    { en: "Cured ham", es: "Jamón ibérico" },
-    { en: "Churros", es: "Churros" },
-    { en: "Cold tomato soup", es: "Gazpacho" },
-    { en: "Olive oil", es: "Aceite de oliva" },
-    { en: "Flamenco", es: "Flamenco" },
-
-    // Shopping
-    { en: "How much does it cost?", es: "¿Cuánto cuesta?" },
-    { en: "Expensive", es: "Caro" },
-    { en: "Cheap", es: "Barato" },
-    { en: "Can I pay by card?", es: "¿Puedo pagar con tarjeta?" },
-    { en: "Cash", es: "Efectivo" },
-    { en: "Discount", es: "Descuento" },
-    { en: "Open", es: "Abierto" },
-    { en: "Closed", es: "Cerrado" },
-    { en: "Market", es: "Mercado" },
-    { en: "Store", es: "Tienda" },
-    { en: "Pharmacy", es: "Farmacia" },
-    { en: "Receipt", es: "Recibo" },
-    { en: "Size", es: "Talla" },
-    { en: "Can I try it on?", es: "¿Puedo probármelo?" },
-    { en: "I'm just looking", es: "Solo estoy mirando" },
-    { en: "Gift", es: "Regalo" },
-    { en: "Souvenir", es: "Recuerdo" },
-    { en: "Bag", es: "Bolsa" },
-    { en: "Supermarket", es: "Supermercado" },
-    { en: "Bakery", es: "Panadería" },
-
-    // Emergency & health
-    { en: "Help!", es: "¡Ayuda!" },
-    { en: "Call the police!", es: "¡Llame a la policía!" },
-    { en: "I need a doctor", es: "Necesito un médico" },
-    { en: "Hospital", es: "Hospital" },
-    { en: "I'm sick", es: "Estoy enfermo" },
-    { en: "It hurts here", es: "Me duele aquí" },
-    { en: "Ambulance", es: "Ambulancia" },
-    { en: "Emergency", es: "Emergencia" },
-    { en: "I lost my passport", es: "He perdido mi pasaporte" },
-    { en: "Fire!", es: "¡Fuego!" },
-    { en: "I need help", es: "Necesito ayuda" },
-    { en: "Headache", es: "Dolor de cabeza" },
-    { en: "Fever", es: "Fiebre" },
-    { en: "I have a fever", es: "Tengo fiebre" },
-    { en: "Medicine", es: "Medicamento" },
-    { en: "Dentist", es: "Dentista" },
-    { en: "Insurance", es: "Seguro" },
-    { en: "I'm allergic to...", es: "Soy alérgico a..." },
-
-    // Weather
-    { en: "It's hot", es: "Hace calor" },
-    { en: "It's cold", es: "Hace frío" },
-    { en: "It's raining", es: "Está lloviendo" },
-    { en: "It's snowing", es: "Está nevando" },
-    { en: "Sunny", es: "Soleado" },
-    { en: "Wind", es: "Viento" },
-    { en: "It's windy", es: "Hace viento" },
-    { en: "Cloudy", es: "Nublado" },
-    { en: "Storm", es: "Tormenta" },
-    { en: "Temperature", es: "Temperatura" },
-
-    // Common adjectives
-    { en: "Good", es: "Bueno" },
-    { en: "Bad", es: "Malo" },
-    { en: "Big", es: "Grande" },
-    { en: "Small", es: "Pequeño" },
-    { en: "Beautiful", es: "Hermoso" },
-    { en: "Fast", es: "Rápido" },
-    { en: "Slow", es: "Lento" },
-    { en: "New", es: "Nuevo" },
-    { en: "Old", es: "Viejo" },
-    { en: "Young", es: "Joven" },
-    { en: "Long", es: "Largo" },
-    { en: "Short", es: "Corto" },
-    { en: "High", es: "Alto" },
-    { en: "Low", es: "Bajo" },
-    { en: "Clean", es: "Limpio" },
-    { en: "Dirty", es: "Sucio" },
-    { en: "Full", es: "Lleno" },
-    { en: "Empty", es: "Vacío" },
-    { en: "Quiet", es: "Tranquilo" },
-    { en: "Noisy", es: "Ruidoso" },
-    { en: "Safe", es: "Seguro" },
-    { en: "Dangerous", es: "Peligroso" },
-    { en: "Free (no cost)", es: "Gratis" },
-    { en: "Busy", es: "Ocupado" },
-    { en: "Fresh", es: "Fresco" },
-    { en: "Heavy", es: "Pesado" },
-    { en: "Light (weight)", es: "Ligero" },
-
-    // Family & people
-    { en: "Family", es: "Familia" },
-    { en: "Friend", es: "Amigo" },
-    { en: "Man", es: "Hombre" },
-    { en: "Woman", es: "Mujer" },
-    { en: "Child", es: "Niño" },
-    { en: "Mother", es: "Madre" },
-    { en: "Father", es: "Padre" },
-    { en: "Brother", es: "Hermano" },
-    { en: "Sister", es: "Hermana" },
-
-    // Colors
-    { en: "Red", es: "Rojo" },
-    { en: "Blue", es: "Azul" },
-    { en: "Yellow", es: "Amarillo" },
-    { en: "Green", es: "Verde" },
-    { en: "White", es: "Blanco" },
-    { en: "Black", es: "Negro" },
-    { en: "Orange", es: "Naranja" },
-    { en: "Purple", es: "Morado" },
-    { en: "Pink", es: "Rosa" },
-    { en: "Brown", es: "Marrón" },
-    { en: "Grey", es: "Gris" },
-
-    // Places & sightseeing
-    { en: "Castle", es: "Castillo" },
-    { en: "Church", es: "Iglesia" },
-    { en: "Museum", es: "Museo" },
-    { en: "Park", es: "Parque" },
-    { en: "Mountain", es: "Montaña" },
-    { en: "Lake", es: "Lago" },
-    { en: "City center", es: "Centro de la ciudad" },
-    { en: "Beach", es: "Playa" },
-    { en: "Bridge", es: "Puente" },
-    { en: "Central square", es: "Plaza mayor" },
-    { en: "Cathedral", es: "Catedral" },
-    { en: "Palace", es: "Palacio" },
-    { en: "Village", es: "Pueblo" },
-
-    // More travel phrases
-    { en: "I would like...", es: "Quisiera..." },
-    { en: "Can you help me?", es: "¿Puede ayudarme?" },
-    { en: "What time does it open?", es: "¿A qué hora abre?" },
-    { en: "What time does it close?", es: "¿A qué hora cierra?" },
-    { en: "How long does it take?", es: "¿Cuánto tiempo tarda?" },
-    { en: "Is it included?", es: "¿Está incluido?" },
-    { en: "Guided tour", es: "Visita guiada" },
-    { en: "Entrance fee", es: "Precio de entrada" },
-    { en: "Free entrance", es: "Entrada gratuita" },
-    { en: "Opening hours", es: "Horario de apertura" },
-
-    // Verbs
-    { en: "I want", es: "Quiero" },
-    { en: "I need", es: "Necesito" },
-    { en: "I have", es: "Tengo" },
-    { en: "I like it", es: "Me gusta" },
-    { en: "I don't like it", es: "No me gusta" },
-    { en: "I know", es: "Sé" },
-    { en: "I don't know", es: "No sé" },
-    { en: "I can", es: "Puedo" },
-    { en: "I can't", es: "No puedo" },
-    { en: "Let's go!", es: "¡Vamos!" },
-    { en: "Come here", es: "Ven aquí" },
-    { en: "Wait", es: "Espera" },
-    { en: "Stop", es: "Para" },
-    { en: "Look", es: "Mira" },
-    { en: "Listen", es: "Escucha" },
-    { en: "Eat", es: "Come" },
-    { en: "Drink", es: "Bebe" },
-    { en: "Sleep", es: "Duerme" },
-    { en: "Buy", es: "Compra" },
-    { en: "Pay", es: "Paga" },
-    { en: "Speak", es: "Habla" },
-    { en: "Write", es: "Escribe" },
-    { en: "Read", es: "Lee" },
-
-    // Question words
-    { en: "Who?", es: "¿Quién?" },
-    { en: "What?", es: "¿Qué?" },
-    { en: "Where?", es: "¿Dónde?" },
-    { en: "When?", es: "¿Cuándo?" },
-    { en: "Why?", es: "¿Por qué?" },
-    { en: "How?", es: "¿Cómo?" },
-    { en: "How much?", es: "¿Cuánto?" },
-    { en: "How many?", es: "¿Cuántos?" },
-    { en: "Which one?", es: "¿Cuál?" },
-
-    // Pronouns & basics
-    { en: "I", es: "Yo" },
-    { en: "You", es: "Tú" },
-    { en: "He", es: "Él" },
-    { en: "She", es: "Ella" },
-    { en: "We", es: "Nosotros" },
-    { en: "They", es: "Ellos" },
-    { en: "This", es: "Esto" },
-    { en: "That", es: "Eso" },
-    { en: "Here", es: "Aquí" },
-    { en: "There", es: "Allí" },
-
-    // Money & banking
-    { en: "Money", es: "Dinero" },
-    { en: "Euro", es: "Euro" },
-    { en: "Change (money)", es: "Cambio" },
-    { en: "Wallet", es: "Cartera" },
-    { en: "ATM", es: "Cajero automático" },
-    { en: "Bank", es: "Banco" },
-    { en: "Credit card", es: "Tarjeta de crédito" },
-    { en: "Currency exchange", es: "Cambio de divisas" },
-
-    // Communication & tech
-    { en: "Phone", es: "Teléfono" },
-    { en: "Phone number", es: "Número de teléfono" },
-    { en: "Internet", es: "Internet" },
-    { en: "Charger", es: "Cargador" },
-    { en: "Camera", es: "Cámara" },
-    { en: "Photo", es: "Foto" },
-    { en: "Can I take a photo?", es: "¿Puedo tomar una foto?" },
-    { en: "Post office", es: "Correos" },
-    { en: "Postcard", es: "Postal" },
-    { en: "Stamp", es: "Sello" },
-
-    // Clothing
-    { en: "Clothes", es: "Ropa" },
-    { en: "Shirt", es: "Camisa" },
-    { en: "Trousers", es: "Pantalones" },
-    { en: "Dress", es: "Vestido" },
-    { en: "Shoes", es: "Zapatos" },
-    { en: "Jacket", es: "Chaqueta" },
-    { en: "Hat", es: "Sombrero" },
-    { en: "Coat", es: "Abrigo" },
-    { en: "Socks", es: "Calcetines" },
-    { en: "Scarf", es: "Bufanda" },
-
-    // Body
-    { en: "Head", es: "Cabeza" },
-    { en: "Hand", es: "Mano" },
-    { en: "Foot", es: "Pie" },
-    { en: "Stomach", es: "Estómago" },
-    { en: "Back (body)", es: "Espalda" },
-    { en: "Eye", es: "Ojo" },
-    { en: "Ear", es: "Oído" },
-    { en: "Tooth", es: "Diente" },
-    { en: "Heart", es: "Corazón" },
-    { en: "Throat", es: "Garganta" },
-
-    // Animals
-    { en: "Dog", es: "Perro" },
-    { en: "Cat", es: "Gato" },
-    { en: "Horse", es: "Caballo" },
-    { en: "Bird", es: "Pájaro" },
-    { en: "Bull", es: "Toro" },
-    { en: "Cow", es: "Vaca" },
-    { en: "Sheep", es: "Oveja" },
-
-    // Nature
-    { en: "Forest", es: "Bosque" },
-    { en: "River", es: "Río" },
-    { en: "Sea", es: "Mar" },
-    { en: "Sky", es: "Cielo" },
-    { en: "Sun", es: "Sol" },
-    { en: "Moon", es: "Luna" },
-    { en: "Star", es: "Estrella" },
-    { en: "Tree", es: "Árbol" },
-    { en: "Flower", es: "Flor" },
-    { en: "Snow", es: "Nieve" },
-    { en: "Valley", es: "Valle" },
-    { en: "Field", es: "Campo" },
-    { en: "Cave", es: "Cueva" },
-
-    // Emotions
-    { en: "Happy", es: "Feliz" },
-    { en: "Sad", es: "Triste" },
-    { en: "Tired", es: "Cansado" },
-    { en: "Hungry", es: "Hambriento" },
-    { en: "Thirsty", es: "Sediento" },
-    { en: "Scared", es: "Asustado" },
-    { en: "Angry", es: "Enfadado" },
-    { en: "Excited", es: "Emocionado" },
-    { en: "Surprised", es: "Sorprendido" },
-    { en: "Bored", es: "Aburrido" },
-
-    // Exclamations & small talk
-    { en: "Watch out!", es: "¡Cuidado!" },
-    { en: "Wonderful!", es: "¡Maravilloso!" },
-    { en: "Amazing!", es: "¡Increíble!" },
-    { en: "I love it", es: "Me encanta" },
-    { en: "Wait a moment", es: "Un momento" },
-    { en: "No problem", es: "No hay problema" },
-    { en: "It's okay", es: "Está bien" },
-    { en: "Really?", es: "¿En serio?" },
-    { en: "That's right", es: "Exacto" },
-    { en: "That's wrong", es: "Eso es incorrecto" },
-
-    // Professions
-    { en: "Teacher", es: "Profesor" },
-    { en: "Doctor", es: "Médico" },
-    { en: "Tourist", es: "Turista" },
-    { en: "Tour guide", es: "Guía turístico" },
-    { en: "Police officer", es: "Policía" },
-    { en: "Engineer", es: "Ingeniero" },
-
-    // Activities & sightseeing
-    { en: "Hiking", es: "Senderismo" },
-    { en: "Swimming", es: "Natación" },
-    { en: "Skiing", es: "Esquí" },
-    { en: "Sightseeing", es: "Turismo" },
-    { en: "Ticket office", es: "Taquilla" },
-
-    // Orientation
-    { en: "North", es: "Norte" },
-    { en: "South", es: "Sur" },
-    { en: "East", es: "Este" },
-    { en: "West", es: "Oeste" },
-    { en: "Center", es: "Centro" },
-    { en: "Corner", es: "Esquina" },
+  const recog = [
+    ...pick(c.vocab, nV).map(v => exMcqEnEs(v, c.vocab)),
+    ...pick(c.vocab, 3).map(v => exMcqEsEn(v, c.vocab)),
+    exMatch(pick(c.vocab, 5))
   ];
-
-  const ROUND_SIZE = 10;
-  const TOTAL = ROUND_SIZE;
-  const LETTERS = ["A", "B", "C", "D"];
-
-  function shuffle(arr) {
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
+  const compr = [
+    ...(ttsOK ? pick(c.sentences, nS).map(s => exListen(s, c.sentences)) : []),
+    ...pick(c.dialogues, isReview ? 5 : 4).map(exDialogue),
+    ...pick(c.numbers, isReview ? 3 : 4).map(exNumber)
+  ];
+  const prod = [
+    ...pick(c.gaps, 5).map(exGap),
+    ...pick(c.sentences, 3).map(s => exBuilder(s, c.sentences)),
+    ...pick(c.sentences, 3).map(exType)
+  ];
+  let list = [...shuffle(recog), ...shuffle(compr), ...shuffle(prod)];
+  // Inject up to 4 mistake-bank items as production exercises
+  for (const m of pick(bank, 4)) {
+    const ex = exerciseFromMistake(m); if (ex) list.splice(recog.length + compr.length, 0, ex);
   }
+  // De-dupe by key+type
+  const seen = new Set(); list = list.filter(e => { const k = e.type + e.key; if (seen.has(k)) return false; seen.add(k); return true; });
+  return list;
+}
+function exerciseFromMistake(m) {
+  const s = m.src; if (!s) return null;
+  if (s.kind === "vocab") return exMcqEnEs(s.v, ALL_VOCAB);
+  if (s.kind === "sentence") return Math.random() < 0.5 ? exBuilder(s.s, ALL_SENT) : exType(s.s);
+  if (s.kind === "gap") return exGap(s.g);
+  if (s.kind === "dialogue") return exDialogue(s.d);
+  if (s.kind === "number") return exNumber(s.n);
+  return null;
+}
+function buildMistakeSession() {
+  return pick(state.mistakes, 16).map(exerciseFromMistake).filter(Boolean);
+}
+function buildFlagChallenge() {
+  return pick(ALL_VOCAB, 10).map(v => exMcqEnEs(v, ALL_VOCAB));
+}
 
-  let round = [], index = 0, score = 0, answered = false;
+/* =========================================================
+   SPEECH (Chrome-safe)
+   ========================================================= */
+let spanishVoice = null, currentUtterance = null;
+function loadVoice() {
+  const voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+  spanishVoice = voices.find(v => /^es[-_]ES/i.test(v.lang)) || voices.find(v => /^es/i.test(v.lang)) || null;
+  return voices;
+}
+if (window.speechSynthesis) { loadVoice(); speechSynthesis.onvoiceschanged = loadVoice; }
+function showToast(msg) {
+  let t = document.getElementById("ttsToast");
+  if (!t) { t = document.createElement("div"); t.id = "ttsToast"; t.className = "tts-toast"; document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add("show"); clearTimeout(showToast._t); showToast._t = setTimeout(() => t.classList.remove("show"), 4000);
+}
+function speak(text) {
+  if (!text) return;
+  if (!window.speechSynthesis) { showToast("This browser doesn't support text-to-speech."); return; }
+  const voices = loadVoice();
+  const go = () => {
+    if (speechSynthesis.paused) speechSynthesis.resume();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "es-ES"; if (spanishVoice) u.voice = spanishVoice; u.rate = 0.88; currentUtterance = u;
+    let started = false;
+    u.onstart = () => { started = true; };
+    u.onend = () => { if (currentUtterance === u) currentUtterance = null; };
+    u.onerror = ev => { if (ev.error === "canceled" || ev.error === "interrupted") return; showToast("Couldn't play audio (" + ev.error + ")."); };
+    try { speechSynthesis.speak(u); } catch (e) { showToast("Speech failed to start."); return; }
+    setTimeout(() => { if (!started && !speechSynthesis.speaking && !speechSynthesis.pending) showToast(voices.length ? "No Spanish voice found on this device." : "No text-to-speech voices installed."); }, 900);
+  };
+  if (speechSynthesis.speaking || speechSynthesis.pending) { speechSynthesis.cancel(); setTimeout(go, 130); } else go();
+}
+document.addEventListener("click", e => { const s = e.target.closest(".say"); if (s) { e.stopPropagation(); speak(s.dataset.say); } });
+document.addEventListener("keydown", e => { const s = e.target.closest && e.target.closest(".say"); if (s && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.stopPropagation(); speak(s.dataset.say); } });
 
-  function buildRound() {
-    const picked = shuffle(POOL).slice(0, ROUND_SIZE);
-    round = picked.map(q => {
-      const others = [...new Set(POOL.map(p => p.es))].filter(es => es !== q.es);
-      const distractors = shuffle(others).slice(0, 3);
-      const options = shuffle([q.es, ...distractors]);
-      return { en: q.en, correct: q.es, options };
-    });
-  }
+/* =========================================================
+   SCREENS
+   ========================================================= */
+const app = document.getElementById("app");
+let session = null; // { title, sub, list, i, score, wrong:[], onDone }
 
-  function flagSize() {
-    const min = 33, max = 190;
-    const t = score / TOTAL;
-    const w = Math.round(min + (max - min) * t);
-    const h = Math.round(w * 0.667);
-    return { w, h };
-  }
+function flagHtml(t, max) {
+  const min = 30; const w = Math.round(min + (max - min) * Math.max(0, Math.min(1, t))); const h = Math.round(w * 0.667);
+  return `<div class="flag" style="width:${w}px;height:${h}px"><div class="rt"></div><div class="y"></div><div class="rb"></div></div>`;
+}
 
-  function renderFlag(size) {
-    return `<div class="flag" style="width:${size.w}px;height:${size.h}px">
-      <div class="rt"></div><div class="y"></div><div class="rb"></div>
-    </div>`;
-  }
+function renderHome() {
+  session = null;
+  const doneCount = Object.keys(state.done).length;
+  const next = DAYS.find(d => !state.done[d.id]) || DAYS[DAYS.length - 1];
+  app.innerHTML = `
+    <header class="masthead">
+      <div><h1>¡Vamos! — 14 días para Madrid</h1><div class="sub">A1 refresher · practical Spanish · no speaking required</div></div>
+      <div class="board"><span class="label">Streak</span>${state.streak} 🔥</div>
+    </header>
+    <div class="flag-wrap">${flagHtml(doneCount / 14, 150)}</div>
+    <div class="stats">
+      <div class="stat"><div class="v">${doneCount} / 14</div><div class="k">Days done</div></div>
+      <div class="stat"><div class="v">${state.mistakes.length}</div><div class="k">In mistakes bank</div></div>
+      <div class="stat"><div class="v">${next.id}</div><div class="k">Next day</div></div>
+    </div>
+    <p class="eyebrow">The plan — one day per situation</p>
+    <div class="plan">
+      ${DAYS.map(d => `
+        <button class="day ${d.id === next.id ? "today" : ""} ${d.review ? "review" : ""}" data-day="${d.id}">
+          <span class="n">${String(d.id).padStart(2, "0")}</span>
+          <span class="t">${esc(d.title)}<small>${esc(d.en)}</small></span>
+          ${state.done[d.id] ? `<span class="done">✓ ${state.done[d.id].score}/${state.done[d.id].total}</span>` : ""}
+        </button>`).join("")}
+    </div>
+    <div class="actions">
+      <button class="btn" id="startNext">Start day ${next.id}</button>
+      <button class="btn ghost" id="mistakes" ${state.mistakes.length ? "" : "disabled"}>Drill mistakes (${state.mistakes.length})</button>
+      <button class="btn ghost" id="flag">Flag challenge</button>
+      <span class="spacer" style="flex:1"></span>
+      <button class="btn ghost" id="voiceTest">🔊 Test voice</button>
+    </div>
+  `;
+  app.querySelectorAll(".day").forEach(b => b.addEventListener("click", () => renderIntro(DAYS.find(d => d.id === +b.dataset.day))));
+  app.querySelector("#startNext").addEventListener("click", () => renderIntro(next));
+  app.querySelector("#mistakes").addEventListener("click", () => startSession({ title: "Drill: mistakes bank", sub: "Items you missed before", list: buildMistakeSession(), mode: "mistakes" }));
+  app.querySelector("#flag").addEventListener("click", () => startSession({ title: "Flag challenge", sub: "10 quick words — grow the flag", list: buildFlagChallenge(), mode: "flag" }));
+  app.querySelector("#voiceTest").addEventListener("click", () => speak("¡Hola! Bienvenido a Madrid."));
+}
 
-  function render() {
-    const app = document.getElementById("app");
-    if (index >= TOTAL) { renderWin(app); return; }
-    const q = round[index];
-    const size = flagSize();
-    app.innerHTML = `
-      <header class="masthead">
-        <div>
-          <h1>¡Vamos!</h1>
-          <div class="sub">Spanish for the road</div>
-        </div>
-        <div class="board">
-          <span class="label">Question</span>${index + 1} / ${TOTAL}
-          <span class="label" style="margin-top:6px">Score</span>${score}
-        </div>
-      </header>
-      <div class="flag-wrap">${renderFlag(size)}</div>
-      <p class="prompt-eyebrow">Translate to Spanish</p>
-      <p class="prompt">${q.en}</p>
-      <div class="options" id="options">
-        ${q.options.map((opt, i) => `
-          <button class="opt" data-opt="${escapeAttr(opt)}" data-idx="${i}">
-            <span class="tag">${LETTERS[i]}</span><span>${opt}</span>
-            <span class="say" data-say="${escapeAttr(opt)}" role="button" aria-label="Listen" tabindex="0">🔊</span>
-          </button>
-        `).join("")}
-      </div>
-      <div class="feedback" id="feedback"></div>
-      <div class="footer-row">
-        <button class="next" id="nextBtn">${index === TOTAL - 1 ? "See result" : "Next question"}</button>
-      </div>
-    `;
+function renderIntro(day) {
+  const c = dayContent(day);
+  const preview = day.review ? [] : pick(day.vocab, 10);
+  app.innerHTML = `
+    <header class="masthead">
+      <div><h1>Día ${day.id} · ${esc(day.title)}</h1><div class="sub">${esc(day.en)}</div></div>
+      <div class="board"><span class="label">Exercises</span>~${day.review ? 32 : 26}</div>
+    </header>
+    <div class="tip">${day.tip}</div>
+    ${preview.length ? `<p class="eyebrow">Today's words — tap to hear</p><div class="preview">${preview.map(v => `<span>${esc(v[1])} ${sayBtn(v[1])}</span>`).join("")}</div>` : ""}
+    <p class="muted">Flow: recognise → understand → produce. Wrong answers go to your mistakes bank for later drilling. Press <b>Enter</b> to check / continue.</p>
+    <div class="footer-row">
+      <button class="btn ghost" id="back">← Plan</button>
+      <span class="spacer"></span>
+      <button class="btn" id="start">Start day ${day.id}</button>
+    </div>
+  `;
+  app.querySelector("#back").addEventListener("click", renderHome);
+  app.querySelector("#start").addEventListener("click", () => startSession({ title: `Día ${day.id} · ${day.title}`, sub: day.en, list: buildSession(day), mode: "day", day }));
+}
 
-    answered = false;
-    document.querySelectorAll(".opt").forEach(btn => btn.addEventListener("click", onAnswer));
-    document.querySelectorAll(".say").forEach(say => {
-      say.addEventListener("click", e => { e.stopPropagation(); speakSpanish(say.dataset.say); });
-      say.addEventListener("keydown", e => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); speakSpanish(say.dataset.say); }
-      });
-    });
-    document.getElementById("nextBtn").addEventListener("click", () => { index += 1; render(); });
-  }
+function startSession(cfg) {
+  if (!cfg.list.length) { showToast("Nothing to practise yet."); return; }
+  session = { ...cfg, i: 0, score: 0, wrong: [] };
+  renderExercise();
+}
 
-  function escapeAttr(s) { return s.replace(/"/g, "&quot;"); }
+function renderExercise() {
+  const s = session; const ex = s.list[s.i];
+  if (!ex) return renderSummary();
+  const n = s.list.length;
+  app.innerHTML = `
+    <header class="masthead">
+      <div><h1>${esc(s.title)}</h1><div class="sub">${esc(s.sub)}</div></div>
+      <div class="board"><span class="label">Exercise</span>${s.i + 1} / ${n}<span class="label" style="margin-top:6px">Score</span>${s.score}</div>
+    </header>
+    <div class="progress"><div style="width:${(s.i / n) * 100}%"></div></div>
+    <div class="flag-wrap">${flagHtml(s.score / n, 150)}</div>
+    <p class="eyebrow">${esc(ex.label)}</p>
+    <div id="body"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="footer-row">
+      <button class="btn ghost" id="quit">Quit</button>
+      <span class="spacer"></span>
+      <button class="btn ghost" id="check" style="display:none">Check</button>
+      <button class="btn next" id="nextBtn">${s.i === n - 1 ? "See result" : "Continue"}</button>
+    </div>
+  `;
+  app.querySelector("#quit").addEventListener("click", () => { if (confirm("Quit this session? Progress on this day won't be saved.")) renderHome(); });
+  app.querySelector("#nextBtn").addEventListener("click", () => { s.i++; renderExercise(); });
+  RENDER[ex.type](ex, app.querySelector("#body"));
+}
 
-  let spanishVoice = null;
-  function loadVoice() {
-    const voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
-    spanishVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("es")) || null;
-    return voices;
-  }
-  if (window.speechSynthesis) {
-    loadVoice();
-    speechSynthesis.onvoiceschanged = loadVoice;
-  }
+function finish(ex, ok, correctText, note) {
+  const s = session;
+  if (ok) s.score++; else { s.wrong.push({ ex, correctText }); if (ex.src) addMistake({ key: ex.key, src: ex.src, day: ex.src.v ? ex.src.v[2] : ex.src.s ? ex.src.s[3] : ex.src.g ? ex.src.g[4] : ex.src.d ? ex.src.d.day : ex.src.n ? ex.src.n[2] : 0, es: correctText }); }
+  if (ok && session.mode === "mistakes") clearMistake(ex.key);
+  const fb = app.querySelector("#feedback");
+  fb.className = "feedback " + (ok ? "good" : "bad");
+  fb.innerHTML = ok ? `¡Correcto!${note ? " — " + note : ""}` : `Not quite. Correct: <span class="ans">${esc(correctText)}</span> ${sayBtn(correctText)}${note ? "<br>" + note : ""}`;
+  app.querySelector(".flag-wrap").innerHTML = flagHtml(s.score / s.list.length, 150);
+  app.querySelector(".board").innerHTML = `<span class="label">Exercise</span>${s.i + 1} / ${s.list.length}<span class="label" style="margin-top:6px">Score</span>${s.score}`;
+  const chk = app.querySelector("#check"); if (chk) chk.style.display = "none";
+  const nb = app.querySelector("#nextBtn"); nb.classList.add("show"); nb.focus();
+}
 
-  function showToast(msg) {
-    let toast = document.getElementById("ttsToast");
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.id = "ttsToast";
-      toast.className = "tts-toast";
-      document.body.appendChild(toast);
-    }
-    toast.textContent = msg;
-    toast.classList.add("show");
-    clearTimeout(showToast._t);
-    showToast._t = setTimeout(() => toast.classList.remove("show"), 4500);
-  }
+// Enter: check or continue
+document.addEventListener("keydown", e => {
+  if (e.key !== "Enter" || !session) return;
+  const chk = app.querySelector("#check"), nb = app.querySelector("#nextBtn");
+  if (chk && chk.style.display !== "none" && !chk.disabled) { e.preventDefault(); chk.click(); }
+  else if (nb && nb.classList.contains("show")) { e.preventDefault(); nb.click(); }
+});
 
-  let currentUtterance = null;
+/* ---------- Renderers ---------- */
+const RENDER = {
+  mcq(ex, body) {
+    body.innerHTML = `<p class="prompt ${ex.promptEs ? "es" : ""}">${esc(ex.prompt)} ${ex.promptEs ? sayBtn(ex.prompt) : ""}</p>
+      <div class="options">${ex.options.map((o, i) => `<button class="opt" data-v="${esc(o)}"><span class="tag">${LETTERS[i]}</span><span>${esc(o)}</span>${ex.spanishOpts ? sayBtn(o) : ""}</button>`).join("")}</div>`;
+    body.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const ok = b.dataset.v === ex.correct;
+      body.querySelectorAll(".opt").forEach(o => { o.disabled = true; if (o.dataset.v === ex.correct) o.classList.add("correct"); else if (o === b) o.classList.add("wrong"); else o.classList.add("dim"); });
+      finish(ex, ok, ex.correct);
+    }));
+  },
 
-  function speakSpanish(text) {
-    if (!text) return;
-    if (!window.speechSynthesis) { showToast("This browser doesn't support text-to-speech."); return; }
-    const voices = loadVoice();
+  dialogue(ex, body) {
+    const d = ex.d;
+    body.innerHTML = `
+      <div class="bubble"><div class="who">${esc(d.who)}</div>
+        ${d.says !== "..." ? `<div class="line">${esc(d.says)} ${sayBtn(d.says)}</div>` : ""}
+        ${d.ctx ? `<div class="ctx">${esc(d.ctx)}</div>` : ""}</div>
+      <p class="muted" style="margin:0 0 12px">${d.ask === "mean" ? "Pick the meaning." : d.ask === "say" ? "What do you say?" : "How do you reply?"}</p>
+      <div class="options single">${ex.options.map((o, i) => `<button class="opt" data-i="${i}"><span class="tag">${LETTERS[i]}</span><span>${esc(o[0])}</span>${d.ask !== "mean" ? sayBtn(o[0]) : ""}</button>`).join("")}</div>`;
+    const correct = ex.options.find(o => o[1])[0];
+    body.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const o = ex.options[+b.dataset.i]; const ok = !!o[1];
+      body.querySelectorAll(".opt").forEach(x => { x.disabled = true; const xo = ex.options[+x.dataset.i]; if (xo[1]) x.classList.add("correct"); else if (x === b) x.classList.add("wrong"); else x.classList.add("dim"); });
+      finish(ex, ok, correct);
+    }));
+  },
 
-    const doSpeak = () => {
-      if (speechSynthesis.paused) speechSynthesis.resume();
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = "es-ES";
-      if (spanishVoice) utter.voice = spanishVoice;
-      utter.rate = 0.9;
-      currentUtterance = utter;
-      let started = false;
-      utter.onstart = () => { started = true; };
-      utter.onend = () => { if (currentUtterance === utter) currentUtterance = null; };
-      utter.onerror = (ev) => {
-        if (ev.error === "canceled" || ev.error === "interrupted") return;
-        showToast("Couldn't play audio (" + ev.error + ").");
-      };
-      try { speechSynthesis.speak(utter); } catch (err) { showToast("Speech failed to start."); return; }
-      setTimeout(() => {
-        if (!started && !speechSynthesis.speaking && !speechSynthesis.pending) {
-          showToast(voices.length === 0
-            ? "No text-to-speech voices installed on this device."
-            : "Speech didn't play — no Spanish voice found; try a different browser.");
-        }
-      }, 900);
+  listen(ex, body) {
+    body.innerHTML = `<div class="play"><button class="big" id="replay">🔊 Play</button><span class="muted">Listen, then pick what you heard.</span></div>
+      <div class="options single">${ex.options.map((o, i) => `<button class="opt" data-v="${esc(o)}"><span class="tag">${LETTERS[i]}</span><span>${esc(o)}</span></button>`).join("")}</div>`;
+    body.querySelector("#replay").addEventListener("click", () => speak(ex.audio));
+    speak(ex.audio);
+    body.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const ok = b.dataset.v === ex.correct;
+      body.querySelectorAll(".opt").forEach(o => { o.disabled = true; if (o.dataset.v === ex.correct) o.classList.add("correct"); else if (o === b) o.classList.add("wrong"); else o.classList.add("dim"); });
+      finish(ex, ok, ex.correct);
+    }));
+  },
+
+  match(ex, body) {
+    const left = shuffle(ex.pairs.map(p => p[1])), right = shuffle(ex.pairs.map(p => p[0]));
+    body.innerHTML = `<p class="muted" style="margin:0 0 12px">Tap a Spanish word, then its English meaning.</p>
+      <div class="match"><div class="col">${left.map(t => `<button class="chip" data-side="l" data-v="${esc(t)}">${esc(t)}</button>`).join("")}</div>
+      <div class="col">${right.map(t => `<button class="chip" data-side="r" data-v="${esc(t)}">${esc(t)}</button>`).join("")}</div></div>`;
+    let sel = null, errors = 0, done = 0;
+    body.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+      if (c.classList.contains("locked")) return;
+      if (!sel || sel.dataset.side === c.dataset.side) { body.querySelectorAll(".chip.sel").forEach(x => x.classList.remove("sel")); sel = c; c.classList.add("sel"); if (c.dataset.side === "l") speak(c.dataset.v); return; }
+      const es = sel.dataset.side === "l" ? sel.dataset.v : c.dataset.v, en = sel.dataset.side === "l" ? c.dataset.v : sel.dataset.v;
+      const pair = ex.pairs.find(p => p[1] === es && p[0] === en);
+      if (pair) { sel.classList.add("locked"); c.classList.add("locked"); sel.classList.remove("sel"); done++; }
+      else { errors++; [sel, c].forEach(x => { x.classList.add("flash"); setTimeout(() => x.classList.remove("flash"), 400); }); sel.classList.remove("sel"); }
+      sel = null;
+      if (done === ex.pairs.length) finish(ex, errors === 0, ex.pairs.map(p => p[1] + " = " + p[0]).join(", "), errors ? `${errors} slip${errors > 1 ? "s" : ""} on the way.` : "Clean sweep.");
+    }));
+  },
+
+  builder(ex, body) {
+    body.innerHTML = `<p class="prompt">${esc(ex.prompt)}</p>
+      <div class="chips answer" id="ans"></div>
+      <div class="chips" id="pool">${ex.chips.map((w, i) => `<button class="chip" data-i="${i}">${esc(w)}</button>`).join("")}</div>
+      <p class="hint">Tap words in order. Tap a word in the top row to remove it. Two words are decoys.</p>`;
+    const ans = body.querySelector("#ans"), pool = body.querySelector("#pool"), chk = app.querySelector("#check");
+    let order = []; chk.style.display = ""; chk.disabled = true;
+    const sync = () => {
+      ans.innerHTML = order.map(i => `<button class="chip" data-i="${i}">${esc(ex.chips[i])}</button>`).join("");
+      pool.querySelectorAll(".chip").forEach(c => c.classList.toggle("used", order.includes(+c.dataset.i)));
+      ans.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => { order = order.filter(i => i !== +c.dataset.i); sync(); }));
+      chk.disabled = order.length === 0;
     };
+    pool.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => { if (!order.includes(+c.dataset.i)) { order.push(+c.dataset.i); sync(); } }));
+    chk.onclick = () => {
+      const got = order.map(i => ex.chips[i]).join(" ");
+      const ok = norm(got) === norm(ex.target);
+      body.querySelectorAll(".chip").forEach(c => c.disabled = true);
+      ans.style.borderColor = ok ? "var(--good)" : "var(--bad)";
+      finish(ex, ok, ex.target, ok ? undefined : `You wrote: “${esc(got)}”`);
+    };
+  },
 
-    if (speechSynthesis.speaking || speechSynthesis.pending) {
-      speechSynthesis.cancel();
-      setTimeout(doSpeak, 130);
-    } else {
-      doSpeak();
-    }
+  type(ex, body) {
+    body.innerHTML = `<p class="prompt">${esc(ex.prompt)}</p>
+      <div class="field"><input class="text" id="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escribe en español…"><button class="btn ghost" id="hintBtn">Hint</button></div>
+      <p class="hint" id="hintTxt">Accents are checked softly — a missing á/ñ still counts, but you'll see the correct form.</p>`;
+    const inp = body.querySelector("#inp"), chk = app.querySelector("#check"); chk.style.display = ""; chk.disabled = false; inp.focus();
+    body.querySelector("#hintBtn").addEventListener("click", () => { const w = ex.answer.split(" "); body.querySelector("#hintTxt").textContent = "Starts with: " + w.slice(0, Math.min(2, w.length)).join(" ") + (w.length > 2 ? " …" : "") + ` (${w.length} words)`; });
+    chk.onclick = () => {
+      const got = inp.value; if (!norm(got)) { inp.focus(); return; }
+      const accepted = [ex.answer, ...ex.alts];
+      const exact = accepted.some(a => a.trim().replace(/\s+/g, " ").toLowerCase() === got.trim().replace(/\s+/g, " ").toLowerCase());
+      const ok = exact || accepted.some(a => norm(a) === norm(got));
+      inp.disabled = true; inp.classList.add(ok ? "ok" : "ko");
+      finish(ex, ok, ex.answer, ok && !exact ? `Mind the spelling/accents: <span class="ans">${esc(ex.answer)}</span>` : undefined);
+    };
+  },
+
+  gap(ex, body) {
+    const parts = ex.sentence.split("___");
+    body.innerHTML = `<p class="gap-sentence">${esc(parts[0])}<input class="text" id="inp" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(6, ex.answer.length + 2)}ch">${esc(parts[1] || "")}</p>
+      <p class="hint">Hint: ${esc(ex.hint)}</p>`;
+    const inp = body.querySelector("#inp"), chk = app.querySelector("#check"); chk.style.display = ""; chk.disabled = false; inp.focus();
+    chk.onclick = () => {
+      const got = inp.value; if (!norm(got)) { inp.focus(); return; }
+      const accepted = [ex.answer, ...ex.alts];
+      const exact = accepted.some(a => a.toLowerCase() === got.trim().toLowerCase());
+      const ok = exact || accepted.some(a => norm(a) === norm(got));
+      inp.disabled = true; inp.classList.add(ok ? "ok" : "ko");
+      finish(ex, ok, ex.sentence.replace("___", ex.answer).replace(/\s\(.*\)$/, ""), ok && !exact ? `Correct form: <span class="ans">${esc(ex.answer)}</span>` : undefined);
+    };
+  },
+
+  number(ex, body) {
+    const isTime = /^las?\s/.test(ex.prompt);
+    body.innerHTML = `<p class="prompt es">${esc(ex.prompt)} ${sayBtn(ex.prompt)}</p>
+      <div class="field"><input class="text" id="inp" inputmode="decimal" autocomplete="off" placeholder="${isTime ? "e.g. 14:30" : "e.g. 3.50"}"></div>
+      <p class="hint">${isTime ? "Type the time as HH:MM (12h or 24h both fine)." : "Type the amount in digits. Use . or , for cents."}</p>`;
+    const inp = body.querySelector("#inp"), chk = app.querySelector("#check"); chk.style.display = ""; chk.disabled = false; inp.focus();
+    chk.onclick = () => {
+      const got = normNum(inp.value); if (!got) { inp.focus(); return; }
+      const ok = ex.answers.some(a => normNum(a) === got || (!isTime && parseFloat(normNum(a)) === parseFloat(got)));
+      inp.disabled = true; inp.classList.add(ok ? "ok" : "ko");
+      finish(ex, ok, ex.answers[0] + (isTime ? "" : " €"));
+    };
   }
+};
 
-  function onAnswer(e) {
-    if (answered) return;
-    answered = true;
-    const btn = e.currentTarget;
-    const chosen = btn.dataset.opt;
-    const q = round[index];
-    const isCorrect = chosen === q.correct;
-    if (isCorrect) score += 1;
-
-    document.querySelectorAll(".opt").forEach(o => {
-      o.disabled = true;
-      if (o.dataset.opt === q.correct) o.classList.add("correct");
-      else if (o === btn) o.classList.add("wrong");
-      else o.classList.add("dim");
-    });
-
-    const feedback = document.getElementById("feedback");
-    feedback.textContent = isCorrect ? "¡Correcto! — well travelled." : `Not quite. Correct answer: ${q.correct}`;
-    feedback.className = "feedback " + (isCorrect ? "good" : "bad");
-
-    document.querySelector(".flag-wrap").innerHTML = renderFlag(flagSize());
-    document.querySelector(".board").innerHTML = `
-      <span class="label">Question</span>${index + 1} / ${TOTAL}
-      <span class="label" style="margin-top:6px">Score</span>${score}
-    `;
-    document.getElementById("nextBtn").classList.add("show");
-  }
-
-  function renderWin(app) {
-    const size = { w: 190, h: 127 };
-    const perfect = score === TOTAL;
-    app.innerHTML = `
-      <div class="win-screen">
-        <p class="prompt-eyebrow">¡Viaje completo!</p>
-        <div class="flag-wrap">${renderFlag(size)}</div>
-        <h1>${perfect ? "¡Perfecto! Perfect score." : "¡Hasta luego!"}</h1>
-        <p class="result">${score} / ${TOTAL} correct</p>
-        <button class="next" id="again">Play again</button>
+function renderSummary() {
+  const s = session; const n = s.list.length; const pct = Math.round((s.score / n) * 100);
+  if (s.mode === "day") { state.done[s.day.id] = { score: s.score, total: n, date: todayStr() }; bumpStreak(); save(); }
+  const msg = pct >= 90 ? "¡Perfecto! Madrid no tiene secretos para ti." : pct >= 70 ? "¡Muy bien! Ready for the street." : pct >= 50 ? "Bien — drill the mistakes and you're there." : "Buen comienzo. Repeat this day tomorrow.";
+  app.innerHTML = `
+    <div class="summary">
+      <p class="eyebrow" style="text-align:center">${esc(s.title)} · complete</p>
+      <div class="flag-wrap" style="height:150px">${flagHtml(s.score / n, 190)}</div>
+      <h1>${msg}</h1>
+      <p class="result">${s.score} / ${n} correct · ${pct}%</p>
+      ${s.wrong.length ? `<p class="eyebrow">To review (saved to your mistakes bank)</p><ul class="review-list">${s.wrong.slice(0, 12).map(w => `<li><span>${esc(w.ex.prompt || w.ex.sentence || (w.ex.d && w.ex.d.says) || w.ex.label)}</span><span class="es">${esc(w.correctText)} ${sayBtn(w.correctText)}</span></li>`).join("")}</ul>` : `<p class="muted" style="text-align:center">No mistakes. Seriously impressive.</p>`}
+      <div class="actions" style="justify-content:center">
+        <button class="btn ghost" id="again">Repeat</button>
+        <button class="btn" id="home">Back to plan</button>
       </div>
-    `;
-    document.getElementById("again").addEventListener("click", () => { score = 0; index = 0; buildRound(); render(); });
-  }
+    </div>`;
+  app.querySelector("#home").addEventListener("click", renderHome);
+  app.querySelector("#again").addEventListener("click", () => startSession({ ...s, list: s.mode === "day" ? buildSession(s.day) : s.mode === "mistakes" ? buildMistakeSession() : buildFlagChallenge() }));
+}
 
-  document.getElementById("voiceTest").addEventListener("click", () => speakSpanish("¡Hola! Bienvenido a España."));
-  buildRound();
-  render();
+renderHome();
 </script>
